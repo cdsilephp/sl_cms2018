@@ -1,0 +1,217 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>网站设置</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">网站设置</div>
+          <div class="layui-card-body" pad15>
+            
+            <div class="layui-form" wid100 lay-filter="">
+              <div class="layui-form-item">
+                <label class="layui-form-label">网站名称</label>
+                <div class="layui-input-block">
+                  <input type="text" name="PROJECTNAME" value="<?php echo $GLOBALS['config_cache']['PROJECTNAME'] ?>" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">网站域名</label>
+                <div class="layui-input-block">
+                  <input type="text" name="SITEURL" lay-verify="url" value="<?php echo $GLOBALS['config_cache']['SITEURL'] ?>" class="layui-input">
+                </div>
+              </div>
+               
+              <div class="layui-form-item">
+                <label class="layui-form-label">最大文件上传</label>
+                <div class="layui-input-inline" style="width: 80px;">
+                  <input type="text" name="UPLOAD_MAXSIZE" lay-verify="number" value="<?php echo $GLOBALS['config_cache']['UPLOAD_MAXSIZE'] ?>"  class="layui-input">
+                </div>
+                <div class="layui-input-inline layui-input-company">KB</div>
+                <div class="layui-form-mid layui-word-aux">提示：1 M = 1024 KB</div>
+              </div>
+              
+              
+              <div class="layui-form-item">
+                <label class="layui-form-label">上传文件类型</label>
+                <div class="layui-input-block">
+                  <input type="text" name="UPLOAD_ATTACHMENT_ALLOWEXT" value="<?php echo $GLOBALS['config_cache']['UPLOAD_ATTACHMENT_ALLOWEXT'] ?>"  class="layui-input">
+                </div>
+              </div>
+              
+              <div class="layui-form-item">
+                <label class="layui-form-label">上传图片类型</label>
+                <div class="layui-input-block">
+                  <input type="text" name="UPLOAD_IMAGES_ALLOWEXT" value="<?php echo $GLOBALS['config_cache']['UPLOAD_IMAGES_ALLOWEXT'] ?>"  class="layui-input">
+                </div>
+              </div>
+              
+              <div class="layui-form-item">
+                <label class="layui-form-label">上传路径</label>
+                <div class="layui-input-block">
+                  <input type="text" name="UPLOAD_DIR" value="<?php echo $GLOBALS['config_cache']['UPLOAD_DIR'] ?>"  class="layui-input">
+                </div>
+              </div>
+              
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">首页标题</label>
+                <div class="layui-input-block">
+                  <textarea name="SEOTITLE" class="layui-textarea"><?php echo $GLOBALS['config_cache']['SEOTITLE'] ?></textarea>
+                </div>
+              </div>
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">META关键词</label>
+                <div class="layui-input-block">
+                  <textarea name="SEOKEYWORDS" class="layui-textarea" placeholder="多个关键词用英文状态 , 号分割"><?php echo $GLOBALS['config_cache']['SEOKEYWORDS'] ?></textarea>
+                </div>
+              </div>
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">META描述</label>
+                <div class="layui-input-block">
+                  <textarea name="SEODESCRIPTION" class="layui-textarea"><?php echo $GLOBALS['config_cache']['SEODESCRIPTION'] ?></textarea>
+                </div>
+              </div>
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">版权信息</label>
+                <div class="layui-input-block">
+                  <textarea name="COPYRIGHT" class="layui-textarea"><?php echo $GLOBALS['config_cache']['COPYRIGHT'] ?></textarea>
+                </div>
+              </div>
+              
+              
+               <div class="layui-form-item">
+                <label class="layui-form-label">公司地址</label>
+                <div class="layui-input-block">
+                  <input type="text" name=ADDRESS   value="<?php echo $GLOBALS['config_cache']['ADDRESS'] ?>" class="layui-input">
+                </div>
+              </div>
+              
+               <div class="layui-form-item">
+                <label class="layui-form-label">客服热线</label>
+                <div class="layui-input-block">
+                  <input type="text" name="TEL"   value="<?php echo $GLOBALS['config_cache']['TEL'] ?>" class="layui-input">
+                </div>
+              </div>
+              
+              <div class="layui-form-item">
+                <label class="layui-form-label">招商热线</label>
+                <div class="layui-input-block">
+                  <input type="text" name="TEL1"   value="<?php echo $GLOBALS['config_cache']['TEL1'] ?>" class="layui-input">
+                </div>
+              </div>
+              
+              <div class="layui-form-item">
+                <label class="layui-form-label">QQ</label>
+                <div class="layui-input-block">
+                  <input type="text" name="QQ"   value="<?php echo $GLOBALS['config_cache']['QQ'] ?>" class="layui-input">
+                </div>
+              </div>
+              
+              <script type='text/javascript'>
+	               //iframe窗
+	               function upload_banner()
+                   {
+                       layOpen('上传图片','/admin/inc/showWebUploader?type=image&field=wx_image');
+                        
+                   }
+                 </script>
+                 
+              <div class="layui-form-item">
+                          <label class="layui-form-label">微信二维码</label>
+                          <div class="layui-input-inline">
+                            <input type="hidden" name="WX_IMAGE" value="" id="wx_image">
+                            <a id="img_a_wx_image" href="<?php echo $GLOBALS['config_cache']['WX_IMAGE'] ?>" target="_blank">
+				    		       <img id="img_wx_image" src="<?php echo $GLOBALS['config_cache']['WX_IMAGE'] ?>" class="layui-upload-img" style="max-width: 200px;max-height: 100px;overflow: hidden;" onerror="javascript:this.src='/application/admin/views/images/nopic.jpg';">
+				    		</a>
+                            <button onclick="upload_banner()" type="button" class="layui-btn" id="test-upload-normal">上传图片</button>
+
+                          </div>
+              </div>
+                    
+              
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <button class="layui-btn" lay-submit lay-filter="save">确认保存</button>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="<?=CUR_TPL_PATH?>src/layuiadmin/layui/layui.js"></script>  
+  <script>
+  layui.config({
+				base: '<?=CUR_TPL_PATH?>src/layuiadmin/' //静态资源所在路径
+			}).extend({
+				index: 'lib/index' //主入口模块
+			}).use(['index', 'form', 'laydate','set'], function() {
+				var $ = layui.$,
+					admin = layui.admin,
+					element = layui.element,
+					layer = layui.layer,
+					laydate = layui.laydate,
+					form = layui.form,
+					index = parent.layer.getFrameIndex(window.name); //获取窗口索引;
+
+				form.render(null, 'component-form-group');
+
+				laydate.render({
+					elem: '#LAY-component-form-group-date'
+				});
+
+				/* 自定义验证规则 */
+				form.verify({
+
+					pass: [/(.+){6,12}$/, '密码必须6到12位'],
+					repass: function(value, item) {
+						var password = $("#password").val();
+						if(password != value) {
+							return '两次密码不一致';
+						}
+					},
+				});
+
+				/* 监听提交 */
+				form.on('submit(save)', function(data) {
+					//请求接口
+					admin.req({
+						url: '/admin/set/update' //实际使用请改成服务端真实接口
+							,
+						data: data.field,
+						type: 'post',
+						done: function(res) {
+
+							//登入成功的提示与跳转
+							layer.msg(res.msg, {
+								offset: '15px',
+								icon: 1,
+								time: 1000
+							}, function() {
+								 
+							});
+
+						}
+					});
+
+					return false;
+				});
+			});
+  </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<?php include CUR_VIEW_PATH."public/head.html"?>
+</head>
+
+<body class="body-color">
+	 
+
+	<!--主体部分-->
+ 
+		<!--筛选条件-->
+<div class="filter">
+<form method="post" action="index.php?p=admin&c=Inc&a=showDuotiaojilu&model_id=<?php echo $_GET['model_id'] ?>" name='theForm' id="search_from">
+	<div class="filter-left">
+		<div class="form-control">
+			<input name="u6" type="text" id="u6" class="input" placeholder="搜索条件" />
+
+			<input type="submit" name="Button1" value="搜索" id="Button1" class="btn btn-blue" />
+		</div>
+		
+	</div>
+
+	<div class="filter-right">
+		<a href="index.php?p=admin&c=Inc&a=addDuotiaojilu&model_id=<?php echo $_GET['model_id'] ?>&guanlianziduan_val=<?php echo $_GET['guanlianziduan_val'] ?>&guanlianziduan=<?php echo $_GET['guanlianziduan'] ?>&field=<?php echo $_GET['field'] ?>&field_id=<?php echo $_GET['field_id'] ?>" class="btn btn-green"> + 添加信息</a>
+	</div>
+</form>
+	
+	<br />
+	<p class="clear-right"></p>
+</div>
+<!--筛选条件 end-->		
+		
+		 
+
+<!--表单table-->
+<table class="table table-border table-hover" id="content">
+	<thead>
+		<tr>
+			 
+			
+			<?php foreach($filedLists as $v){ ?>
+                <th style='width:<?php echo $v["u9"]?>;text-align:left'><?php echo $v['u2']?></th>
+            <?php } ?>
+			
+				<th>操作</th>
+			 
+		</tr>
+	</thead>
+	
+	
+	<?php foreach($tableModel as $brand) : ?>
+	<tr>
+		 
+		
+		<?php foreach($filedLists as $v){ ?>
+		
+		   <td style='width:<?php echo $v["u9"]?>;text-align:left'>
+                  <?php echo $this->showKj($v['u7'],$v['u2'],$v['u1'] ,$brand[$v['u1']],$v['u3'] ,$v['id']) ?>
+                  
+                  </td>
+                
+                
+        <?php } ?>
+            
+           <td>
+			<div>
+				<!-- <a href='#' target=_blank>查看</a> | -->
+				<a href="index.php?p=admin&c=Inc&a=editDuotiaojilu&model_id=<?php echo $_GET['model_id'] ?>&id=<?php echo $brand['id'];?>&guanlianziduan_val=<?php echo $_GET['guanlianziduan_val'] ?>&guanlianziduan=<?php echo $_GET['guanlianziduan'] ?>&field=<?php echo $_GET['field'] ?>&field_id=<?php echo $_GET['field_id'] ?>">修改</a> |
+				<a onclick="return confirm('你确认将该信息删除到回收站?   注意：相关图片和资源也将一起删除到回收站');" href="index.php?p=admin&c=inc&a=deleteDuotiaojilu&model_id=<?php echo $_GET['model_id']?>&id=<?php echo $brand['id'];?>">删除</a>
+			</div>
+		</td>
+		 
+	</tr>
+	<?php endforeach;?>
+	
+	
+</table>
+
+<!--表单table  end-->
+ 
+
+
+ 
+
+<p class="clear"></p>
+
+<script src="application/views/admin/js/wow.min.js" type="text/javascript"></script>
+<script src="application/views/admin/js/common.js" type="text/javascript"></script>
+
+<!--wow 初始化-->
+<script>
+	if(!(/msie [6|7|8|9]/i.test(navigator.userAgent))) {
+		new WOW().init();
+	};
+</script>
+</body>
+
+</html>

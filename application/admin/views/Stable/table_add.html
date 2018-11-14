@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>模型管理</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/style/admin.css" media="all">
+	</head>
+
+	<body layadmin-themealias="default">
+
+		<div class="layui-fluid">
+			<div class="layui-card">
+				<div class="layui-card-body" style="padding: 15px;">
+					<form class="layui-form" id="showPic">
+						<div class="layui-row">
+							<div class="layui-col-xs12 layui-col-md12">
+
+								<div class="layui-form-item">
+									<label class="layui-form-label">模型中文名</label>
+									<div class="layui-input-inline">
+										<input id="u2" type="text" class="layui-input" placeholder="比如：用户，订单" autocomplete="off" name="u2" lay-verify="required">
+									</div>
+									<div class="layui-form-mid layui-word-aux">（必填）</div>
+								</div>
+								
+								<div class="layui-form-item">
+									<label class="layui-form-label">数据库表名</label>
+									<div class="layui-input-inline">
+										<input readonly="readonly" id="u1" type="text" class="layui-input" placeholder="数据库表名" autocomplete="off" name="u1" lay-verify="required">
+									</div>
+								
+								</div>
+								 
+								 
+								<div class="layui-form-item">
+										<label class="layui-form-label">模型类型</label>
+										 
+										
+										<div class="layui-input-inline">
+										
+										<select id="u3" name="u3"  lay-filter="u3change" lay-verify="required"  >
+											<option value="">请选择</option>
+											<?php foreach ($u3 as $v){  ?>
+											    <option value="<?= $v["u1"] ?>" data-u2="<?= $v["u2"] ?>"><?= $v["u1"] ?></option>
+											<?php } ?>
+										</select>
+										
+										</div>
+								</div>
+								
+							 <div id="suoshulanmu" class="layui-form-item" hidden="hidden">
+										<label class="layui-form-label">所属栏目</label>
+										 
+										
+										<div class="layui-input-inline">
+										
+										<select id="u10" name="u10"   >
+											<option value="">请选择</option>
+											<?=$html_option?>
+										</select>
+										
+										</div>
+							  </div>
+									
+							  <div class="layui-form-item">
+									<label class="layui-form-label">默认设置</label>
+									<div class="layui-input-block">
+										<input type="checkbox" checked="" name="u4" lay-skin="switch" lay-filter="component-form-switchTest" lay-text="ON|OFF">
+										<div class="layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch"><em>ON</em><i></i></div>
+									</div>
+							  </div>
+							  
+							  <div class="layui-form-item table-set" hidden="hidden">
+									<label class="layui-form-label">自定义控制器</label>
+									<div class="layui-input-inline">
+										<input id="u8" value="autotable" type="text" class="layui-input" placeholder="如 huiyuan" autocomplete="off" name="u8" >
+									</div>
+								
+								</div>
+								
+								<div class="layui-form-item table-set" hidden="hidden">
+									<label class="layui-form-label">自定义视图文件夹</label>
+									<div class="layui-input-inline">
+										<input id="u9" value="Sautotable" type="text" class="layui-input" placeholder="如 Shuiyuan" autocomplete="off" name="u9" >
+									</div>
+								
+								</div>
+							  
+						
+								<div class="layui-form-item layui-layout-admin">
+									<div class="layui-input-block">
+										<div class="layui-footer" style="left: 0;">
+											<button class="layui-btn" lay-submit="" lay-filter="save">提交</button>
+											<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+
+		<script src="<?=CUR_TPL_PATH?>src/layuiadmin/layui/layui.js"></script>
+		<script>
+			layui.config({
+				base: '<?=CUR_TPL_PATH?>src/layuiadmin/' //静态资源所在路径
+			}).extend({
+				index: 'lib/index' //主入口模块
+			}).use(['index', 'form', 'laydate'], function() {
+				var $ = layui.$,
+					admin = layui.admin,
+					element = layui.element,
+					layer = layui.layer,
+					laydate = layui.laydate,
+					form = layui.form,
+					index = parent.layer.getFrameIndex(window.name); //获取窗口索引;
+
+				form.render(null, 'component-form-group');
+
+				laydate.render({
+					elem: '#LAY-component-form-group-date'
+				});
+
+				/* 自定义验证规则 */
+				form.verify({
+
+					pass: [/(.+){6,12}$/, '密码必须6到12位'],
+					repass: function(value, item) {
+						var password = $("#password").val();
+						if(password != value) {
+							return '两次密码不一致';
+						}
+					},
+				});
+				
+				/* 监听指定开关 */
+			    form.on('switch(component-form-switchTest)', function(data){
+			       
+			      if(this.checked==false)
+			      {
+			      	$(".table-set").show();
+			      }else{
+			      	$(".table-set").hide();
+			      }
+			      
+			    });
+			    
+			    //将输入的中文转换为拼音
+			    $("#u2").blur(function(){
+			    	var re_str=$.ajax({url:"/admin/filed/Zh2Py?&Zh_str="+$("#u2").val(),async:false}).responseText;
+			    	var re_json=JSON.parse(re_str);
+			    	if(re_json.status=="true")
+			    		{
+			    		var u1_value=re_json.content;
+			            $("#u1").val(u1_value);
+			    		}
+			    	else
+			    		{
+			    		alert(re_json.content);
+			    		
+			    		}
+			         
+			    });
+			    
+			    
+			     //选择模型事件
+			    form.on('select(u3change)', function(data){
+				  console.log(	$("#"+data.elem.id).find("option:selected").data('u2') );
+				  var str =$("#"+data.elem.id).find("option:selected").data('u2');
+				  var strs= new Array(); //定义一数组 
+				  strs=str.split("|"); //字符分割 
+				   
+				  var model_name = $("#"+data.elem.id).find("option:selected").val();
+					 if(model_name=="文章模型"){
+						 $("#suoshulanmu").show();
+					 }
+					 
+				  $("#u8").val(strs[0]);
+				  $("#u9").val(strs[1]);
+				  
+				});
+
+    
+
+				/* 监听提交 */
+				form.on('submit(save)', function(data) {
+					//请求接口
+					admin.req({
+						url: '/admin/table/insert' //实际使用请改成服务端真实接口
+							,
+						data: data.field,
+						done: function(res) {
+
+							//登入成功的提示与跳转
+							layer.msg(res.msg, {
+								offset: '15px',
+								icon: 1,
+								time: 1000
+							}, function() {
+								parent.location.reload();
+								parent.layer.close(index);
+							});
+
+						}
+					});
+
+					return false;
+				});
+			});
+			
+			
+		</script>
+
+		<style id="LAY_layadmin_theme">
+			.layui-side-menu,
+			.layadmin-pagetabs .layui-tab-title li:after,
+			.layadmin-pagetabs .layui-tab-title li.layui-this:after,
+			.layui-layer-admin .layui-layer-title,
+			.layadmin-side-shrink .layui-side-menu .layui-nav>.layui-nav-item>.layui-nav-child {
+				background-color: #20222A !important;
+			}
+			
+			.layui-nav-tree .layui-this,
+			.layui-nav-tree .layui-this>a,
+			.layui-nav-tree .layui-nav-child dd.layui-this,
+			.layui-nav-tree .layui-nav-child dd.layui-this a {
+				background-color: #009688 !important;
+			}
+			
+			.layui-layout-admin .layui-logo {
+				background-color: #20222A !important;
+			}
+		</style>
+	</body>
+
+</html>

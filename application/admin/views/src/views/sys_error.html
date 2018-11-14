@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head id="Head1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="renderer" content="webkit|ie-comp|ie-stand" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Refresh" content ="<?php echo $wait -1 ;?> ;url=<?php echo $url;?>"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo CUR_TPL_PATH ?>css/animate.min.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo CUR_TPL_PATH ?>fonts/css/fontello.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo CUR_TPL_PATH ?>css/message.css" />
+		<!--[if lt IE 8]>
+				<link rel="stylesheet" href="<?php echo CUR_TPL_PATH ?>fonts/css/fontello-ie7.css" />
+				<![endif]-->
+		<script src="<?php echo CUR_TPL_PATH ?>js/jquery-1.11.2.min.js" type="text/javascript"></script>
+		<!--[if lt IE 9]>
+			      <script src="<?php echo CUR_TPL_PATH ?>js/html5shiv.min.js"></script>
+			      <script src="<?php echo CUR_TPL_PATH ?>js/respond.min.js"></script>
+			      <![endif]-->
+
+		<title>网站后台管理系统</title>
+
+		<script type="text/javascript">
+			var jj = <?php echo $wait;?>;
+			var timer;
+
+			function intopwd() {
+               if(jj>=1)
+            	   {
+            	   
+            	   jj = jj - 1;
+   				   document.getElementById("d1").innerHTML = jj + "秒后自动跳转页面";
+            	   }
+				
+				
+
+			}
+
+			function aa() {
+				timer = setInterval("intopwd()", 1000);
+			}
+		</script>
+		<style>
+			body,
+			html {
+				height: 100%;
+			}
+			
+			.errbox {
+				width: 80%;
+				max-width: 500px;
+				margin: 0 auto;
+				padding-top: 15%;
+				font-size: 16px;
+			}
+		</style>
+
+	</head>
+
+	<body class="body-color">
+		<form method="post" action="" id="form1">
+			
+
+
+			<!--数据分析-->
+			<section class="errbox">
+				<div class="home-modular">
+				    <div class="home-modular-header" style="font-size:20px">
+				        <span class="ficon ficon-shujutongji"></span>&nbsp;操作提示
+				    </div>
+				    <div class="home-modular-contet">
+				    	<div class="data-analysis">
+				    	   <a href="#" id="tiaozhuan" onclick="location.href='<?php echo $url;?>'"> <span id="Label1"><?php echo $message;?></span><br><div id="d1" style="color:#0094ff"></div></a>
+				    	</div>
+				      
+				        <p class="clear"></p>
+				    </div>
+				</div>
+			</section>
+			<!--数据分析 end -->
+			
+
+
+			<script type="text/javascript">
+				aa();
+			</script>
+		</form>
+	</body>
+
+</html>

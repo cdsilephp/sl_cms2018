@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>多张图片批量</title>
+<script src="<?=CUR_TPL_PATH?>js/jquery.js"></script>
+
+<link rel="stylesheet" type="text/css" href="<?=CUR_TPL_PATH?>css/webuploader.css">
+<link rel="stylesheet" type="text/css" href="<?=CUR_TPL_PATH?>css/diyUpload.css">
+<script type="text/javascript" src="<?=CUR_TPL_PATH?>js/webuploader.html5only.min.js"></script>
+<script type="text/javascript" src="<?=CUR_TPL_PATH?>js/diyUpload.js"></script>
+</head>
+<style>
+*{ margin:0; padding:0;}
+body{ height:50px}
+#box{  width:100%; min-height:50px; background:#F5F5F5}
+.webuploader-pick{ background: rgb(0, 149, 136); } 
+</style>
+<body>
+<div id="box">
+	<div id="test"   >
+	
+	</div>
+	
+	<div class="parentFileBox_ghy" id="ghy" > </div>
+</div>
+
+
+</body>
+<script type="text/javascript">
+String.prototype.replaceAll = function(s1,s2){
+	　　return this.replace(new RegExp(s1,"gm"),s2);
+	　　}
+	
+loadZutu();
+//显示现有数据
+function loadZutu()
+{
+	//获取父框架的元素的默认值
+	var _ghyOb=$('#<?php echo $_GET["field"]?>', window.parent.document);
+	
+	//_ghyOb.val(_ghyOb.val().replaceAll("<?=CUR_TPL_PATH?>images/nopic.jpg{title}{next}","") );
+	if(_ghyOb.val().trim()!="")
+	{
+		
+		var zutuStr=_ghyOb.val().replaceAll("{next}","|");
+		var zutuArr=zutuStr.split('|');
+		//console.log(zutuArr.length          +"\n");
+		var tempHtml='<ul class="fileBoxUl">';
+		for(var i = 0;i<zutuArr.length;i++){
+			//zutuArr[i]
+			if(zutuArr[i].trim()=="")
+			{
+				continue;
+			}
+			var zutuStr1=zutuArr[i].replaceAll("{title}",",");
+			var zutuArr1=zutuStr1.split(',');
+			var imgPath=zutuArr1[0];
+			//console.log(imgPath              +"\n");
+			//添加子容器;    
+			if(i==zutuArr.length-1)
+			{
+					var temp_zutuArr=zutuArr[i];	
+			}else
+			{
+				    var temp_zutuArr=zutuArr[i]+"{next}";	
+			}
+			tempHtml+= '<li id="fileBox'+i+'" class="diyUploadHover"> '+
+						'<div class="viewThumb">'+
+						'<a href="'+imgPath+'" target="_blank"><img style=" max-height: 100px" src="'+imgPath+'"></a>'+
+			             '</div>  '+
+						'<div class="diyCancel"  onclick="del_zutu(\''+temp_zutuArr+'\',$(\'this\'));"  ></div>  '+
+						'<div class="diySuccess"></div>  '+
+						'<div class="diyFileName">'+imgPath+'</div> '+
+						
+					'</li>';
+		}
+		tempHtml+='</ul>';
+		//console.log(tempHtml          +"\n");
+		$("#ghy").append(tempHtml)
+		
+	}else
+	{
+		_ghyOb.val(" ");
+	}
+}
+
+//删除组图的一张图片
+function del_zutu(path,dom)
+{
+	dom.parent().hide();
+	//获取父框架的元素的默认值
+	var _ghyOb=$('#<?php echo $_GET["field"]?>', window.parent.document);
+	
+	_ghyOb.val(_ghyOb.val().replaceAll(path,"") );
+	console.log(_ghyOb.val().replaceAll(path,""));
+	//清除现有
+	$("#ghy").html("");
+	loadZutu();
+}
+
+/*
+* 服务器地址,成功返回,失败返回参数格式依照jquery.ajax习惯;
+* 其他参数同WebUploader
+*/
+
+$('#test').diyUpload({
+	url:'/admin/inc/fileupload',
+	success:function( data ) {
+		console.info( data._raw );
+		//获取上传图片路径
+		var imgPath=data._raw;
+		//imgPath+="{title}"+"图片简介测试内容";
+		imgPath+="{title}"+"";
+		//修改父框架的元素
+		var _ghyOb=$('#<?php echo $_GET["field"]?>', window.parent.document);
+		if(_ghyOb.val()==""||_ghyOb.val()==" ")
+			{
+				_ghyOb.val(imgPath);
+			}else
+			{
+				_ghyOb.val(imgPath+ "{next}"+ _ghyOb.val());	
+			}
+		//$('#zutu', window.parent.document).val($('#zutu', window.parent.document).val()+","+imgPath);
+		
+	},
+	error:function( err ) {
+		console.info( err );	
+	}
+});
+
+$('#as').diyUpload({
+	url:'/admin/inc/fileupload',
+	success:function( data ) {
+		console.info( data );
+	},
+	error:function( err ) {
+		console.info( err );	
+	},
+	buttonText : '选择文件',
+	chunked:true,
+	// 分片大小
+	chunkSize:512 * 102400,
+	//最大上传的文件数量, 总文件大小,单个文件大小(单位字节);
+	fileNumLimit:5000,
+	fileSizeLimit:500000 * 102400,
+	fileSingleSizeLimit:50000 * 102400,
+	accept: {}
+});
+</script>
+
+</html>

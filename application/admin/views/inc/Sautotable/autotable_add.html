@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<?php include CUR_VIEW_PATH."public/head.html"?>
+	 <!--编辑器-->
+	 <!-- 编辑器配置文件 -->
+     <script type="text/javascript" src="application/views/admin/js/ueditor/ueditor.config.js"></script>
+     <!-- 编辑器源码文件 -->
+     <script type="text/javascript" src="application/views/admin/js/ueditor/ueditor.all.js"></script>
+     <!-- 实例化编辑器 -->
+    <style type="text/css">
+
+*{ margin:0; padding:0;}
+body{ height:50px}
+.box{  width:100%; min-height:50px; background:#F5F5F5}
+    </style>
+</head>
+
+<body class="body-color box">
+	 
+	 <!--当前位置-->
+		<div class="site-location">
+			&nbsp;&gt;&nbsp;<a onclick="window.history.go(-1);">返回列表页</a>
+		</div>
+		
+		<!--当前位置 end-->
+		<br/>
+	<!--主体部分-->
+ 	
+    <form method="post" action="index.php?p=admin&c=inc&a=insertDuotiaojilu&model_id=<?php echo $_GET['model_id'] ?>" name='theForm' id="theForm" enctype="multipart/form-data">
+		<section class="pos-relative" >
+			<!--发布文章中间部分-->
+			<article class="article-edit box">
+				<!--上边信息-->
+				<div class="article-top box">
+				 	 
+				    <table class="a-info ">
+				             
+				      <?php foreach($filedLists as $v){ ?>
+                         <?php if($v['u7']!="文本编辑器" and $v['u7']!="时间框" and $v['u7']!="数字"  and $v['u7']!="金额" ){ ?>
+
+                           <?php echo $this->getKj($v['u7'],$v['u2'],$v['u1'] ,"",$v['u3'] ,$v['id']) ?>
+                            
+                         <?php } ?>
+                      <?php } ?>
+				    
+				    
+				    
+				    	
+				    	
+				    </table>
+				    
+				</div>
+				
+				<?php foreach($filedLists as $v){ ?>
+                         
+                    <?php if($v['u7']=="文本编辑器" ){ ?>
+                   
+                      <?php echo $this->getKj($v['u7'],$v['u2'],$v['u1'] ,"",$v['u3'] ,$v['id']) ?>
+                          
+                    <?php } ?>
+                       
+               <?php } ?>
+				
+			</article>
+			<!--发布文章 侧边-->
+			<aside class="article-side">
+				<div class="box">
+				
+				<!-- 时间部分 -->
+				<?php foreach($filedLists as $v){ ?>
+                         
+                    <?php if($v['u7']=="时间框" ){ ?>
+                    
+					    <?php echo $this->getKj($v['u7'],$v['u2'],$v['u1'] ,"",$v['u3'] ,$v['id']) ?>
+                          
+				   <?php } ?>
+                       
+               <?php } ?>  
+				    
+				<!-- 数字部分 -->  
+			   <?php foreach($filedLists as $v){ ?>
+                         
+                    <?php if($v['u7']=="数字" or  $v['u7']=="金额"  ){ ?>
+                    
+                        <?php echo $this->getKj($v['u7'],$v['u2'],$v['u1'] ,"",$v['u3'] ,$v['id']) ?>
+                    
+                     <?php } ?>
+                       
+               <?php } ?>  
+               
+               
+				 
+				</div>
+			</aside>
+			
+			<p>
+				<tr>
+				<th></th>
+				<td>
+						<a href="#" class="btn btn-blue" onclick="$('#theForm').submit()"><em class="ficon ficon-queren"></em> 确认操作</a>&nbsp;&nbsp;
+						<a href="#" class="btn btn-green" onclick="if(confirm('确定清空重填?')==false)return false;$('#theForm').find('input').val('')"><em class="ficon ficon-shanchu"></em> 清空重填</a>
+			   </td>
+			   </tr>
+			</p>
+			
+		</section>
+     </form>
+
+  
+
+<p class="clear"></p>
+
+<script src="application/views/admin/js/wow.min.js" type="text/javascript"></script>
+<script src="application/views/admin/js/common.js" type="text/javascript"></script>
+
+<!--wow 初始化-->
+<script>
+	if(!(/msie [6|7|8|9]/i.test(navigator.userAgent))) {
+		new WOW().init();
+	};
+</script>
+<script type="text/javascript">
+			$(".a-info-ss").click(function(){
+				$(".a-info .collapse").fadeToggle();
+			})
+		</script>
+
+</body>
+
+</html>

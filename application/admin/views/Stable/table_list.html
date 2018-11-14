@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>模型管理</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/style/admin.css" media="all">
+	</head>
+
+	<body>
+		<div class="layui-fluid">
+			<div class="layui-row layui-col-space15">
+				<div class="layui-col-md12">
+					<div class="layui-card">
+						<!--<div class="layui-card-header">数据库管理</div>-->
+						<div class="layui-card-body">
+							<div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
+								<a onclick="layOpen('添加模型', '/admin/table/add','500px','500px')" href="javascript:;" class="layui-btn"><i class="layui-icon"></i>添加模型</a>
+							</div>
+
+							<table class="layui-hide" id="test-table-operate" lay-filter="test-table-operate"></table>
+
+							<script type="text/html" id="test-table-operate-barDemo">
+								<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="get_table_list">查看</a>
+								<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+								<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+								<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="addtomenu">添加到菜单</a>
+ 							</script>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="<?=CUR_TPL_PATH?>src/layuiadmin/layui/layui.js"></script>
+		<script>
+			layui.config({
+				base: '<?=CUR_TPL_PATH?>src/layuiadmin/' //静态资源所在路径
+			}).extend({
+				index: 'lib/index' //主入口模块
+			}).use(['index', 'table'], function() {
+				var table = layui.table,
+					admin = layui.admin;
+
+				table.render({
+					elem: '#test-table-operate',
+					url: '/admin/table/gettablelist',
+					height: 'full-100',
+				    cellMinWidth: 80,
+				    page: true,
+				    limit: 20,
+					cols: [
+						[{
+								field: 'id',
+								width: 60,
+								title: 'ID',
+								sort: true,
+								fixed: 'left'
+							}, {
+								field: 'u1',
+								title: '数据库表名',
+								event: 'setfield',
+							}, {
+								field: 'u2',
+								width: 120,
+								title: '模型中文名',
+								
+								event: 'setfield',
+
+							}, {
+								field: 'u3',
+								width: 120,
+								title: '模型类型'
+							}, {
+								align: 'center',
+								width: 250,
+								fixed: 'right',
+								toolbar: '#test-table-operate-barDemo'
+							}
+
+						]
+					],
+				});
+
+				//监听表格复选框选择
+				table.on('checkbox(test-table-operate)', function(obj) {
+					console.log(obj)
+				});
+				//监听工具条
+				table.on('tool(test-table-operate)', function(obj) {
+					var data = obj.data;
+					if(obj.event === 'get_table_list') {
+						var id = data.id;
+						//layOpen("修改管理员","/admin/table/editpassword?id="+id);
+						newTab(data.u2+'内容管理', '/admin/'+data.u8+'/index?table_id='+data.id);
+						
+						
+					} else if(obj.event === 'del') {
+						layer.confirm('真的删除行么', function(index) {
+							layer.close(index);
+							var id = data.id;
+							window.location.href="/admin/table/delete?id="+id;
+						});
+					} else if(obj.event === 'edit') {
+						var id = data.id;
+						layOpen("修改模型","/admin/table/edit?id="+id);
+						
+					}else if(obj.event === 'setfield'){
+			        	newTab(data.u2+'字段管理', '/admin/filed/index?table_id='+data.id);
+			       	}else if(obj.event === 'addtomenu'){
+			       		layOpen('菜单管理', '/admin/menu/add?id=8&name='+data.u2+"管理&url="+'/admin/'+data.u8+'/indexghy123table_id='+data.id);
+			       	}
+					
+					//addtomenu
+					
+				});
+				
+				 
+
+				 
+
+			});
+		</script>
+
+	</body>
+
+</html>

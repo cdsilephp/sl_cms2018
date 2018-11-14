@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>分类管理</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/style/admin.css" media="all">
+	</head>
+
+	<body>
+
+		<div class="layui-fluid">
+			<div class="layui-row layui-col-space15">
+				<div class="layui-col-md12">
+					<div class="layui-card">
+						<!--<div class="layui-card-header">分类管理</div>-->
+						<div class="layui-card-body">
+							<div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
+								<a onclick="layOpen('添加分类', '/admin/sort/add?id=<?=$classid?>','500px','500px')" href="javascript:;" class="layui-btn"><i class="layui-icon"></i>添加分类</a>
+							</div>
+							
+							<table class="layui-table">
+								<colgroup>
+									<col width="80">
+									<col width="80">
+									<col width="80">
+									<col width="">
+									<col width="">
+									<col width="200">
+								</colgroup>
+								<thead>
+									<tr>
+										<th width="60">排序</th>
+										<th width="60">上级ID</th>
+										<th width="60">ID</th>
+										<th width="200">分类</th>
+										<th width="200">栏目连接</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody id="content">
+									<?=$html?>
+
+								</tbody>
+							</table>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="<?=CUR_TPL_PATH?>src/layuiadmin/layui/layui.js"></script>
+		<script>
+			layui.config({
+				base: '<?=CUR_TPL_PATH?>src/layuiadmin/' //静态资源所在路径
+			}).extend({
+				index: 'lib/index' //主入口模块
+			}).use(['index', 'form', 'laydate'], function() {
+				var $ = layui.$,
+					admin = layui.admin,
+					element = layui.element,
+					layer = layui.layer,
+					laydate = layui.laydate,
+					form = layui.form;
+
+				$(".sort_anniu").click(function() {
+					var url = $(this).attr("data-href");
+					var title = $(this).attr("data-title");
+					if(title == "删除") {
+						layer.confirm('确定删除吗？', function(index) {
+							layer.close(index);
+							window.location.href=url;
+						});
+					} else {
+						layOpen(title, url);
+					}
+
+				})
+
+			});
+		</script>
+	</body>
+
+</html>

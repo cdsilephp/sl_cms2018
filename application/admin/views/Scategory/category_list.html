@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>数据管理</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/style/admin.css" media="all">
+		 
+	</head>
+
+	<body>
+		<div class="layui-fluid">
+			<div class="layui-row layui-col-space15">
+				<div class="layui-col-md12">
+					<div class="layui-card">
+						
+						<!--查询条件start-->
+						 <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+					        <div class="layui-form-item">
+					        		
+					           <?php foreach ($filedSearchList as $v){  ?>
+					           	    <?php echo $component->serchKj($v['u7'],$v['u2'],$v['u1'] ,"",$v['u3'] ,$v['id']) ?>
+							   <?php } ?>
+					          
+					          <div class="layui-inline">
+					           <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+					              <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+					           </button>
+					          </div>
+					          
+					        </div>
+					      </div>
+						<!--查询条件end-->
+						
+						<!--<div class="layui-card-header">内容管理</div>-->
+						<div class="layui-card-body">
+							<div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
+								<a onclick="layOpen('添加内容', '/admin/category/add?table_id=<?=$table_id?>','100%','100%')" href="javascript:;" class="layui-btn"><i class="layui-icon"></i>添加数据</a>
+							</div>
+
+							<table class="layui-hide" id="test-table-operate" lay-filter="test-table-operate"></table>
+
+							<script type="text/html" id="test-table-operate-barDemo">
+								<a class="layui-btn layui-btn-xs layui-btn-primary" lay-event="next">查看子类</a>
+								<a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="add">添加子类</a>
+								<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+								<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+ 							</script>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="<?=CUR_TPL_PATH?>src/layuiadmin/layui/layui.js"></script>
+		<script>
+			layui.config({
+				base: '<?=CUR_TPL_PATH?>src/layuiadmin/' //静态资源所在路径
+			}).extend({
+				index: 'lib/index' //主入口模块
+			}).use(['index', 'table', 'form', 'laydate', 'contlist'], function() {
+				var table = layui.table,
+					admin = layui.admin,
+					laydate = layui.laydate,
+					form = layui.form;
+
+				table.render({
+					elem: '#test-table-operate',
+					url: '/admin/table/gettablelistbytableid?table_id=<?=$table_id?>&class_id=<?=$class_id?>',
+					height: 'full-100',
+				    cellMinWidth: 80,
+				    page: true,
+				    limit: 20,
+					cols: [
+						<?=$filedlistJson?>
+					],
+				});
+
+				//监听表格复选框选择
+				table.on('checkbox(test-table-operate)', function(obj) {
+					console.log(obj)
+				});
+				//监听工具条
+				table.on('tool(test-table-operate)', function(obj) {
+					var data = obj.data;
+					if(obj.event === 'get_table_list') {
+						var id = data.id;
+						//layOpen("修改管理员","/admin/table/editpassword?id="+id);
+						newTab(data.u2+'内容管理', '/admin/'+data.u8+'/index?table_id='+data.id);
+						
+						
+					} else if(obj.event === 'del') {
+						layer.confirm('真的删除行么', function(index) {
+							layer.close(index);
+							var id = data.id;
+							var table_id ="<?=$table_id?>";
+							myAjax("/admin/category/delete?"+"id="+id+"&table_id="+table_id,"get","");
+							
+							//window.location.href="/admin/category/delete?id="+id;
+						});
+					} else if(obj.event === 'edit') {
+						var id = data.id;
+						layOpen("修改内容","/admin/category/edit?table_id=<?=$table_id?>&id="+id,"100%","100%");
+						
+					}else if(obj.event === 'add'){
+						layOpen(data.biaoti+'添加子分类', '/admin/category/add?table_id=<?=$table_id?>&class_id='+data.id,"100%","100%");
+			       	}
+					else if(obj.event === 'next'){
+						layOpen(data.biaoti+'包含子类', '/admin/category/index?table_id=<?=$table_id?>&class_id='+data.id,"100%","100%");
+		       		}
+					
+					
+				});
+				
+				laydate.render({
+					elem:'.ghy-date',//制定元素
+					    type:'date',
+					    range:true,//开启左右面板
+					    //min:'2017-09-1',//
+					    //max:'2017-10-1',//规定时间期限
+					    trigger:'mouseover',//定义鼠标悬停时弹出控件
+					    show:false,//默认显示
+					    //position:'absolute',
+					    //btns:['clear','now'],//工具按钮 默认值['clear', 'now', 'confirm']
+					    //theme:'#393D49',//主题颜色
+					    calendar:true,//是否显示公历节日
+//					    mark:{
+//					        '2017-9-21': '发布'//自定义标注重要日子
+//					    },
+					     
+				}); 
+				
+			//监听搜索
+		    form.on('submit(LAY-app-contlist-search)', function(data){
+		      var field = data.field;
+		      //alert(field);
+		      //执行重载
+		      table.reload('test-table-operate', {
+		        where: field
+		      });
+		    });
+		    
+		     
+
+			});
+		</script>
+
+	</body>
+ 
+</html>
+
+ <?php foreach ($filedShowList as $v){  ?>
+ 
+	<?php if($v['u7']=='图片' ) { ?>
+		    <script type="text/html" id="tp_<?=$v['u1']?>">
+				<a href="javascript:;"  >
+					<img   layer-src="{{d.<?=$v['u1']?>}}" src="{{d.<?=$v['u1']?>}}" width="100%" height="100%">
+				</a>
+    		</script>
+	<?php } ?>
+ 	
+
+ <?php } ?>
+

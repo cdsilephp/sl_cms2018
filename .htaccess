@@ -1,0 +1,20 @@
+<<<<<<< HEAD
+ 
+## Rewrite 系统规则请勿修改
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^admin(\/[a-z]{1}[a-z0-9\_\/]*|\/|)$ index.php?route=admin$1   [NC,QSA]
+RewriteRule ^api(\/[a-z]{1}[a-z0-9\_\/]*|\/|)$ index.php?route=api/$1   [NC,QSA]
+RewriteRule ^([a-z]{1}[a-z0-9\_\/]*)$ index.php?route=front/$1   [NC,QSA]
+    
+=======
+## Rewrite 系统规则请勿修改
+RewriteEngine On
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^admin(\/[a-z]{1}[a-z0-9\_\/]*|\/|)$ index.php?route=admin$1   [NC,QSA]
+RewriteRule ^api(\/[a-z]{1}[a-z0-9\_\/]*|\/|)$ index.php?route=api/$1   [NC,QSA]
+RewriteRule ^([a-z]{1}[a-z0-9\_\/]*)$ index.php?route=front/$1   [NC,QSA]
+>>>>>>> 9157a877a13dc685d06444f889279d43b42412ac

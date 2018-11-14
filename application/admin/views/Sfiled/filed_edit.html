@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>字段管理</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/style/admin.css" media="all">
+	</head>
+
+	<body layadmin-themealias="default">
+
+		<div class="layui-fluid">
+			<div class="layui-card">
+				<div class="layui-card-body" style="padding: 15px;">
+					<form class="layui-form" id="showPic">
+						<input name="table_id" hidden="hidden" value="<?=$table_id?>" />
+						<input name="id" hidden="hidden" value="<?=$filed_id?>" />
+						
+						<div class="layui-row">
+							<div class="layui-col-xs12 layui-col-md12">
+
+								<div class="layui-form-item">
+									<label class="layui-form-label">字段名称</label>
+									<div class="layui-input-inline">
+										<input id="u2" value="<?=$filed['u2']?>" type="text" class="layui-input" placeholder="字段名称" autocomplete="off" name="u2" lay-verify="required">
+									</div>
+									<div class="layui-form-mid layui-word-aux">（必填）</div>
+								</div>
+								
+								<div class="layui-form-item">
+									<label class="layui-form-label">数据库字段名</label>
+									<div class="layui-input-inline">
+										<input id="u1" readonly="readonly" value="<?=$filed['u1']?>" type="text" class="layui-input" placeholder="数据库字段名" autocomplete="off" name="u1" lay-verify="required">
+									</div>
+									<div class="layui-form-mid layui-word-aux">（必填）</div>
+								</div>
+								
+								<div class="layui-form-item">
+									<label class="layui-form-label">字段类型</label>
+									<div class="layui-input-inline">
+									<select id="u7" name="u7" lay-verify="required"  >
+										<option value="">请选择</option>
+										<?php foreach ($fileType as $k=>$v){  ?>
+											
+											<?php if($filed['u7']==$v['u1']){?>
+												 <option selected="selected" value="<?= $v["u1"] ?>"><?= $v["u1"] ?></option>
+											<?php }else{?>
+												 <option value="<?= $v["u1"] ?>"><?= $v["u1"] ?></option>
+											<?php }?>
+										   
+										    
+										<?php } ?>
+									</select>
+									<div class="layui-form-mid layui-word-aux">（必填）</div>
+									</div>
+								</div>
+								
+								
+								<div class="layui-form-item">
+									<label class="layui-form-label">字段显示分类</label>
+									<div class="layui-input-inline">
+									<select id="u15" name="u15" lay-verify="required"  >
+										<option value="">请选择</option>
+										<?php foreach ($filedshowtypeList as $k=>$v){  ?>
+											
+											<?php if($filed['u15']==$v['u1']){?>
+												 <option selected="selected" value="<?= $v["u1"] ?>"><?= $v["u1"] ?></option>
+											<?php }else{?>
+												 <option value="<?= $v["u1"] ?>"><?= $v["u1"] ?></option>
+											<?php }?>
+										    
+										<?php } ?>
+									</select>
+									<div class="layui-form-mid layui-word-aux">（必填）</div>
+									</div>
+								</div>
+								
+								
+								<div class="layui-form-item">
+									<label class="layui-form-label">字段提示</label>
+									<div class="layui-input-inline">
+										<input value="<?=$filed['u3']?>" type="text" class="layui-input" placeholder="字段提示" autocomplete="off" name="u3"  >
+									</div>
+								</div>
+								
+								<div class="layui-form-item">
+									<label class="layui-form-label">正则验证</label>
+									<div class="layui-input-inline">
+									<select id="u14" name="u14"   >
+										<?php  foreach($GLOBALS['config_regular']  as $k=>$v) {  ?>
+										    
+										    <?php if($filed['u14']==$k) { ?>
+				                              <option selected="selected" value="<?php echo $k ?>"><?php echo $k ?></option>
+					                        <?php }else { ?>
+					                                <option  value="<?php echo $k ?>"><?php echo $k ?></option>
+					                        <?php } ?>
+										    
+					                    <?php } ?>
+					                    	
+										 
+									</select>
+									<div class="layui-form-mid layui-word-aux">（必填）</div>
+									</div>
+								</div>
+								
+								 <div class="layui-form-item">
+						            <label class="layui-form-label">列表布局</label>
+						            <div class="layui-input-block">
+						            	  <input type="radio" name="u12" value="" title="默认" <?php if($filed['u12']=='') echo "checked";?>  >
+						              <input type="radio" name="u12" value="left" title="left" <?php if($filed['u12']=='left') echo "checked";?>  >
+						              <input type="radio" name="u12" value="right" title="right"<?php if($filed['u12']=='right') echo "checked";?>  >
+						              <input type="radio" name="u12" value="center" title="center"  <?php if($filed['u12']=='center') echo "checked";?>  >
+						            </div>
+						         </div>
+								
+								<div class="layui-form-item">
+									<label class="layui-form-label">是否必填</label>
+									<div class="layui-input-block">
+										<?php if($filed['u4']=='是'){ ?>
+											<input type="checkbox" checked="" name="u4" lay-skin="switch" lay-filter="component-form-switchTest" lay-text="是|否">
+											<div class="layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch"><em>是</em><i></i></div>
+									
+										<?php }else{ ?>
+											<input type="checkbox"   name="u4" lay-skin="switch" lay-filter="component-form-switchTest" lay-text="是|否">
+											<div class="layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch"><em>否</em><i></i></div>
+									
+										<?php } ?>
+										
+									</div>
+								</div>
+								
+								<div class="layui-form-item">
+									<label class="layui-form-label">是否显示</label>
+									<div class="layui-input-block">
+										<?php if($filed['u5']=='是'){ ?>
+											<input type="checkbox" checked="" name="u5" lay-skin="switch" lay-filter="component-form-switchTest" lay-text="是|否">
+											<div class="layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch"><em>是</em><i></i></div>
+									
+										<?php }else{ ?>
+											<input type="checkbox"   name="u5" lay-skin="switch" lay-filter="component-form-switchTest" lay-text="是|否">
+											<div class="layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch"><em>否</em><i></i></div>
+									
+										<?php } ?>
+											
+									</div>
+								</div>
+								
+								
+								<div class="layui-form-item">
+									<label class="layui-form-label">是否检索</label>
+									<div class="layui-input-block">
+										<?php if($filed['u6']=='是'){ ?>
+											<input type="checkbox" checked="" name="u6" lay-skin="switch" lay-filter="component-form-switchTest" lay-text="是|否">
+											<div class="layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch"><em>是</em><i></i></div>
+									
+										<?php }else{ ?>
+											<input type="checkbox"   name="u6" lay-skin="switch" lay-filter="component-form-switchTest" lay-text="是|否">
+											<div class="layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch"><em>否</em><i></i></div>
+									
+										<?php } ?>
+											
+									</div>
+								</div>
+								
+								<div class="layui-form-item">
+									<label class="layui-form-label">是否排序</label>
+									<div class="layui-input-block">
+										<?php if($filed['u11']=='是'){ ?>
+											<input type="checkbox" checked="" name="u11" lay-skin="switch" lay-filter="component-form-switchTest" lay-text="是|否">
+											<div class="layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch"><em>是</em><i></i></div>
+									
+										<?php }else{ ?>
+											<input type="checkbox"   name="u11" lay-skin="switch" lay-filter="component-form-switchTest" lay-text="是|否">
+											<div class="layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch"><em>否</em><i></i></div>
+									
+										<?php } ?>
+											
+									</div>
+								</div>
+								
+								<div class="layui-form-item layui-form-text">
+						            <label class="layui-form-label">默认值</label>
+						            <div class="layui-input-block">
+						              <textarea name="u8" placeholder="请输入默认值" class="layui-textarea"><?=$filed['u8']?></textarea>
+						            </div>
+						        </div>    
+						        
+						       <div class="layui-form-item">
+									<label class="layui-form-label">列表宽度</label>
+									<div class="layui-input-inline">
+										<input value="<?=$filed['u9']?>" type="text" class="layui-input" placeholder="列表宽度" autocomplete="off" name="u9" lay-verify="required">
+									</div>
+									<div class="layui-form-mid layui-word-aux">正整数</div>
+								</div>
+								
+								
+								<div class="layui-form-item">
+									<label class="layui-form-label">排序</label>
+									<div class="layui-input-inline">
+										<input value="<?=$filed['u10']?>" type="text" class="layui-input" placeholder="排序" autocomplete="off" name="u10" lay-verify="required">
+									</div>
+									<div class="layui-form-mid layui-word-aux">数字越小越靠前</div>
+								</div>
+								
+								
+								<div class="layui-form-item">
+									<label class="layui-form-label">点击事件</label>
+									<div class="layui-input-inline">
+										<input value="<?=$filed['u13']?>" type="text" class="layui-input" placeholder="点击事件" autocomplete="off" name="u13" >
+									</div>
+								</div>
+								
+								
+								 
+								
+								
+								
+								<div class="layui-form-item layui-layout-admin">
+									<div class="layui-input-block">
+										<div class="layui-footer" style="left: 0;">
+											<button class="layui-btn" lay-submit="" lay-filter="save">提交</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+
+		<script src="<?=CUR_TPL_PATH?>src/layuiadmin/layui/layui.js"></script>
+		<script>
+			layui.config({
+				base: '<?=CUR_TPL_PATH?>src/layuiadmin/' //静态资源所在路径
+			}).extend({
+				index: 'lib/index' //主入口模块
+			}).use(['index', 'form', 'laydate'], function() {
+				var $ = layui.$,
+					admin = layui.admin,
+					element = layui.element,
+					layer = layui.layer,
+					laydate = layui.laydate,
+					form = layui.form,
+					index = parent.layer.getFrameIndex(window.name); //获取窗口索引;
+
+				form.render(null, 'component-form-group');
+
+				laydate.render({
+					elem: '#LAY-component-form-group-date'
+				});
+
+				 
+
+				/* 监听提交 */
+				form.on('submit(save)', function(data) {
+					//请求接口
+					admin.req({
+						url: '/admin/filed/update' //实际使用请改成服务端真实接口
+							,
+						data: data.field,
+						done: function(res) {
+
+							//登入成功的提示与跳转
+							layer.msg(res.msg, {
+								offset: '15px',
+								icon: 1,
+								time: 1000
+							}, function() {
+								parent.location.reload();
+								parent.layer.close(index);
+							});
+
+						}
+					});
+
+					return false;
+				});
+			});
+		</script>
+
+		<style id="LAY_layadmin_theme">
+			.layui-side-menu,
+			.layadmin-pagetabs .layui-tab-title li:after,
+			.layadmin-pagetabs .layui-tab-title li.layui-this:after,
+			.layui-layer-admin .layui-layer-title,
+			.layadmin-side-shrink .layui-side-menu .layui-nav>.layui-nav-item>.layui-nav-child {
+				background-color: #20222A !important;
+			}
+			
+			.layui-nav-tree .layui-this,
+			.layui-nav-tree .layui-this>a,
+			.layui-nav-tree .layui-nav-child dd.layui-this,
+			.layui-nav-tree .layui-nav-child dd.layui-this a {
+				background-color: #009688 !important;
+			}
+			
+			.layui-layout-admin .layui-logo {
+				background-color: #20222A !important;
+			}
+		</style>
+	</body>
+
+</html>

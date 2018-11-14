@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>下拉框</title>
+<link rel="stylesheet" href="application/views/admin/inc/SelectMenu/selectmenu.css" type="text/css">
+<script src="application/views/admin/js/jquery.js"></script>
+<script src="application/views/admin/inc/SelectMenu/selectmenu.js"></script>
+<script src="application/views/admin/inc/SelectMenu/selectmenu.min.js"></script>
+ <link rel="stylesheet" type="text/css" href="application/views/admin/css/common.css" />
+</head>
+<body>
+<select name="classid" id="btnMenu" class="select-container1"> </select>
+ 
+</body>
+
+<script type="text/javascript">
+<?php 
+		 $filedModel1=new FiledModel("filed");
+         $filedId=$_GET["field_id"];
+         $filedDetail=$filedModel1->selectByPk($filedId);
+         $filedVal=$filedModel1->getFiledDefaultValue($filedId);	
+         $selectMenuData="[";
+         //$selectMenuData.="{id:'0' ,value:''}";
+		foreach($filedVal as $k=>$v)
+		{
+			if($k==0)
+				{
+				    $selectMenuData.="{id:'".$v['key']."' ,value:'".$v['value']."'}";
+				}else
+				{
+					$selectMenuData.=",{id:'".$v['key']."' ,value:'".$v['value']."'}";
+				}
+			
+		}
+		$selectMenuData.="]";
+         
+?>
+
+
+//获取父框架的元素的默认值
+var _ghyOb=$('#<?php echo $_GET["field"]?>', window.parent.document);
+var selectValue="";
+if(_ghyOb.val().trim()!="")
+{
+	selectValue=_ghyOb.val().trim();
+	var temp_selectMenuData=eval ("(<?php echo $selectMenuData ?>)");
+	for(var i=0;i<temp_selectMenuData.length;i++)
+		{
+		if(selectValue==temp_selectMenuData[i].id)
+			{
+		    $('#btnMenu').html(' <option   selected="selected">'+temp_selectMenuData[i].value+'</option>  ');
+			}
+			
+		}
+}else
+{
+	$('#btnMenu').html(' <option   selected="selected">请选择</option>  ');
+}
+
+ 
+
+
+//菜单使用的示例数据格式
+//数据格式与常规菜单模式的固定格式不同，该模式下，数据格式可以完全自定义
+//并通过设置keyField、showField、searchField等参数进行指定具体使用的数据节点
+var selectMenuData = <?php echo $selectMenuData ?>;
+$('#btnMenu').click(function(){
+	var _pHeight = parent.document.getElementById('if<?php echo $_GET["field"]?>').height;
+	if(parent.document.getElementById('if<?php echo $_GET["field"]?>').height==_pHeight)
+	{
+		parent.document.getElementById('if<?php echo $_GET["field"]?>').height=50;
+	}else
+	{
+		parent.document.getElementById('if<?php echo $_GET["field"]?>').height=_pHeight;
+	}
+	
+	
+    $(this).selectMenu({
+    	title : '请选择<?php echo $filedDetail["u2"] ?>',
+        showField : 'value',
+        keyField : 'id',
+        arrow : true,
+        initSelected : selectValue,//默认值
+        data : selectMenuData,
+        eSelect : function(data){
+			$('#btnMenu').empty();
+			if(data && data.length > 0){
+				$.each(data,function(i,row){
+					$('#btnMenu').html(' <option   selected="selected">'+row.value+'</option>  ');
+					//$('#nbaTeamLists').append('<p><strong>'+row.value+'</strong></p>');
+					_ghyOb.val(row.id);//修改父级框架的默认值
+					parent.document.getElementById('if<?php echo $_GET["field"]?>').height=50;
+				});
+			}
+		}
+    });
+});
+
+
+ 
+
+</script>
+
+</html>

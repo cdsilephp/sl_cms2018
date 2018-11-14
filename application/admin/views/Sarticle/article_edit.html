@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>模型管理</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/style/admin.css" media="all">
+		 <!-- 编辑器配置文件 -->
+	     <script type="text/javascript" src="<?=CUR_TPL_PATH?>js/ueditor/ueditor.config.js"></script>
+	     <!-- 编辑器源码文件 -->
+	     <script type="text/javascript" src="<?=CUR_TPL_PATH?>js/ueditor/ueditor.all.js"></script>
+	</head>
+
+	<body layadmin-themealias="default">
+
+		<div class="layui-fluid">
+			<div class="layui-card">
+				<div class="layui-card-body" style="padding: 15px;">
+					<form class="layui-form" id="showPic">
+						<input name="id" hidden="hidden" value="<?=$_tableDetail['id']?>" />
+					          <div class="layui-card-body">
+					            <div class="layui-tab">
+					              <ul class="layui-tab-title">
+					              	<?php foreach ($filedshowtypeList as $k=>$v){  ?>
+					              		
+					              		<?php if($k==0){?>
+											<li class="layui-this"><?= $v["u1"] ?></li>
+										<?php }else{?>
+											 <li ><?= $v["u1"] ?></li>
+										<?php }?>
+					                
+					                	  <?php } ?>
+					              </ul>
+					              <div class="layui-tab-content">
+					              	
+					              	<?php foreach ($filedshowtypeList as $k0=>$v0){  ?>
+					              		
+					              		<div class="layui-tab-item <?php if($k0==0){?> layui-show  <?php }?> ">
+						                 	<!--start-->
+						                 	<div class="layui-row">
+													<div class="layui-col-xs12 layui-col-md12">
+													  
+													  <?php if($k0==0){?>
+														<div class="layui-form-item">
+															<label class="layui-form-label">文章分类</label>
+															 
+															
+															<div class="layui-input-inline">
+															
+															<select id="sort_id" name="sort_id"  lay-verify="required" >
+																<option value="">请选择</option>
+																<?=$html_option?>
+															</select>
+															
+															</div>
+													  	</div>
+													  <?php }?>
+													  
+													  
+													  <?php foreach($filedList as $v){ ?>
+															 <?php if($v['u15']==$v0["u1"] ){ ?>
+																	
+																	<?php echo $component->getKj($v['u7'],$v['u2'],$v['u1'] ,$_tableDetail[$v['u1']],$v['u3'] ,$v['id']) ?>
+									                            
+									                         <?php } ?>
+							                               
+								                      <?php } ?>
+						                      	
+												
+														
+													</div>
+												</div>
+						                 	<!--end-->
+					                		</div>
+					                
+					                <?php } ?>
+					                	
+					                
+					                
+					               </div>
+					             </div>
+					          </div>
+        
+						  <div class="layui-form-item layui-layout-admin">
+							<div class="layui-input-block">
+								<div class="layui-footer" style="left: 0;">
+									<button  class="layui-btn" lay-submit="" lay-filter="save">提交</button>
+									<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+								</div>
+							</div>
+						  </div>
+						
+					</form>
+
+				</div>
+			</div>
+		</div>
+
+		<script src="<?=CUR_TPL_PATH?>src/layuiadmin/layui/layui.js"></script>
+		<script>
+			layui.config({
+				base: '<?=CUR_TPL_PATH?>src/layuiadmin/' //静态资源所在路径
+			}).extend({
+				index: 'lib/index' //主入口模块
+			}).use(['index', 'form', 'laydate'], function() {
+				var $ = layui.$,
+					admin = layui.admin,
+					element = layui.element,
+					layer = layui.layer,
+					laydate = layui.laydate,
+					form = layui.form,
+					index = parent.layer.getFrameIndex(window.name); //获取窗口索引;
+
+				form.render(null, 'component-form-group');
+
+				laydate.render({
+					elem:'.ghy-date',//制定元素
+					    type:'date',
+					    //range:true,//开启左右面板
+					    //min:'2017-09-1',//
+					    //max:'2017-10-1',//规定时间期限
+					    trigger:'mouseover',//定义鼠标悬停时弹出控件
+					    show:false,//默认显示
+					    //position:'absolute',
+					    //btns:['clear','now'],//工具按钮 默认值['clear', 'now', 'confirm']
+					    //theme:'#393D49',//主题颜色
+					    calendar:true,//是否显示公历节日
+//					    mark:{
+//					        '2017-9-21': '发布'//自定义标注重要日子
+//					    },
+					     
+				});
+
+				/* 自定义验证规则 */
+				form.verify({
+
+					pass: [/(.+){6,12}$/, '密码必须6到12位'],
+					repass: function(value, item) {
+						var password = $("#password").val();
+						if(password != value) {
+							return '两次密码不一致';
+						}
+					},
+				});
+				
+				/* 监听指定开关 */
+			    form.on('switch(component-form-switchTest)', function(data){
+			       
+			      if(this.checked==false)
+			      {
+			      	$(".table-set").show();
+			      }else{
+			      	$(".table-set").hide();
+			      }
+			      
+			    });
+    
+				//监听checkbox复选
+			    form.on('checkbox(checkboxchange)', function(data){
+//				  console.log(data.elem); //得到checkbox原始DOM对象
+//				  console.log(data.elem.checked); //是否被选中，true或者false
+//				  console.log(data.value); //复选框value值，也可以通过data.elem.value得到
+//				  console.log(data.othis); //得到美化后的DOM对象
+				  var filedid = $("#"+data.elem.id).data('filedname');
+				  var classname = $("#"+data.elem.id).attr('class');
+				  console.log(classname);
+				  
+				  var temp_val="";
+			      $("."+classname).each(function(){
+                    if ($(this).is(":checked")) {
+			            if(temp_val=="")
+			                {
+                              temp_val=$(this).val();
+                            }else
+			                {
+                             temp_val=temp_val+","+$(this).val();
+                            }
+                        //alert($(this).val());
+                    }
+                  });
+			      $("#"+filedid).val(temp_val); 
+				  
+				}); 
+				
+				
+				/* 监听提交 */
+				form.on('submit(save)', function(data) {
+					//请求接口
+					admin.req({
+						url: '/admin/article/update?table_id=<?=$table_id?>' //实际使用请改成服务端真实接口
+							,
+						data: data.field,
+						type: 'post',
+						done: function(res) {
+
+							//登入成功的提示与跳转
+							layer.msg(res.msg, {
+								offset: '15px',
+								icon: 1,
+								time: 1000
+							}, function() {
+								parent.location.reload();
+								parent.layer.close(index);
+							});
+
+						}
+					});
+
+					return false;
+				});
+			});
+			
+			
+		</script>
+
+		<style id="LAY_layadmin_theme">
+			.layui-side-menu,
+			.layadmin-pagetabs .layui-tab-title li:after,
+			.layadmin-pagetabs .layui-tab-title li.layui-this:after,
+			.layui-layer-admin .layui-layer-title,
+			.layadmin-side-shrink .layui-side-menu .layui-nav>.layui-nav-item>.layui-nav-child {
+				background-color: #20222A !important;
+			}
+			
+			.layui-nav-tree .layui-this,
+			.layui-nav-tree .layui-this>a,
+			.layui-nav-tree .layui-nav-child dd.layui-this,
+			.layui-nav-tree .layui-nav-child dd.layui-this a {
+				background-color: #009688 !important;
+			}
+			
+			.layui-layout-admin .layui-logo {
+				background-color: #20222A !important;
+			}
+		</style>
+	</body>
+
+</html>

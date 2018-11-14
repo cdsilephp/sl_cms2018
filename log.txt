@@ -1,0 +1,766 @@
+[2018-11-06 17:33:10] DESC sl_admin
+[2018-11-06 17:33:10] DESC sl_log
+[2018-11-06 17:33:10] select * from `sl_admin` where username= 'cdsile' AND 1 = 1 limit 0,1
+[2018-11-06 17:33:11] DESC sl_menu_group
+[2018-11-06 17:33:11] select u3,u1,id,classid,icon from `sl_menu_group` where group_id= '1' AND u4= '显示' AND 1 = 1  order by u2 asc 
+[2018-11-06 17:33:11] DESC sl_table
+[2018-11-06 17:33:11] DESC sl_table
+[2018-11-06 17:33:11] DESC sl_log
+[2018-11-06 17:33:11] select * from sl_table where id in ( 102,89 ,80,75,76)  order by id desc 
+[2018-11-06 17:33:11] SELECT distinct  date_format(dtime,'%y-%m-%d') as dtime  from sl_log where DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= date(dtime)  ORDER BY dtime desc
+[2018-11-06 17:33:11] DESC sl_filed
+[2018-11-06 17:33:11] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '89' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-06 17:33:11] select * from `sl_filed` where model_id= '89' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:33:11] select * from `sl_filed` where model_id= '89' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:33:12] DESC sl_table
+[2018-11-06 17:33:12] select * from `sl_table` where id= '89' AND 1 = 1 
+[2018-11-06 17:33:12] DESC sl_filed
+[2018-11-06 17:33:12] select * from `sl_filed` where model_id= '89' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:33:12] select * from  where  1=1  limit 0,20 
+[2018-11-06 17:35:59] DESC sl_table
+[2018-11-06 17:35:59] SELECT *,(SELECT u2 from sl_parameter where u1=mx.u3 ) as tablelianjie from sl_table as mx order by id desc limit 0,20
+[2018-11-06 17:35:59] select count(id) as countnum from sl_table 
+[2018-11-06 17:36:00] DESC sl_parameter
+[2018-11-06 17:36:00] SELECT *, u1 as name,classid as parentid  FROM sl_parameter   where classid='1'  order by u4 asc,id asc
+[2018-11-06 17:36:00] DESC sl_sort
+[2018-11-06 17:36:00] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-06 17:36:24] DESC sl_parameter
+[2018-11-06 17:36:24] SELECT *, u1 as name,classid as parentid  FROM sl_parameter   where classid='1'  order by u4 asc,id asc
+[2018-11-06 17:36:24] DESC sl_sort
+[2018-11-06 17:36:24] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-06 17:36:33] DESC sl_table
+[2018-11-06 17:36:33] select * from `sl_table` where u1= 'sl_yonghu' AND u2= '用户' AND 1 = 1 
+[2018-11-06 17:36:33] DESC sl_filed
+[2018-11-06 17:36:33] DESC sl_yonghu
+[2018-11-06 17:36:33] select * from `sl_table` where u1= 'sl_yonghu' AND 1 = 1 limit 0,1
+[2018-11-06 17:36:33] SELECT ORDINAL_POSITION as id , column_name ,data_type ,character_maximum_length ,numeric_precision,numeric_scale,is_nullable ,column_default ,column_comment
+        FROM
+        Information_schema.columns
+        WHERE TABLE_NAME='sl_yonghu'
+[2018-11-06 17:36:35] DESC sl_table
+[2018-11-06 17:36:35] SELECT *,(SELECT u2 from sl_parameter where u1=mx.u3 ) as tablelianjie from sl_table as mx order by id desc limit 0,20
+[2018-11-06 17:36:35] select count(id) as countnum from sl_table 
+[2018-11-06 17:36:38] DESC sl_table
+[2018-11-06 17:36:38] select * from `sl_table` where id= '108' AND 1 = 1 
+[2018-11-06 17:36:38] DESC sl_parameter
+[2018-11-06 17:36:38] SELECT *, u1 as name,classid as parentid  FROM sl_parameter   where classid='1'  order by u4 asc,id asc
+[2018-11-06 17:36:38] DESC sl_sort
+[2018-11-06 17:36:38] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-06 17:37:27] DESC sl_table
+[2018-11-06 17:37:27] DESC sl_filed
+[2018-11-06 17:37:27] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '108' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-06 17:37:27] select * from `sl_filed` where model_id= '108' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:37:27] select * from `sl_filed` where model_id= '108' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:37:27] DESC sl_filed
+[2018-11-06 17:37:27] select * from `sl_filed` where model_id= '108' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:37:27] DESC sl_parameter
+[2018-11-06 17:37:27] select * from `sl_parameter` where u1= '字段显示分类' AND 1 = 1 limit 0,1
+[2018-11-06 17:37:27] SELECT *, u1 as name,classid as parentid  FROM sl_parameter   where classid='325'  order by u4 asc,id asc
+[2018-11-06 17:37:27] DESC sl_filed
+[2018-11-06 17:37:27] select * from `sl_filed` where u15= '文章设置' AND model_id= '108' AND 1 = 1 
+[2018-11-06 17:37:27] select * from `sl_filed` where u15= 'SEO设置' AND model_id= '108' AND 1 = 1 
+[2018-11-06 17:37:27] select * from `sl_filed` where u15= '文章描述' AND model_id= '108' AND 1 = 1 
+[2018-11-06 17:37:27] select * from `sl_filed` where u15= '基础参数' AND model_id= '108' AND 1 = 1 
+[2018-11-06 17:37:27] select * from `sl_filed` where u15= '图片设置' AND model_id= '108' AND 1 = 1 
+[2018-11-06 17:37:27] DESC sl_table
+[2018-11-06 17:37:27] select * from `sl_table` where id= '108' AND 1 = 1 
+[2018-11-06 17:37:28] DESC sl_table
+[2018-11-06 17:37:28] SELECT *,(SELECT u2 from sl_parameter where u1=mx.u3 ) as tablelianjie from sl_table as mx order by id desc limit 0,20
+[2018-11-06 17:37:28] select count(id) as countnum from sl_table 
+[2018-11-06 17:38:59] DESC sl_filed
+[2018-11-06 17:38:59] select * from `sl_filed` where model_id= '108' AND 1 = 1 limit 0,20
+[2018-11-06 17:38:59] select * from `sl_filed` where model_id= '108' AND 1 = 1 
+[2018-11-06 17:39:00] DESC sl_filed
+[2018-11-06 17:39:00] DESC sl_parameter
+[2018-11-06 17:39:00] select * from `sl_parameter` where classid= '4' AND 1 = 1 
+[2018-11-06 17:39:00] DESC sl_parameter
+[2018-11-06 17:39:00] select * from `sl_parameter` where u1= '字段显示分类' AND 1 = 1 limit 0,1
+[2018-11-06 17:39:00] SELECT *, u1 as name,classid as parentid  FROM sl_parameter   where classid='325'  order by u4 asc,id asc
+[2018-11-06 17:39:06] DESC sl_filed
+[2018-11-06 17:39:06] select * from sl_filed where model_id=108 and u1='shoujihao' 
+[2018-11-06 17:40:34] DESC sl_table
+[2018-11-06 17:40:34] SELECT *,(SELECT u2 from sl_parameter where u1=mx.u3 ) as tablelianjie from sl_table as mx order by id desc limit 0,20
+[2018-11-06 17:40:34] select count(id) as countnum from sl_table 
+[2018-11-06 17:40:35] DESC sl_table
+[2018-11-06 17:40:35] select * from `sl_table` where id= '108' AND 1 = 1 
+[2018-11-06 17:40:35] DESC sl_parameter
+[2018-11-06 17:40:35] SELECT *, u1 as name,classid as parentid  FROM sl_parameter   where classid='1'  order by u4 asc,id asc
+[2018-11-06 17:40:35] DESC sl_sort
+[2018-11-06 17:40:35] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-06 17:40:41] DESC sl_parameter
+[2018-11-06 17:40:41] SELECT *, u1 as name,classid as parentid  FROM sl_parameter   where classid='1'  order by u4 asc,id asc
+[2018-11-06 17:40:41] DESC sl_sort
+[2018-11-06 17:40:41] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-06 17:40:51] DESC sl_table
+[2018-11-06 17:40:51] select * from `sl_table` where u1= 'sl_fenlei' AND u2= '分类' AND 1 = 1 
+[2018-11-06 17:40:51] DESC sl_filed
+[2018-11-06 17:40:51] DESC sl_fenlei
+[2018-11-06 17:40:51] select * from `sl_table` where u1= 'sl_fenlei' AND 1 = 1 limit 0,1
+[2018-11-06 17:40:51] SELECT ORDINAL_POSITION as id , column_name ,data_type ,character_maximum_length ,numeric_precision,numeric_scale,is_nullable ,column_default ,column_comment
+        FROM
+        Information_schema.columns
+        WHERE TABLE_NAME='sl_fenlei'
+[2018-11-06 17:40:52] DESC sl_table
+[2018-11-06 17:40:52] SELECT *,(SELECT u2 from sl_parameter where u1=mx.u3 ) as tablelianjie from sl_table as mx order by id desc limit 0,20
+[2018-11-06 17:40:52] select count(id) as countnum from sl_table 
+[2018-11-06 17:40:54] DESC sl_filed
+[2018-11-06 17:40:54] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-06 17:40:54] select * from `sl_filed` where model_id= '109' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:40:54] select * from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:40:55] DESC sl_table
+[2018-11-06 17:40:55] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-06 17:40:55] DESC sl_fenlei
+[2018-11-06 17:40:55] DESC sl_filed
+[2018-11-06 17:40:55] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:40:55] select * from sl_fenlei where  class_id =0  and    1=1 limit 0,20 
+[2018-11-06 17:40:55] DESC sl_filed
+[2018-11-06 17:40:55] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:40:55] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='class_id' 
+[2018-11-06 17:40:55] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='biaoti' 
+[2018-11-06 17:40:55] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='paixu' 
+[2018-11-06 17:40:55] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='dtime' 
+[2018-11-06 17:40:55] select count(id) as countnum from sl_fenlei 
+[2018-11-06 17:40:56] DESC sl_filed
+[2018-11-06 17:40:56] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:40:56] DESC sl_parameter
+[2018-11-06 17:40:56] select * from `sl_parameter` where u1= '字段显示分类' AND 1 = 1 limit 0,1
+[2018-11-06 17:40:56] SELECT *, u1 as name,classid as parentid  FROM sl_parameter   where classid='325'  order by u4 asc,id asc
+[2018-11-06 17:40:56] DESC sl_filed
+[2018-11-06 17:40:56] select * from `sl_filed` where u15= '文章设置' AND model_id= '109' AND 1 = 1 
+[2018-11-06 17:40:56] select * from `sl_filed` where u15= 'SEO设置' AND model_id= '109' AND 1 = 1 
+[2018-11-06 17:40:56] select * from `sl_filed` where u15= '文章描述' AND model_id= '109' AND 1 = 1 
+[2018-11-06 17:40:56] select * from `sl_filed` where u15= '基础参数' AND model_id= '109' AND 1 = 1 
+[2018-11-06 17:40:56] select * from `sl_filed` where u15= '图片设置' AND model_id= '109' AND 1 = 1 
+[2018-11-06 17:40:56] DESC sl_table
+[2018-11-06 17:40:56] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-06 17:41:06] DESC sl_table
+[2018-11-06 17:41:06] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-06 17:41:06] DESC sl_fenlei
+[2018-11-06 17:41:06] DESC sl_filed
+[2018-11-06 17:41:06] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:06] select * from sl_filed where  u7='时间框' and u8='CURRENT_TIMESTAMP' and model_id='109' and u1='class_id' 
+[2018-11-06 17:41:06] select * from sl_filed where  u7='时间框' and u8='CURRENT_TIMESTAMP' and model_id='109' and u1='biaoti' 
+[2018-11-06 17:41:06] select * from sl_filed where  u7='时间框' and u8='CURRENT_TIMESTAMP' and model_id='109' and u1='paixu' 
+[2018-11-06 17:41:06] select * from sl_filed where  u7='时间框' and u8='CURRENT_TIMESTAMP' and model_id='109' and u1='dtime' 
+[2018-11-06 17:41:06] select * from sl_filed where  u7='密码' and model_id='109' and u1='class_id' 
+[2018-11-06 17:41:06] select * from sl_filed where  u7='密码' and model_id='109' and u1='biaoti' 
+[2018-11-06 17:41:06] select * from sl_filed where  u7='密码' and model_id='109' and u1='paixu' 
+[2018-11-06 17:41:06] select * from sl_filed where  u7='密码' and model_id='109' and u1='dtime' 
+[2018-11-06 17:41:06] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='class_id' 
+[2018-11-06 17:41:06] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='biaoti' 
+[2018-11-06 17:41:06] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='paixu' 
+[2018-11-06 17:41:06] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='dtime' 
+[2018-11-06 17:41:08] DESC sl_filed
+[2018-11-06 17:41:08] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-06 17:41:08] select * from `sl_filed` where model_id= '109' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:08] select * from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:08] DESC sl_table
+[2018-11-06 17:41:08] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-06 17:41:08] DESC sl_fenlei
+[2018-11-06 17:41:08] DESC sl_filed
+[2018-11-06 17:41:08] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:08] select * from sl_fenlei where  class_id =0  and    1=1 limit 0,20 
+[2018-11-06 17:41:08] DESC sl_filed
+[2018-11-06 17:41:08] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:08] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='class_id' 
+[2018-11-06 17:41:08] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='biaoti' 
+[2018-11-06 17:41:08] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='paixu' 
+[2018-11-06 17:41:08] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='dtime' 
+[2018-11-06 17:41:08] select count(id) as countnum from sl_fenlei 
+[2018-11-06 17:41:11] DESC sl_filed
+[2018-11-06 17:41:11] select * from `sl_filed` where model_id= '109' AND 1 = 1 limit 0,20
+[2018-11-06 17:41:11] select * from `sl_filed` where model_id= '109' AND 1 = 1 
+[2018-11-06 17:41:13] DESC sl_filed
+[2018-11-06 17:41:13] DESC sl_parameter
+[2018-11-06 17:41:13] select * from `sl_parameter` where classid= '4' AND 1 = 1 
+[2018-11-06 17:41:13] DESC sl_filed
+[2018-11-06 17:41:13] select * from `sl_filed` where id= '1367' AND 1 = 1 
+[2018-11-06 17:41:13] DESC sl_parameter
+[2018-11-06 17:41:13] select * from `sl_parameter` where u1= '字段显示分类' AND 1 = 1 limit 0,1
+[2018-11-06 17:41:13] SELECT *, u1 as name,classid as parentid  FROM sl_parameter   where classid='325'  order by u4 asc,id asc
+[2018-11-06 17:41:22] DESC sl_filed
+[2018-11-06 17:41:22] select * from sl_filed where model_id=109 and u1='biaoti' 
+[2018-11-06 17:41:22] DESC sl_table
+[2018-11-06 17:41:22] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-06 17:41:22] DESC sl_fenlei
+[2018-11-06 17:41:23] DESC sl_filed
+[2018-11-06 17:41:23] select * from `sl_filed` where model_id= '109' AND 1 = 1 limit 0,20
+[2018-11-06 17:41:23] select * from `sl_filed` where model_id= '109' AND 1 = 1 
+[2018-11-06 17:41:25] DESC sl_filed
+[2018-11-06 17:41:25] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-06 17:41:25] select * from `sl_filed` where model_id= '109' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:25] select * from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:25] DESC sl_table
+[2018-11-06 17:41:25] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-06 17:41:25] DESC sl_fenlei
+[2018-11-06 17:41:25] DESC sl_filed
+[2018-11-06 17:41:25] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:25] select * from sl_fenlei where  class_id =0  and    1=1 limit 0,20 
+[2018-11-06 17:41:25] DESC sl_filed
+[2018-11-06 17:41:25] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:25] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='class_id' 
+[2018-11-06 17:41:25] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='biaoti' 
+[2018-11-06 17:41:25] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='paixu' 
+[2018-11-06 17:41:25] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='dtime' 
+[2018-11-06 17:41:25] select count(id) as countnum from sl_fenlei 
+[2018-11-06 17:41:31] DESC sl_filed
+[2018-11-06 17:41:31] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-06 17:41:31] select * from `sl_filed` where model_id= '109' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:31] select * from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:31] DESC sl_table
+[2018-11-06 17:41:31] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-06 17:41:31] DESC sl_fenlei
+[2018-11-06 17:41:31] DESC sl_filed
+[2018-11-06 17:41:31] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:31] select * from sl_fenlei where class_id like '%1%' and   1=1 limit 0,20 
+[2018-11-06 17:41:31] DESC sl_filed
+[2018-11-06 17:41:31] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:31] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='class_id' 
+[2018-11-06 17:41:31] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='biaoti' 
+[2018-11-06 17:41:31] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='paixu' 
+[2018-11-06 17:41:31] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='dtime' 
+[2018-11-06 17:41:31] select count(id) as countnum from sl_fenlei 
+[2018-11-06 17:41:33] DESC sl_filed
+[2018-11-06 17:41:33] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:33] DESC sl_parameter
+[2018-11-06 17:41:33] select * from `sl_parameter` where u1= '字段显示分类' AND 1 = 1 limit 0,1
+[2018-11-06 17:41:33] SELECT *, u1 as name,classid as parentid  FROM sl_parameter   where classid='325'  order by u4 asc,id asc
+[2018-11-06 17:41:33] DESC sl_filed
+[2018-11-06 17:41:33] select * from `sl_filed` where u15= '文章设置' AND model_id= '109' AND 1 = 1 
+[2018-11-06 17:41:33] select * from `sl_filed` where u15= 'SEO设置' AND model_id= '109' AND 1 = 1 
+[2018-11-06 17:41:33] select * from `sl_filed` where u15= '文章描述' AND model_id= '109' AND 1 = 1 
+[2018-11-06 17:41:33] select * from `sl_filed` where u15= '基础参数' AND model_id= '109' AND 1 = 1 
+[2018-11-06 17:41:33] select * from `sl_filed` where u15= '图片设置' AND model_id= '109' AND 1 = 1 
+[2018-11-06 17:41:33] DESC sl_table
+[2018-11-06 17:41:33] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-06 17:41:38] DESC sl_table
+[2018-11-06 17:41:38] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-06 17:41:38] DESC sl_fenlei
+[2018-11-06 17:41:38] DESC sl_filed
+[2018-11-06 17:41:38] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:38] select * from sl_filed where  u7='时间框' and u8='CURRENT_TIMESTAMP' and model_id='109' and u1='class_id' 
+[2018-11-06 17:41:38] select * from sl_filed where  u7='时间框' and u8='CURRENT_TIMESTAMP' and model_id='109' and u1='biaoti' 
+[2018-11-06 17:41:38] select * from sl_filed where  u7='时间框' and u8='CURRENT_TIMESTAMP' and model_id='109' and u1='paixu' 
+[2018-11-06 17:41:38] select * from sl_filed where  u7='时间框' and u8='CURRENT_TIMESTAMP' and model_id='109' and u1='dtime' 
+[2018-11-06 17:41:38] select * from sl_filed where  u7='密码' and model_id='109' and u1='class_id' 
+[2018-11-06 17:41:38] select * from sl_filed where  u7='密码' and model_id='109' and u1='biaoti' 
+[2018-11-06 17:41:38] select * from sl_filed where  u7='密码' and model_id='109' and u1='paixu' 
+[2018-11-06 17:41:38] select * from sl_filed where  u7='密码' and model_id='109' and u1='dtime' 
+[2018-11-06 17:41:38] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='class_id' 
+[2018-11-06 17:41:38] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='biaoti' 
+[2018-11-06 17:41:38] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='paixu' 
+[2018-11-06 17:41:38] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='dtime' 
+[2018-11-06 17:41:39] DESC sl_filed
+[2018-11-06 17:41:39] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-06 17:41:39] select * from `sl_filed` where model_id= '109' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:39] select * from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:39] DESC sl_table
+[2018-11-06 17:41:39] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-06 17:41:39] DESC sl_fenlei
+[2018-11-06 17:41:39] DESC sl_filed
+[2018-11-06 17:41:39] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:39] select * from sl_fenlei where class_id like '%1%' and   1=1 limit 0,20 
+[2018-11-06 17:41:39] DESC sl_filed
+[2018-11-06 17:41:39] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:39] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='class_id' 
+[2018-11-06 17:41:39] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='biaoti' 
+[2018-11-06 17:41:39] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='paixu' 
+[2018-11-06 17:41:39] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='dtime' 
+[2018-11-06 17:41:39] select count(id) as countnum from sl_fenlei 
+[2018-11-06 17:41:44] DESC sl_filed
+[2018-11-06 17:41:44] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-06 17:41:44] select * from `sl_filed` where model_id= '109' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:44] select * from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:44] DESC sl_table
+[2018-11-06 17:41:44] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-06 17:41:44] DESC sl_fenlei
+[2018-11-06 17:41:44] DESC sl_filed
+[2018-11-06 17:41:44] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:44] select * from sl_fenlei where  class_id =0  and    1=1 limit 0,20 
+[2018-11-06 17:41:44] DESC sl_filed
+[2018-11-06 17:41:44] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:44] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='class_id' 
+[2018-11-06 17:41:44] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='biaoti' 
+[2018-11-06 17:41:44] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='paixu' 
+[2018-11-06 17:41:44] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='dtime' 
+[2018-11-06 17:41:44] select count(id) as countnum from sl_fenlei 
+[2018-11-06 17:41:48] DESC sl_filed
+[2018-11-06 17:41:48] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-06 17:41:48] select * from `sl_filed` where model_id= '109' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:48] select * from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:48] DESC sl_table
+[2018-11-06 17:41:48] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-06 17:41:48] DESC sl_fenlei
+[2018-11-06 17:41:48] DESC sl_filed
+[2018-11-06 17:41:48] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:48] select * from sl_fenlei where class_id like '%1%' and   1=1 limit 0,20 
+[2018-11-06 17:41:48] DESC sl_filed
+[2018-11-06 17:41:48] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:41:48] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='class_id' 
+[2018-11-06 17:41:48] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='biaoti' 
+[2018-11-06 17:41:48] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='paixu' 
+[2018-11-06 17:41:48] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='dtime' 
+[2018-11-06 17:41:48] select count(id) as countnum from sl_fenlei 
+[2018-11-06 17:42:01] DESC sl_filed
+[2018-11-06 17:42:01] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-06 17:42:01] DESC sl_parameter
+[2018-11-06 17:42:01] select * from `sl_parameter` where u1= '字段显示分类' AND 1 = 1 limit 0,1
+[2018-11-06 17:42:01] SELECT *, u1 as name,classid as parentid  FROM sl_parameter   where classid='325'  order by u4 asc,id asc
+[2018-11-06 17:42:01] DESC sl_filed
+[2018-11-06 17:42:01] select * from `sl_filed` where u15= '文章设置' AND model_id= '109' AND 1 = 1 
+[2018-11-06 17:42:01] select * from `sl_filed` where u15= 'SEO设置' AND model_id= '109' AND 1 = 1 
+[2018-11-06 17:42:01] select * from `sl_filed` where u15= '文章描述' AND model_id= '109' AND 1 = 1 
+[2018-11-06 17:42:01] select * from `sl_filed` where u15= '基础参数' AND model_id= '109' AND 1 = 1 
+[2018-11-06 17:42:01] select * from `sl_filed` where u15= '图片设置' AND model_id= '109' AND 1 = 1 
+[2018-11-06 17:42:01] DESC sl_table
+[2018-11-06 17:42:01] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-06 17:42:01] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-06 17:42:01] DESC sl_fenlei
+[2018-11-06 17:42:01] select * from `sl_fenlei` where id= '2' AND 1 = 1 
+[2018-11-14 23:35:37] DESC sl_admin
+[2018-11-14 23:35:37] DESC sl_log
+[2018-11-14 23:35:37] select * from `sl_admin` where username= 'cdsile' AND 1 = 1 limit 0,1
+[2018-11-14 23:35:38] DESC sl_menu_group
+[2018-11-14 23:35:38] select u3,u1,id,classid,icon from `sl_menu_group` where group_id= '1' AND u4= '显示' AND 1 = 1  order by u2 asc 
+[2018-11-14 23:35:38] DESC sl_table
+[2018-11-14 23:35:38] DESC sl_table
+[2018-11-14 23:35:38] DESC sl_log
+[2018-11-14 23:35:38] select * from sl_table where id in ( 102,89 ,80,75,76)  order by id desc 
+[2018-11-14 23:35:38] SELECT distinct  date_format(dtime,'%y-%m-%d') as dtime  from sl_log where DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= date(dtime)  ORDER BY dtime desc
+[2018-11-14 23:35:38] DESC sl_filed
+[2018-11-14 23:35:38] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '89' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-14 23:35:38] select * from `sl_filed` where model_id= '89' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:35:38] select * from `sl_filed` where model_id= '89' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:35:39] DESC sl_table
+[2018-11-14 23:35:39] select * from `sl_table` where id= '89' AND 1 = 1 
+[2018-11-14 23:35:39] DESC sl_filed
+[2018-11-14 23:35:39] select * from `sl_filed` where model_id= '89' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:35:39] select * from  where  1=1  limit 0,20 
+[2018-11-14 23:35:43] DESC sl_table
+[2018-11-14 23:35:43] SELECT *,(SELECT u2 from sl_parameter where u1=mx.u3 ) as tablelianjie from sl_table as mx order by id desc limit 0,20
+[2018-11-14 23:35:43] select count(id) as countnum from sl_table 
+[2018-11-14 23:35:46] DESC sl_filed
+[2018-11-14 23:35:46] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-14 23:35:46] select * from `sl_filed` where model_id= '109' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:35:46] select * from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:35:46] DESC sl_table
+[2018-11-14 23:35:46] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-14 23:35:46] DESC sl_fenlei
+[2018-11-14 23:35:46] DESC sl_filed
+[2018-11-14 23:35:46] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:35:47] select * from sl_fenlei where  class_id =0  and    1=1 limit 0,20 
+[2018-11-14 23:35:47] DESC sl_filed
+[2018-11-14 23:35:47] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:35:47] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='class_id' 
+[2018-11-14 23:35:47] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='biaoti' 
+[2018-11-14 23:35:47] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='paixu' 
+[2018-11-14 23:35:47] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='dtime' 
+[2018-11-14 23:35:47] select count(id) as countnum from sl_fenlei 
+[2018-11-14 23:35:48] DESC sl_filed
+[2018-11-14 23:35:48] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-14 23:35:48] select * from `sl_filed` where model_id= '109' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:35:48] select * from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:35:48] DESC sl_table
+[2018-11-14 23:35:48] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-14 23:35:48] DESC sl_fenlei
+[2018-11-14 23:35:48] DESC sl_filed
+[2018-11-14 23:35:48] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:35:48] select * from sl_fenlei where class_id like '%1%' and   1=1 limit 0,20 
+[2018-11-14 23:35:48] DESC sl_filed
+[2018-11-14 23:35:48] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:35:48] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='class_id' 
+[2018-11-14 23:35:48] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='biaoti' 
+[2018-11-14 23:35:48] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='paixu' 
+[2018-11-14 23:35:48] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='dtime' 
+[2018-11-14 23:35:48] select count(id) as countnum from sl_fenlei 
+[2018-11-14 23:35:52] DESC sl_filed
+[2018-11-14 23:35:52] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:35:52] DESC sl_parameter
+[2018-11-14 23:35:52] select * from `sl_parameter` where u1= '字段显示分类' AND 1 = 1 limit 0,1
+[2018-11-14 23:35:52] SELECT *, u1 as name,classid as parentid  FROM sl_parameter   where classid='325'  order by u4 asc,id asc
+[2018-11-14 23:35:52] DESC sl_filed
+[2018-11-14 23:35:52] select * from `sl_filed` where u15= '文章设置' AND model_id= '109' AND 1 = 1 
+[2018-11-14 23:35:52] select * from `sl_filed` where u15= 'SEO设置' AND model_id= '109' AND 1 = 1 
+[2018-11-14 23:35:52] select * from `sl_filed` where u15= '文章描述' AND model_id= '109' AND 1 = 1 
+[2018-11-14 23:35:52] select * from `sl_filed` where u15= '基础参数' AND model_id= '109' AND 1 = 1 
+[2018-11-14 23:35:52] select * from `sl_filed` where u15= '图片设置' AND model_id= '109' AND 1 = 1 
+[2018-11-14 23:35:52] DESC sl_table
+[2018-11-14 23:35:52] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-14 23:36:02] DESC sl_table
+[2018-11-14 23:36:02] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-14 23:36:02] DESC sl_fenlei
+[2018-11-14 23:36:02] DESC sl_filed
+[2018-11-14 23:36:02] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:36:02] select * from sl_filed where  u7='时间框' and u8='CURRENT_TIMESTAMP' and model_id='109' and u1='class_id' 
+[2018-11-14 23:36:02] select * from sl_filed where  u7='时间框' and u8='CURRENT_TIMESTAMP' and model_id='109' and u1='biaoti' 
+[2018-11-14 23:36:02] select * from sl_filed where  u7='时间框' and u8='CURRENT_TIMESTAMP' and model_id='109' and u1='paixu' 
+[2018-11-14 23:36:02] select * from sl_filed where  u7='时间框' and u8='CURRENT_TIMESTAMP' and model_id='109' and u1='dtime' 
+[2018-11-14 23:36:02] select * from sl_filed where  u7='密码' and model_id='109' and u1='class_id' 
+[2018-11-14 23:36:02] select * from sl_filed where  u7='密码' and model_id='109' and u1='biaoti' 
+[2018-11-14 23:36:02] select * from sl_filed where  u7='密码' and model_id='109' and u1='paixu' 
+[2018-11-14 23:36:02] select * from sl_filed where  u7='密码' and model_id='109' and u1='dtime' 
+[2018-11-14 23:36:02] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='class_id' 
+[2018-11-14 23:36:02] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='biaoti' 
+[2018-11-14 23:36:02] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='paixu' 
+[2018-11-14 23:36:02] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='dtime' 
+[2018-11-14 23:36:03] DESC sl_filed
+[2018-11-14 23:36:03] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-14 23:36:03] select * from `sl_filed` where model_id= '109' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:36:03] select * from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:36:04] DESC sl_table
+[2018-11-14 23:36:04] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-14 23:36:04] DESC sl_fenlei
+[2018-11-14 23:36:04] DESC sl_filed
+[2018-11-14 23:36:04] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:36:04] select * from sl_fenlei where  class_id =0  and    1=1 limit 0,20 
+[2018-11-14 23:36:04] DESC sl_filed
+[2018-11-14 23:36:04] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:36:04] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='class_id' 
+[2018-11-14 23:36:04] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='biaoti' 
+[2018-11-14 23:36:04] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='paixu' 
+[2018-11-14 23:36:04] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='dtime' 
+[2018-11-14 23:36:04] select count(id) as countnum from sl_fenlei 
+[2018-11-14 23:36:05] DESC sl_filed
+[2018-11-14 23:36:05] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-14 23:36:05] select * from `sl_filed` where model_id= '109' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:36:05] select * from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:36:05] DESC sl_table
+[2018-11-14 23:36:05] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-14 23:36:05] DESC sl_fenlei
+[2018-11-14 23:36:05] DESC sl_filed
+[2018-11-14 23:36:05] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:36:05] select * from sl_fenlei where class_id like '%1%' and   1=1 limit 0,20 
+[2018-11-14 23:36:05] DESC sl_filed
+[2018-11-14 23:36:05] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-14 23:36:05] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='class_id' 
+[2018-11-14 23:36:05] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='biaoti' 
+[2018-11-14 23:36:05] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='paixu' 
+[2018-11-14 23:36:05] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='dtime' 
+[2018-11-14 23:36:05] select count(id) as countnum from sl_fenlei 
+[2018-11-14 23:36:12] DESC sl_menu
+[2018-11-14 23:36:12] SELECT *,u1 as name,classid as parentid  FROM sl_menu   order by u2 asc,id asc
+[2018-11-14 23:36:12]  select *,u1 as name,classid as parentid from sl_menu  order by id asc,u2 asc
+[2018-11-14 23:41:22] DESC sl_sort
+[2018-11-14 23:41:22] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-14 23:42:57] DESC sl_sort
+[2018-11-14 23:42:57] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-14 23:44:49] DESC sl_sort
+[2018-11-14 23:44:49] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-14 23:45:50] DESC sl_sort
+[2018-11-14 23:45:50] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-14 23:47:34] DESC sl_sort
+[2018-11-14 23:47:34] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-14 23:48:29] DESC sl_sort
+[2018-11-14 23:48:29] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-14 23:48:50] DESC sl_sort
+[2018-11-14 23:48:50] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-14 23:50:58] DESC sl_sort
+[2018-11-14 23:50:58] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-14 23:52:53] DESC sl_sort
+[2018-11-14 23:52:53] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-14 23:53:19] DESC sl_sort
+[2018-11-14 23:53:19] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-14 23:53:20] DESC sl_sort
+[2018-11-14 23:53:20] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-14 23:53:46] DESC sl_sort
+[2018-11-14 23:53:46] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-14 23:54:06] DESC sl_sort
+[2018-11-14 23:54:06] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-14 23:55:15] DESC sl_sort
+[2018-11-14 23:55:15] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:10:10] DESC sl_admin
+[2018-11-15 00:10:10] DESC sl_log
+[2018-11-15 00:10:10] select * from `sl_admin` where username= 'cdsile' AND 1 = 1 limit 0,1
+[2018-11-15 00:10:11] DESC sl_menu_group
+[2018-11-15 00:10:11] select u3,u1,id,classid,icon from `sl_menu_group` where group_id= '1' AND u4= '显示' AND 1 = 1  order by u2 asc 
+[2018-11-15 00:10:11] DESC sl_table
+[2018-11-15 00:10:11] DESC sl_table
+[2018-11-15 00:10:11] DESC sl_log
+[2018-11-15 00:10:11] select * from sl_table where id in ( 102,89 ,80,75,76)  order by id desc 
+[2018-11-15 00:10:11] SELECT distinct  date_format(dtime,'%y-%m-%d') as dtime  from sl_log where DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= date(dtime)  ORDER BY dtime desc
+[2018-11-15 00:10:11] DESC sl_filed
+[2018-11-15 00:10:11] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '89' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-15 00:10:11] select * from `sl_filed` where model_id= '89' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 00:10:11] select * from `sl_filed` where model_id= '89' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 00:10:12] DESC sl_table
+[2018-11-15 00:10:12] select * from `sl_table` where id= '89' AND 1 = 1 
+[2018-11-15 00:10:12] DESC sl_filed
+[2018-11-15 00:10:12] select * from `sl_filed` where model_id= '89' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 00:10:12] select * from  where  1=1  limit 0,20 
+[2018-11-15 00:10:15] DESC sl_sort
+[2018-11-15 00:10:15] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:10:45] DESC sl_sort
+[2018-11-15 00:10:45] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:10:46] DESC sl_sort
+[2018-11-15 00:10:46] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:10:47] DESC sl_sort
+[2018-11-15 00:10:47] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:10:47] DESC sl_sort
+[2018-11-15 00:10:47] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:10:48] DESC sl_sort
+[2018-11-15 00:10:48] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:10:52] DESC sl_sort
+[2018-11-15 00:10:52] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:11:04] DESC sl_sort
+[2018-11-15 00:11:04] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:11:18] DESC sl_sort
+[2018-11-15 00:11:18] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:11:21] DESC sl_table
+[2018-11-15 00:11:21] SELECT *,(SELECT u2 from sl_parameter where u1=mx.u3 ) as tablelianjie from sl_table as mx order by id desc limit 0,20
+[2018-11-15 00:11:21] select count(id) as countnum from sl_table 
+[2018-11-15 00:11:29] DESC sl_table
+[2018-11-15 00:11:29] select * from `sl_table` where id= '108' AND 1 = 1 
+[2018-11-15 00:11:29] DESC sl_parameter
+[2018-11-15 00:11:29] SELECT *, u1 as name,classid as parentid  FROM sl_parameter   where classid='1'  order by u4 asc,id asc
+[2018-11-15 00:11:29] DESC sl_sort
+[2018-11-15 00:11:29] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:11:35] DESC sl_table
+[2018-11-15 00:11:37] DESC sl_table
+[2018-11-15 00:11:37] SELECT *,(SELECT u2 from sl_parameter where u1=mx.u3 ) as tablelianjie from sl_table as mx order by id desc limit 0,20
+[2018-11-15 00:11:37] select count(id) as countnum from sl_table 
+[2018-11-15 00:11:48] DESC sl_filed
+[2018-11-15 00:11:48] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '108' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-15 00:11:48] select * from `sl_filed` where model_id= '108' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 00:11:48] select * from `sl_filed` where model_id= '108' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 00:11:48] DESC sl_table
+[2018-11-15 00:11:48] select * from `sl_table` where id= '108' AND 1 = 1 
+[2018-11-15 00:11:48] DESC sl_yonghu
+[2018-11-15 00:11:48] DESC sl_filed
+[2018-11-15 00:11:48] select * from `sl_filed` where model_id= '108' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 00:11:48] select * from sl_yonghu where  1=1  limit 0,20 
+[2018-11-15 00:11:48] DESC sl_filed
+[2018-11-15 00:11:48] select * from `sl_filed` where model_id= '108' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 00:11:48] select * from sl_filed where  u7='文本编辑器' and model_id='108' and u1='dtime' 
+[2018-11-15 00:11:48] select count(id) as countnum from sl_yonghu 
+[2018-11-15 00:11:52] DESC sl_sort
+[2018-11-15 00:11:52] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:21:21] DESC sl_sort
+[2018-11-15 00:21:21] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:29:49] DESC sl_menu
+[2018-11-15 00:29:49] SELECT *,u1 as name,classid as parentid  FROM sl_menu   order by u2 asc,id asc
+[2018-11-15 00:29:49]  select *,u1 as name,classid as parentid from sl_menu  order by id asc,u2 asc
+[2018-11-15 00:29:53] DESC sl_menu
+[2018-11-15 00:29:53] SELECT *,u1 as name,classid as parentid  FROM sl_menu   order by u2 asc,id asc
+[2018-11-15 00:29:53] select * from `sl_menu` where id= '1008' AND 1 = 1 
+[2018-11-15 00:30:05] DESC sl_menu
+[2018-11-15 00:30:06] DESC sl_menu
+[2018-11-15 00:30:06] SELECT *,u1 as name,classid as parentid  FROM sl_menu   order by u2 asc,id asc
+[2018-11-15 00:30:06]  select *,u1 as name,classid as parentid from sl_menu  order by id asc,u2 asc
+[2018-11-15 00:30:07] DESC sl_group
+[2018-11-15 00:30:07] select * from `sl_group` 
+[2018-11-15 00:30:07] DESC sl_admin
+[2018-11-15 00:30:07] select * from `sl_admin` where group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:09] DESC sl_group
+[2018-11-15 00:30:09] select * from `sl_group` where id= '1' AND 1 = 1 
+[2018-11-15 00:30:09] DESC sl_menu_group
+[2018-11-15 00:30:09] DESC sl_menu
+[2018-11-15 00:30:09] SELECT *,u1 as name,classid as parentid  FROM sl_menu   order by u2 asc,id asc
+[2018-11-15 00:30:09] select * from `sl_menu_group` where id= '1' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:09] select * from `sl_menu_group` where id= '19' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:09] select * from `sl_menu_group` where id= '857' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:09] select * from `sl_menu_group` where id= '1004' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:09] select * from `sl_menu_group` where id= '1006' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:09] select * from `sl_menu_group` where id= '1007' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:09] select * from `sl_menu_group` where id= '1008' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:09] select * from `sl_menu_group` where id= '8' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:09] select * from `sl_menu_group` where id= '15' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:09] select * from `sl_menu_group` where id= '1009' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:09] select * from `sl_menu_group` where id= '10' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:09] select * from `sl_menu_group` where id= '14' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:09] select * from `sl_menu_group` where id= '976' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:09] select * from `sl_menu_group` where id= '16' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:09] select * from `sl_menu_group` where id= '12' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:09] select * from `sl_menu_group` where id= '17' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:09] select * from `sl_menu_group` where id= '13' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:14] DESC sl_group
+[2018-11-15 00:30:14] DESC sl_menu_group
+[2018-11-15 00:30:14] DESC sl_menu
+[2018-11-15 00:30:14] select * from `sl_menu` where id= '1' AND 1 = 1 
+[2018-11-15 00:30:14] select * from `sl_menu` where id= '1004' AND 1 = 1 
+[2018-11-15 00:30:14] select * from `sl_menu` where id= '1009' AND 1 = 1 
+[2018-11-15 00:30:14] select * from `sl_menu` where id= '8' AND 1 = 1 
+[2018-11-15 00:30:14] select * from `sl_menu` where id= '10' AND 1 = 1 
+[2018-11-15 00:30:14] select * from `sl_menu` where id= '19' AND 1 = 1 
+[2018-11-15 00:30:14] select * from `sl_menu` where id= '976' AND 1 = 1 
+[2018-11-15 00:30:14] select * from `sl_menu` where id= '12' AND 1 = 1 
+[2018-11-15 00:30:14] select * from `sl_menu` where id= '857' AND 1 = 1 
+[2018-11-15 00:30:15] select * from `sl_menu` where id= '15' AND 1 = 1 
+[2018-11-15 00:30:15] select * from `sl_menu` where id= '1006' AND 1 = 1 
+[2018-11-15 00:30:15] select * from `sl_menu` where id= '1007' AND 1 = 1 
+[2018-11-15 00:30:15] select * from `sl_menu` where id= '14' AND 1 = 1 
+[2018-11-15 00:30:15] select * from `sl_menu` where id= '16' AND 1 = 1 
+[2018-11-15 00:30:15] select * from `sl_menu` where id= '17' AND 1 = 1 
+[2018-11-15 00:30:15] select * from `sl_menu` where id= '13' AND 1 = 1 
+[2018-11-15 00:30:15] select * from `sl_menu` where id= '1008' AND 1 = 1 
+[2018-11-15 00:30:16] DESC sl_group
+[2018-11-15 00:30:16] select * from `sl_group` 
+[2018-11-15 00:30:16] DESC sl_admin
+[2018-11-15 00:30:16] select * from `sl_admin` where group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:17] DESC sl_menu_group
+[2018-11-15 00:30:17] select u3,u1,id,classid,icon from `sl_menu_group` where group_id= '1' AND u4= '显示' AND 1 = 1  order by u2 asc 
+[2018-11-15 00:30:17] DESC sl_table
+[2018-11-15 00:30:17] DESC sl_table
+[2018-11-15 00:30:17] DESC sl_log
+[2018-11-15 00:30:17] select * from sl_table where id in ( 102,89 ,80,75,76)  order by id desc 
+[2018-11-15 00:30:17] SELECT distinct  date_format(dtime,'%y-%m-%d') as dtime  from sl_log where DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= date(dtime)  ORDER BY dtime desc
+[2018-11-15 00:30:17] DESC sl_filed
+[2018-11-15 00:30:17] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '89' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-15 00:30:17] select * from `sl_filed` where model_id= '89' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 00:30:17] select * from `sl_filed` where model_id= '89' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 00:30:17] DESC sl_table
+[2018-11-15 00:30:17] select * from `sl_table` where id= '89' AND 1 = 1 
+[2018-11-15 00:30:17] DESC sl_filed
+[2018-11-15 00:30:17] select * from `sl_filed` where model_id= '89' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 00:30:17] select * from  where  1=1  limit 0,20 
+[2018-11-15 00:30:20] DESC sl_menu
+[2018-11-15 00:30:20] SELECT *,u1 as name,classid as parentid  FROM sl_menu   order by u2 asc,id asc
+[2018-11-15 00:30:20]  select *,u1 as name,classid as parentid from sl_menu  order by id asc,u2 asc
+[2018-11-15 00:30:23] DESC sl_menu
+[2018-11-15 00:30:23] SELECT *,u1 as name,classid as parentid  FROM sl_menu   order by u2 asc,id asc
+[2018-11-15 00:30:23] select * from `sl_menu` where id= '13' AND 1 = 1 
+[2018-11-15 00:30:26] DESC sl_menu
+[2018-11-15 00:30:27] DESC sl_menu
+[2018-11-15 00:30:27] SELECT *,u1 as name,classid as parentid  FROM sl_menu   order by u2 asc,id asc
+[2018-11-15 00:30:27]  select *,u1 as name,classid as parentid from sl_menu  order by id asc,u2 asc
+[2018-11-15 00:30:32] DESC sl_group
+[2018-11-15 00:30:32] select * from `sl_group` 
+[2018-11-15 00:30:32] DESC sl_admin
+[2018-11-15 00:30:32] select * from `sl_admin` where group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:34] DESC sl_group
+[2018-11-15 00:30:34] select * from `sl_group` where id= '1' AND 1 = 1 
+[2018-11-15 00:30:34] DESC sl_menu_group
+[2018-11-15 00:30:34] DESC sl_menu
+[2018-11-15 00:30:34] SELECT *,u1 as name,classid as parentid  FROM sl_menu   order by u2 asc,id asc
+[2018-11-15 00:30:34] select * from `sl_menu_group` where id= '1' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:34] select * from `sl_menu_group` where id= '19' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:34] select * from `sl_menu_group` where id= '857' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:34] select * from `sl_menu_group` where id= '1004' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:34] select * from `sl_menu_group` where id= '1006' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:34] select * from `sl_menu_group` where id= '1007' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:34] select * from `sl_menu_group` where id= '1008' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:34] select * from `sl_menu_group` where id= '8' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:34] select * from `sl_menu_group` where id= '15' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:34] select * from `sl_menu_group` where id= '1009' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:34] select * from `sl_menu_group` where id= '10' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:34] select * from `sl_menu_group` where id= '14' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:34] select * from `sl_menu_group` where id= '976' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:34] select * from `sl_menu_group` where id= '16' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:34] select * from `sl_menu_group` where id= '12' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:34] select * from `sl_menu_group` where id= '17' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:34] select * from `sl_menu_group` where id= '13' AND group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:36] DESC sl_group
+[2018-11-15 00:30:36] DESC sl_menu_group
+[2018-11-15 00:30:36] DESC sl_menu
+[2018-11-15 00:30:36] select * from `sl_menu` where id= '1' AND 1 = 1 
+[2018-11-15 00:30:36] select * from `sl_menu` where id= '1004' AND 1 = 1 
+[2018-11-15 00:30:36] select * from `sl_menu` where id= '1009' AND 1 = 1 
+[2018-11-15 00:30:36] select * from `sl_menu` where id= '8' AND 1 = 1 
+[2018-11-15 00:30:36] select * from `sl_menu` where id= '10' AND 1 = 1 
+[2018-11-15 00:30:36] select * from `sl_menu` where id= '19' AND 1 = 1 
+[2018-11-15 00:30:36] select * from `sl_menu` where id= '976' AND 1 = 1 
+[2018-11-15 00:30:36] select * from `sl_menu` where id= '12' AND 1 = 1 
+[2018-11-15 00:30:36] select * from `sl_menu` where id= '857' AND 1 = 1 
+[2018-11-15 00:30:36] select * from `sl_menu` where id= '15' AND 1 = 1 
+[2018-11-15 00:30:36] select * from `sl_menu` where id= '1006' AND 1 = 1 
+[2018-11-15 00:30:36] select * from `sl_menu` where id= '1007' AND 1 = 1 
+[2018-11-15 00:30:36] select * from `sl_menu` where id= '14' AND 1 = 1 
+[2018-11-15 00:30:36] select * from `sl_menu` where id= '16' AND 1 = 1 
+[2018-11-15 00:30:36] select * from `sl_menu` where id= '17' AND 1 = 1 
+[2018-11-15 00:30:36] select * from `sl_menu` where id= '13' AND 1 = 1 
+[2018-11-15 00:30:36] select * from `sl_menu` where id= '1008' AND 1 = 1 
+[2018-11-15 00:30:37] DESC sl_group
+[2018-11-15 00:30:37] select * from `sl_group` 
+[2018-11-15 00:30:37] DESC sl_admin
+[2018-11-15 00:30:37] select * from `sl_admin` where group_id= '1' AND 1 = 1 
+[2018-11-15 00:30:38] DESC sl_menu_group
+[2018-11-15 00:30:38] select u3,u1,id,classid,icon from `sl_menu_group` where group_id= '1' AND u4= '显示' AND 1 = 1  order by u2 asc 
+[2018-11-15 00:30:38] DESC sl_table
+[2018-11-15 00:30:38] DESC sl_table
+[2018-11-15 00:30:38] DESC sl_log
+[2018-11-15 00:30:38] select * from sl_table where id in ( 102,89 ,80,75,76)  order by id desc 
+[2018-11-15 00:30:38] SELECT distinct  date_format(dtime,'%y-%m-%d') as dtime  from sl_log where DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= date(dtime)  ORDER BY dtime desc
+[2018-11-15 00:30:38] DESC sl_filed
+[2018-11-15 00:30:38] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '89' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-15 00:30:38] select * from `sl_filed` where model_id= '89' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 00:30:38] select * from `sl_filed` where model_id= '89' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 00:30:38] DESC sl_table
+[2018-11-15 00:30:38] select * from `sl_table` where id= '89' AND 1 = 1 
+[2018-11-15 00:30:38] DESC sl_filed
+[2018-11-15 00:30:38] select * from `sl_filed` where model_id= '89' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 00:30:38] select * from  where  1=1  limit 0,20 
+[2018-11-15 00:30:40] DESC sl_smslog
+[2018-11-15 00:30:40] select * from `sl_smslog` limit 0,20
+[2018-11-15 00:30:40] select count(id) as countnum from sl_smslog 
+[2018-11-15 00:30:44] DESC sl_menu
+[2018-11-15 00:30:44] SELECT *,u1 as name,classid as parentid  FROM sl_menu   order by u2 asc,id asc
+[2018-11-15 00:30:44]  select *,u1 as name,classid as parentid from sl_menu  order by id asc,u2 asc
+[2018-11-15 00:30:47] DESC sl_menu
+[2018-11-15 00:30:47] SELECT *,u1 as name,classid as parentid  FROM sl_menu   order by u2 asc,id asc
+[2018-11-15 00:30:47] select * from `sl_menu` where id= '1008' AND 1 = 1 
+[2018-11-15 00:31:02] DESC sl_menu
+[2018-11-15 00:31:03] DESC sl_menu
+[2018-11-15 00:31:03] SELECT *,u1 as name,classid as parentid  FROM sl_menu   order by u2 asc,id asc
+[2018-11-15 00:31:03]  select *,u1 as name,classid as parentid from sl_menu  order by id asc,u2 asc
+[2018-11-15 00:37:24] DESC sl_sort
+[2018-11-15 00:37:24] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:37:32] DESC sl_sort
+[2018-11-15 00:37:32] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:38:13] DESC sl_sort
+[2018-11-15 00:38:13] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:38:18] DESC sl_sort
+[2018-11-15 00:38:18] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:50:15] DESC sl_table
+[2018-11-15 00:50:15] SELECT *,(SELECT u2 from sl_parameter where u1=mx.u3 ) as tablelianjie from sl_table as mx order by id desc limit 0,20
+[2018-11-15 00:50:15] select count(id) as countnum from sl_table 
+[2018-11-15 00:51:40] DESC sl_filed
+[2018-11-15 00:51:40] select * from `sl_filed` where model_id= '108' AND 1 = 1 limit 0,20
+[2018-11-15 00:51:40] select * from `sl_filed` where model_id= '108' AND 1 = 1 
+[2018-11-15 00:51:42] DESC sl_filed
+[2018-11-15 00:51:42] DESC sl_parameter
+[2018-11-15 00:51:42] select * from `sl_parameter` where classid= '4' AND 1 = 1 
+[2018-11-15 00:51:42] DESC sl_parameter
+[2018-11-15 00:51:42] select * from `sl_parameter` where u1= '字段显示分类' AND 1 = 1 limit 0,1
+[2018-11-15 00:51:42] SELECT *, u1 as name,classid as parentid  FROM sl_parameter   where classid='325'  order by u4 asc,id asc
+[2018-11-15 00:51:48] DESC sl_filed
+[2018-11-15 00:51:48] select * from sl_filed where model_id=108 and u1='xingming' 
+[2018-11-15 00:52:00] DESC sl_filed
+[2018-11-15 00:52:00] select * from sl_filed where model_id=108 and u1='xingming' 
+[2018-11-15 00:52:00] DESC sl_table
+[2018-11-15 00:52:00] select * from `sl_table` where id= '108' AND 1 = 1 
+[2018-11-15 00:52:00] DESC sl_yonghu
+[2018-11-15 00:52:01] DESC sl_filed
+[2018-11-15 00:52:01] select * from `sl_filed` where model_id= '108' AND 1 = 1 limit 0,20
+[2018-11-15 00:52:01] select * from `sl_filed` where model_id= '108' AND 1 = 1 
+[2018-11-15 00:53:29] DESC sl_sort
+[2018-11-15 00:53:29] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:53:29] DESC sl_yonghu
+[2018-11-15 00:54:01] DESC sl_sort
+[2018-11-15 00:54:01] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:54:01] DESC sl_yonghu
+[2018-11-15 00:54:29] DESC sl_sort
+[2018-11-15 00:54:29] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:54:29] DESC sl_yonghu
+[2018-11-15 00:55:39] DESC sl_sort
+[2018-11-15 00:55:39] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:55:39] DESC sl_yonghu
+[2018-11-15 00:56:15] DESC sl_sort
+[2018-11-15 00:56:15] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:56:15] DESC sl_yonghu
+[2018-11-15 00:56:17] DESC sl_sort
+[2018-11-15 00:56:17] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:56:17] DESC sl_yonghu
+[2018-11-15 00:56:50] DESC sl_sort
+[2018-11-15 00:56:50] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:56:50] DESC sl_yonghu
+[2018-11-15 00:57:02] DESC sl_sort
+[2018-11-15 00:57:02] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:57:02] DESC sl_yonghu
+[2018-11-15 00:57:34] DESC sl_sort
+[2018-11-15 00:57:34] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:57:34] DESC sl_yonghu
+[2018-11-15 00:57:57] DESC sl_sort
+[2018-11-15 00:57:57] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:57:57] DESC sl_yonghu
+[2018-11-15 00:58:17] DESC sl_sort
+[2018-11-15 00:58:17] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 00:58:17] DESC sl_yonghu

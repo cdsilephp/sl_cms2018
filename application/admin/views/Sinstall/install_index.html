@@ -1,0 +1,122 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>安装silephp</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/style/login.css" media="all">
+</head>
+<body>
+
+
+  <div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
+    <div class="layadmin-user-login-main">
+      <div class="layadmin-user-login-box layadmin-user-login-header">
+        <h2><a href="#"><img src="<?=CUR_TPL_PATH?>images/login-logo.png"></a></h2>
+        <p>思乐官方出品 后台管理系统</p>
+      </div>
+      <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+        <div class="layui-form-item">
+          <label class="layadmin-user-login-icon layui-icon layui-icon-cellphone" for="LAY-user-login-cellphone"></label>
+          <input type="text" name="host" id="LAY-user-login-cellphone"  value="localhost"    placeholder="数据库主机地址" class="layui-input">
+        </div>
+        
+        <div class="layui-form-item">
+          <label class="layadmin-user-login-icon layui-icon layui-icon-cellphone" for="LAY-user-login-cellphone"></label>
+          <input type="text" name="user" id="LAY-user-login-cellphone"   value="root"   placeholder="数据库用户名" class="layui-input">
+        </div>
+        
+        <div class="layui-form-item">
+          <label class="layadmin-user-login-icon layui-icon layui-icon-cellphone" for="LAY-user-login-cellphone"></label>
+          <input type="text" name="password" id="LAY-user-login-cellphone"   value="123456"   placeholder="数据库密码" class="layui-input">
+        </div>
+         
+        <div class="layui-form-item">
+          <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
+          <input type="text" name="dbname" id="LAY-user-login-password"   value="sl_cms"  placeholder="数据库名称" class="layui-input">
+        </div>
+         
+         <div class="layui-form-item">
+          <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
+          <input type="text" name="charset" id="LAY-user-login-password"  value="utf8"  placeholder="编码" class="layui-input">
+        </div>
+        
+        <div class="layui-form-item" style="display:none">
+          <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
+          <input type="text" name="prefix" id="LAY-user-login-password"   value="sl_"   class="layui-input">
+        </div>
+        
+        <div class="layui-form-item" style="display:none">
+          <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
+          <input type="text" name="log" id="LAY-user-login-password"   value="false"   class="layui-input">
+        </div>
+        
+        <div class="layui-form-item" style="display:none">
+          <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
+          <input type="text" name="port" id="LAY-user-login-password"   value="3306"   class="layui-input">
+        </div>
+        
+         
+        <div class="layui-form-item">
+          <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-reg-submit">安装</button>
+        </div>
+       
+      </div>
+    </div>
+    
+    <div class="layui-trans layadmin-user-login-footer">
+      
+      <p>© 2018 <a href="http://www.cdsile.com/" target="_blank">成都思乐科技</a></p>
+      
+    </div>
+
+  </div>
+
+  <script src="<?=CUR_TPL_PATH?>src/layuiadmin/layui/layui.js"></script>  
+  <script>
+  layui.config({
+    base: '<?=CUR_TPL_PATH?>src/layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'user'], function(){
+    var $ = layui.$
+    ,setter = layui.setter
+    ,admin = layui.admin
+    ,form = layui.form
+    ,router = layui.router();
+
+    form.render();
+
+    //提交
+    form.on('submit(LAY-user-reg-submit)', function(obj){
+      var field = obj.field;
+       
+      
+      //请求接口
+      admin.req({
+        url: '/admin/install/installsystem' //实际使用请改成服务端真实接口
+        ,data: field
+        ,type: 'post'
+        ,done: function(res){        
+          layer.msg('安装成功', {
+            offset: '15px'
+            ,icon: 1
+            ,time: 1000
+          }, function(){
+        	  location.href = '/admin/login/login'; //后台主页
+          });
+        }
+      });
+      
+      return false;
+    });
+  });
+  </script>
+</body>
+</html>
