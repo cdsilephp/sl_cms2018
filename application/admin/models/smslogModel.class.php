@@ -19,19 +19,15 @@ class smslogModel extends Model{
         return $this->limit($page*$limit,$limit)->all();
     }
     //添加日志
-    public function addlog($user,$log,$code,$dtame)
+    public function addlog($user,$log,$type)
     {
         $data['user']   = $user;    //手机号
         $data['log']    = $log;     //日志说明
-        $data['code']   = $code;    //验证码
-        $data['dtime']  = $dtame;   //添加时间
-
-        //2.验证和处理
-        $this->helper("input");
-
-        $data = deepspecialchars($data);
-        $data = deepslashes($data);
-
+        $data['type']   = isset($type)?$type:"普通";    //发送类型
+        $data['dtime']  = date("Y-m-d h:m:s",time());   //添加时间
+        
+        var_dump($data);
+ 
         $this->insert($data);
     }
 }

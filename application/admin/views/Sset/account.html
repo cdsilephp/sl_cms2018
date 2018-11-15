@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>网站设置</title>
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/layui/css/layui.css" media="all">
-  <link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/style/admin.css" media="all">
+<meta charset="utf-8">
+<title>网站设置</title>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link rel="stylesheet"
+	href="<?=CUR_TPL_PATH?>src/layuiadmin/layui/css/layui.css" media="all">
+<link rel="stylesheet"
+	href="<?=CUR_TPL_PATH?>src/layuiadmin/style/admin.css" media="all">
 </head>
 <body>
 
-<div class="layui-fluid">
-  <div class="layui-row layui-col-space15">
-    <div class="layui-col-md12">
-      <div class="layui-card">
-        <div class="layui-card-header">网站设置</div>
-        <div class="layui-card-body" pad15>
+	<div class="layui-fluid">
+		<div class="layui-row layui-col-space15">
+			<div class="layui-col-md12">
+				<div class="layui-card">
+					<div class="layui-card-header">第三方账号设置</div>
+					<div class="layui-card-body" pad15>
 
-          <div class="layui-form" wid100 lay-filter="">
+						<div class="layui-form" wid100 lay-filter="">
 
-            <div class="layui-form-item">
+							<!--  <div class="layui-form-item">
               <label class="layui-form-label">凌凯账号</label>
               <div class="layui-input-block">
                 <input type="text" name="LK_ACCOUNT" value="<?php echo $GLOBALS['config_account']['LK_ACCOUNT'] ?>" class="layui-input">
@@ -33,22 +36,107 @@
                 <input type="password" name="LK_PASSWORD" value="<?php echo $GLOBALS['config_account']['LK_PASSWORD'] ?>" class="layui-input">
               </div>
             </div>
+             -->
 
-            <div class="layui-form-item">
-              <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="save">确认保存</button>
-              </div>
-            </div>
-          </div>
+							<div class="layui-card">
+								<div class="layui-card-header">邮件服务</div>
+								<div class="layui-card-body">
 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+									<div class="layui-form" wid100 lay-filter="">
+										<div class="layui-form-item">
+											<label class="layui-form-label">SMTP服务器</label>
+											<div class="layui-input-inline">
+												<input type="text" name="SMTP_SERVER"
+													value="<?=$GLOBALS['config_account']['SMTP_SERVER'] ?>" class="layui-input">
+											</div>
+											<div class="layui-form-mid layui-word-aux">如：smtp.163.com</div>
+										</div>
+										<div class="layui-form-item">
+											<label class="layui-form-label">SMTP端口号</label>
+											<div class="layui-input-inline" style="width: 80px;">
+												<input type="text" name="SMTP_PORT" lay-verify="number"
+													value="<?=$GLOBALS['config_account']['SMTP_PORT'] ?>" class="layui-input">
+											</div>
+											<div class="layui-form-mid layui-word-aux">一般为 25 或 465</div>
+										</div>
+										<div class="layui-form-item">
+											<label class="layui-form-label">发件人邮箱</label>
+											<div class="layui-input-inline">
+												<input type="text" name="SMTP_SEND_EMAIL"
+													value="<?=$GLOBALS['config_account']['SMTP_SEND_EMAIL'] ?>" lay-verify="email"
+													autocomplete="off" class="layui-input">
+											</div>
+										</div>
+										<div class="layui-form-item">
+											<label class="layui-form-label">发件人昵称</label>
+											<div class="layui-input-inline">
+												<input type="text" name="SMTP_SEND_NICKNAME" value="<?=$GLOBALS['config_account']['SMTP_SEND_NICKNAME'] ?>"
+													autocomplete="off" class="layui-input">
+											</div>
+										</div>
+										<div class="layui-form-item">
+											<label class="layui-form-label">邮箱登入密码</label>
+											<div class="layui-input-inline">
+												<input type="text" name="SMTP_SEND_PASSWORD" value="<?=$GLOBALS['config_account']['SMTP_SEND_PASSWORD'] ?>"
+													autocomplete="off" class="layui-input">
+											</div>
+										</div>
 
-<script src="<?=CUR_TPL_PATH?>src/layuiadmin/layui/layui.js"></script>
-<script>
+									</div>
+
+								</div>
+							</div>
+
+
+							<div class="layui-card">
+								<div class="layui-card-header">短信服务</div>
+								<div class="layui-card-body">
+
+									<div class="layui-form" wid100 lay-filter="">
+										<div class="layui-form-item">
+											<label class="layui-form-label">凌凯账号</label>
+											<div class="layui-input-inline">
+												<input type="text" name="LK_ACCOUNT"
+													value="<?=$GLOBALS['config_account']['LK_ACCOUNT'] ?>"
+													class="layui-input">
+											</div>
+										</div>
+										<div class="layui-form-item">
+											<label class="layui-form-label">凌凯密码</label>
+											<div class="layui-input-inline" style="width: 80px;">
+												<input type="text" name="LK_PASSWORD"
+													value="<?=$GLOBALS['config_account']['LK_PASSWORD'] ?>"
+													class="layui-input">
+											</div>
+										</div>
+										<div class="layui-form-item">
+											<label class="layui-form-label">凌凯签名</label>
+											<div class="layui-input-inline" style="width: 80px;">
+												<input type="text" name="LK_SIGN"
+													value="<?=$GLOBALS['config_account']['LK_SIGN'] ?>"
+													class="layui-input">
+											</div>
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<div class="layui-input-block">
+									<button class="layui-btn" lay-submit lay-filter="save">确认保存</button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="<?=CUR_TPL_PATH?>src/layuiadmin/layui/layui.js"></script>
+	<script>
   layui.config({
     base: '<?=CUR_TPL_PATH?>src/layuiadmin/' //静态资源所在路径
   }).extend({

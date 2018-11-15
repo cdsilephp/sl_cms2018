@@ -4,22 +4,16 @@ class Framework {
 	//定义一个run方法
 	public static function run(){
 	     
-		self::init(); 
-		self::autoload();
-		self::dispatch();
+		self::init(); 		//初始化方法
+		self::autoload();	//自动加载
+		self::dispatch();	//路由方法
 		
 	}
 
 	//初始化方法
 	private static function init(){
 		//定义路径常量
-<<<<<<< HEAD
-	    define("DS", "/");
-// 		define("DS", DIRECTORY_SEPARATOR);
-=======
-		define("DS", "/");
-		// define("DS", DIRECTORY_SEPARATOR);
->>>>>>> 9157a877a13dc685d06444f889279d43b42412ac
+		define("DS", '/');
 		define("ROOT", getcwd() . DS ); //根目录
 		define("APP_PATH", ROOT . 'application' . DS);
 		define("FRAMEWORK_PATH", ROOT . "silephp" .DS);
@@ -52,8 +46,8 @@ class Framework {
 		$route = $common->Get("route");
 		if($route!="")
 		{
-		    $routeArray = explode("/", $route);
-		    if(count($routeArray)==2)
+		    $routeArray = explode("/", $route);	//将字符串转为数组
+		    if(count($routeArray)==2)			//判断数组个数
 		    {
 		        $p=$routeArray[0];
 		        $c=$routeArray[1]==""?"index":$routeArray[1];
@@ -71,18 +65,18 @@ class Framework {
 		
 		
 		//获取参数p、c、a,index.php?p=admin&c=goods&a=add GoodsController中的addAction
-		define('PLATFORM',$p);
-		define('CONTROLLER',$c);
-		define('ACTION',$a);
+		define('PLATFORM',$p);		//模块
+		define('CONTROLLER',$c);	//控制器
+		define('ACTION',$a);		//方法
 		
 		//设置当前控制器和视图目录 CUR-- current
-		define("CUR_CONFIG_PATH", APP_PATH.PLATFORM.DS. "config" .DS);
-		define("CUR_CONTROLLER_PATH", APP_PATH.PLATFORM.DS. "controllers" .DS);
-		define("CUR_MODEL_PATH", APP_PATH.PLATFORM.DS. "models" .DS);
-		define("CUR_VIEW_PATH", APP_PATH.PLATFORM.DS. "views" .DS);
+		define("CUR_CONFIG_PATH", APP_PATH.PLATFORM.DS. "config" .DS);				//配置文件
+		define("CUR_CONTROLLER_PATH", APP_PATH.PLATFORM.DS. "controllers" .DS);		//控制器
+		define("CUR_MODEL_PATH", APP_PATH.PLATFORM.DS. "models" .DS);				//模型
+		define("CUR_VIEW_PATH", APP_PATH.PLATFORM.DS. "views" .DS);					//视图
 		//TPLPATH
 		define("CUR_TPL_PATH", $common->getHostDomain().DS.'application'.DS.PLATFORM.DS. "views" .DS);
-		
+
 		
 		//定义启动文件
 		define("CUR_STARTFILE_PATH", APP_PATH.PLATFORM.DS. "index.php" );

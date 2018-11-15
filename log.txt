@@ -764,3 +764,477 @@
 [2018-11-15 00:58:17] DESC sl_sort
 [2018-11-15 00:58:17] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
 [2018-11-15 00:58:17] DESC sl_yonghu
+[2018-11-15 13:16:47] DESC sl_sort
+[2018-11-15 13:16:47] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 13:17:24] DESC sl_sort
+[2018-11-15 13:17:24] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 13:17:29] DESC sl_menu_group
+[2018-11-15 13:17:29] select u3,u1,id,classid,icon from `sl_menu_group` where group_id= '1' AND u4= '显示' AND 1 = 1  order by u2 asc 
+[2018-11-15 13:17:29] DESC sl_table
+[2018-11-15 13:17:29] DESC sl_table
+[2018-11-15 13:17:29] DESC sl_log
+[2018-11-15 13:17:29] select * from sl_table where id in ( 102,89 ,80,75,76)  order by id desc 
+[2018-11-15 13:17:29] SELECT distinct  date_format(dtime,'%y-%m-%d') as dtime  from sl_log where DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= date(dtime)  ORDER BY dtime desc
+[2018-11-15 13:17:29] DESC sl_filed
+[2018-11-15 13:17:29] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '89' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-15 13:17:29] select * from `sl_filed` where model_id= '89' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 13:17:29] select * from `sl_filed` where model_id= '89' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 13:17:29] DESC sl_table
+[2018-11-15 13:17:29] select * from `sl_table` where id= '89' AND 1 = 1 
+[2018-11-15 13:17:29] DESC sl_filed
+[2018-11-15 13:17:29] select * from `sl_filed` where model_id= '89' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 13:17:29] select * from  where  1=1  limit 0,20 
+[2018-11-15 13:17:33] DESC sl_sort
+[2018-11-15 13:17:33] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 13:17:35] DESC sl_admin
+[2018-11-15 13:17:35] select a.*  ,g.zuming from sl_admin as a,sl_group as g where g.id =a.group_id 
+[2018-11-15 13:17:36] DESC sl_group
+[2018-11-15 13:17:36] select * from `sl_group` 
+[2018-11-15 13:17:36] DESC sl_admin
+[2018-11-15 13:17:36] select * from `sl_admin` where group_id= '1' AND 1 = 1 
+[2018-11-15 13:17:37] DESC sl_parameter
+[2018-11-15 13:17:37] SELECT *, u1 as name,classid as parentid  FROM sl_parameter   order by u4 asc,id asc
+[2018-11-15 13:17:40] DESC sl_parameter
+[2018-11-15 13:17:40] SELECT *, u1 as name,classid as parentid  FROM sl_parameter   order by u4 asc,id asc
+[2018-11-15 13:17:41] DESC sl_parameter
+[2018-11-15 13:17:41] SELECT *, u1 as name,classid as parentid  FROM sl_parameter   order by u4 asc,id asc
+[2018-11-15 13:17:41] select * from `sl_parameter` where id= '1' AND 1 = 1 
+[2018-11-15 13:19:48] DESC sl_sort
+[2018-11-15 13:19:48] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 13:42:44] DESC sl_smslog
+[2018-11-15 13:42:44] select * from `sl_smslog` limit 0,20
+[2018-11-15 13:42:44] select count(id) as countnum from sl_smslog 
+[2018-11-15 13:49:23] DESC sl_smslog
+[2018-11-15 13:49:23] select * from `sl_smslog` limit 0,20
+[2018-11-15 13:49:23] select count(id) as countnum from sl_smslog 
+[2018-11-15 13:49:23] DESC sl_smslog
+[2018-11-15 13:49:23] select * from `sl_smslog` limit 0,20
+[2018-11-15 13:49:23] select count(id) as countnum from sl_smslog 
+[2018-11-15 13:55:25] DESC sl_smslog
+[2018-11-15 13:55:25] select * from `sl_smslog` limit 0,20
+[2018-11-15 13:55:25] select count(id) as countnum from sl_smslog 
+[2018-11-15 14:29:10] DESC sl_smslog
+[2018-11-15 14:29:10] select * from `sl_smslog` limit 0,20
+[2018-11-15 14:29:10] select count(id) as countnum from sl_smslog 
+[2018-11-15 14:29:12] DESC sl_smslog
+[2018-11-15 14:29:12] select * from `sl_smslog` limit 0,20
+[2018-11-15 14:29:12] select count(id) as countnum from sl_smslog 
+[2018-11-15 14:29:39] DESC sl_menu
+[2018-11-15 14:29:39] SELECT *,u1 as name,classid as parentid  FROM sl_menu   order by u2 asc,id asc
+[2018-11-15 14:29:39]  select *,u1 as name,classid as parentid from sl_menu  order by id asc,u2 asc
+[2018-11-15 14:29:47] DESC sl_group
+[2018-11-15 14:29:47] select * from `sl_group` where id= '1' AND 1 = 1 
+[2018-11-15 14:29:47] DESC sl_menu_group
+[2018-11-15 14:29:47] DESC sl_menu
+[2018-11-15 14:29:47] SELECT *,u1 as name,classid as parentid  FROM sl_menu   order by u2 asc,id asc
+[2018-11-15 14:29:47] select * from `sl_menu_group` where id= '1' AND group_id= '1' AND 1 = 1 
+[2018-11-15 14:29:47] select * from `sl_menu_group` where id= '19' AND group_id= '1' AND 1 = 1 
+[2018-11-15 14:29:47] select * from `sl_menu_group` where id= '857' AND group_id= '1' AND 1 = 1 
+[2018-11-15 14:29:47] select * from `sl_menu_group` where id= '1004' AND group_id= '1' AND 1 = 1 
+[2018-11-15 14:29:47] select * from `sl_menu_group` where id= '1006' AND group_id= '1' AND 1 = 1 
+[2018-11-15 14:29:47] select * from `sl_menu_group` where id= '1007' AND group_id= '1' AND 1 = 1 
+[2018-11-15 14:29:47] select * from `sl_menu_group` where id= '1008' AND group_id= '1' AND 1 = 1 
+[2018-11-15 14:29:47] select * from `sl_menu_group` where id= '8' AND group_id= '1' AND 1 = 1 
+[2018-11-15 14:29:47] select * from `sl_menu_group` where id= '15' AND group_id= '1' AND 1 = 1 
+[2018-11-15 14:29:47] select * from `sl_menu_group` where id= '1009' AND group_id= '1' AND 1 = 1 
+[2018-11-15 14:29:47] select * from `sl_menu_group` where id= '10' AND group_id= '1' AND 1 = 1 
+[2018-11-15 14:29:47] select * from `sl_menu_group` where id= '14' AND group_id= '1' AND 1 = 1 
+[2018-11-15 14:29:47] select * from `sl_menu_group` where id= '976' AND group_id= '1' AND 1 = 1 
+[2018-11-15 14:29:47] select * from `sl_menu_group` where id= '16' AND group_id= '1' AND 1 = 1 
+[2018-11-15 14:29:47] select * from `sl_menu_group` where id= '12' AND group_id= '1' AND 1 = 1 
+[2018-11-15 14:29:47] select * from `sl_menu_group` where id= '17' AND group_id= '1' AND 1 = 1 
+[2018-11-15 14:29:47] select * from `sl_menu_group` where id= '13' AND group_id= '1' AND 1 = 1 
+[2018-11-15 14:29:49] DESC sl_group
+[2018-11-15 14:29:49] DESC sl_menu_group
+[2018-11-15 14:29:49] DESC sl_menu
+[2018-11-15 14:29:49] select * from `sl_menu` where id= '1' AND 1 = 1 
+[2018-11-15 14:29:49] select * from `sl_menu` where id= '1004' AND 1 = 1 
+[2018-11-15 14:29:49] select * from `sl_menu` where id= '1009' AND 1 = 1 
+[2018-11-15 14:29:49] select * from `sl_menu` where id= '8' AND 1 = 1 
+[2018-11-15 14:29:49] select * from `sl_menu` where id= '10' AND 1 = 1 
+[2018-11-15 14:29:49] select * from `sl_menu` where id= '19' AND 1 = 1 
+[2018-11-15 14:29:49] select * from `sl_menu` where id= '976' AND 1 = 1 
+[2018-11-15 14:29:49] select * from `sl_menu` where id= '12' AND 1 = 1 
+[2018-11-15 14:29:49] select * from `sl_menu` where id= '857' AND 1 = 1 
+[2018-11-15 14:29:49] select * from `sl_menu` where id= '15' AND 1 = 1 
+[2018-11-15 14:29:49] select * from `sl_menu` where id= '1006' AND 1 = 1 
+[2018-11-15 14:29:49] select * from `sl_menu` where id= '1007' AND 1 = 1 
+[2018-11-15 14:29:49] select * from `sl_menu` where id= '14' AND 1 = 1 
+[2018-11-15 14:29:49] select * from `sl_menu` where id= '16' AND 1 = 1 
+[2018-11-15 14:29:49] select * from `sl_menu` where id= '17' AND 1 = 1 
+[2018-11-15 14:29:49] select * from `sl_menu` where id= '13' AND 1 = 1 
+[2018-11-15 14:29:49] select * from `sl_menu` where id= '1008' AND 1 = 1 
+[2018-11-15 14:29:51] DESC sl_group
+[2018-11-15 14:29:51] select * from `sl_group` 
+[2018-11-15 14:29:51] DESC sl_admin
+[2018-11-15 14:29:51] select * from `sl_admin` where group_id= '1' AND 1 = 1 
+[2018-11-15 14:29:51] DESC sl_menu_group
+[2018-11-15 14:29:51] select u3,u1,id,classid,icon from `sl_menu_group` where group_id= '1' AND u4= '显示' AND 1 = 1  order by u2 asc 
+[2018-11-15 14:29:51] DESC sl_table
+[2018-11-15 14:29:51] DESC sl_table
+[2018-11-15 14:29:51] DESC sl_log
+[2018-11-15 14:29:51] select * from sl_table where id in ( 102,89 ,80,75,76)  order by id desc 
+[2018-11-15 14:29:51] SELECT distinct  date_format(dtime,'%y-%m-%d') as dtime  from sl_log where DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= date(dtime)  ORDER BY dtime desc
+[2018-11-15 14:29:51] DESC sl_filed
+[2018-11-15 14:29:51] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '89' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-15 14:29:51] select * from `sl_filed` where model_id= '89' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 14:29:51] select * from `sl_filed` where model_id= '89' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 14:29:51] DESC sl_table
+[2018-11-15 14:29:51] select * from `sl_table` where id= '89' AND 1 = 1 
+[2018-11-15 14:29:51] DESC sl_filed
+[2018-11-15 14:29:51] select * from `sl_filed` where model_id= '89' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 14:29:51] select * from  where  1=1  limit 0,20 
+[2018-11-15 14:29:53] DESC sl_smslog
+[2018-11-15 14:29:53] select * from `sl_smslog` limit 0,20
+[2018-11-15 14:29:53] select count(id) as countnum from sl_smslog 
+[2018-11-15 14:42:21] DESC sl_sort
+[2018-11-15 14:42:21] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:42:21] DESC sl_smslog
+[2018-11-15 14:43:10] DESC sl_sort
+[2018-11-15 14:43:10] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:43:10] DESC sl_smslog
+[2018-11-15 14:43:42] DESC sl_sort
+[2018-11-15 14:43:42] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:43:42] DESC sl_smslog
+[2018-11-15 14:43:43] DESC sl_sort
+[2018-11-15 14:43:43] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:43:43] DESC sl_smslog
+[2018-11-15 14:43:50] DESC sl_smslog
+[2018-11-15 14:43:50] select * from `sl_smslog` limit 0,20
+[2018-11-15 14:43:50] select count(id) as countnum from sl_smslog 
+[2018-11-15 14:44:22] DESC sl_sort
+[2018-11-15 14:44:22] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:44:22] DESC sl_smslog
+[2018-11-15 14:44:44] DESC sl_sort
+[2018-11-15 14:44:44] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:44:44] DESC sl_smslog
+[2018-11-15 14:45:04] DESC sl_sort
+[2018-11-15 14:45:04] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:45:04] DESC sl_smslog
+[2018-11-15 14:45:48] DESC sl_sort
+[2018-11-15 14:45:48] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:45:48] DESC sl_smslog
+[2018-11-15 14:46:04] DESC sl_sort
+[2018-11-15 14:46:04] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:46:04] DESC sl_smslog
+[2018-11-15 14:46:19] DESC sl_sort
+[2018-11-15 14:46:19] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:46:19] DESC sl_smslog
+[2018-11-15 14:47:26] DESC sl_sort
+[2018-11-15 14:47:26] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:47:26] DESC sl_smslog
+[2018-11-15 14:48:04] DESC sl_sort
+[2018-11-15 14:48:04] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:48:04] DESC sl_smslog
+[2018-11-15 14:48:33] DESC sl_sort
+[2018-11-15 14:48:33] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:49:20] DESC sl_sort
+[2018-11-15 14:49:20] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:49:52] DESC sl_sort
+[2018-11-15 14:49:52] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:50:33] DESC sl_sort
+[2018-11-15 14:50:33] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:50:48] DESC sl_sort
+[2018-11-15 14:50:48] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:50:57] DESC sl_sort
+[2018-11-15 14:50:57] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:51:09] DESC sl_sort
+[2018-11-15 14:51:09] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:51:09] DESC sl_smslog
+[2018-11-15 14:51:30] DESC sl_sort
+[2018-11-15 14:51:30] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:51:30] DESC sl_smslog
+[2018-11-15 14:52:52] DESC sl_sort
+[2018-11-15 14:52:52] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:52:52] DESC sl_smslog
+[2018-11-15 14:53:49] DESC sl_sort
+[2018-11-15 14:53:49] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:53:49] DESC sl_smslog
+[2018-11-15 14:55:04] DESC sl_sort
+[2018-11-15 14:55:04] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:55:04] DESC sl_smslog
+[2018-11-15 14:57:36] DESC sl_sort
+[2018-11-15 14:57:36] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 14:57:36] DESC sl_smslog
+[2018-11-15 15:00:45] DESC sl_sort
+[2018-11-15 15:00:45] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:00:45] DESC sl_smslog
+[2018-11-15 15:01:10] DESC sl_sort
+[2018-11-15 15:01:10] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:01:10] DESC sl_smslog
+[2018-11-15 15:01:46] DESC sl_sort
+[2018-11-15 15:01:46] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:01:46] DESC sl_smslog
+[2018-11-15 15:02:37] DESC sl_sort
+[2018-11-15 15:02:37] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:02:37] DESC sl_smslog
+[2018-11-15 15:02:47] DESC sl_sort
+[2018-11-15 15:02:47] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:02:47] DESC sl_smslog
+[2018-11-15 15:04:05] DESC sl_sort
+[2018-11-15 15:04:05] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:04:05] DESC sl_smslog
+[2018-11-15 15:04:50] DESC sl_sort
+[2018-11-15 15:04:50] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:04:50] DESC sl_smslog
+[2018-11-15 15:05:13] DESC sl_sort
+[2018-11-15 15:05:13] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:05:13] DESC sl_smslog
+[2018-11-15 15:08:05] DESC sl_sort
+[2018-11-15 15:08:05] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:08:05] DESC sl_smslog
+[2018-11-15 15:09:26] DESC sl_sort
+[2018-11-15 15:09:26] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:09:26] DESC sl_smslog
+[2018-11-15 15:09:28] DESC sl_sort
+[2018-11-15 15:09:28] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:09:28] DESC sl_smslog
+[2018-11-15 15:09:29] DESC sl_sort
+[2018-11-15 15:09:29] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:09:29] DESC sl_smslog
+[2018-11-15 15:09:29] DESC sl_sort
+[2018-11-15 15:09:29] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:09:29] DESC sl_smslog
+[2018-11-15 15:09:29] DESC sl_sort
+[2018-11-15 15:09:29] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:09:29] DESC sl_smslog
+[2018-11-15 15:09:37] DESC sl_sort
+[2018-11-15 15:09:37] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:09:37] DESC sl_smslog
+[2018-11-15 15:09:53] DESC sl_sort
+[2018-11-15 15:09:53] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:09:53] DESC sl_smslog
+[2018-11-15 15:10:06] DESC sl_sort
+[2018-11-15 15:10:06] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:10:06] DESC sl_smslog
+[2018-11-15 15:11:24] DESC sl_sort
+[2018-11-15 15:11:24] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:11:24] DESC sl_smslog
+[2018-11-15 15:11:52] DESC sl_sort
+[2018-11-15 15:11:52] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:11:52] DESC sl_smslog
+[2018-11-15 15:12:20] DESC sl_sort
+[2018-11-15 15:12:20] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:12:20] DESC sl_smslog
+[2018-11-15 15:13:24] DESC sl_sort
+[2018-11-15 15:13:24] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:13:24] DESC sl_smslog
+[2018-11-15 15:25:29] DESC sl_sort
+[2018-11-15 15:25:29] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:25:29] DESC sl_smslog
+[2018-11-15 15:25:43] DESC sl_sort
+[2018-11-15 15:25:43] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:25:43] DESC sl_smslog
+[2018-11-15 15:26:12] DESC sl_sort
+[2018-11-15 15:26:12] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:26:12] DESC sl_smslog
+[2018-11-15 15:26:32] DESC sl_sort
+[2018-11-15 15:26:32] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:26:32] DESC sl_smslog
+[2018-11-15 15:32:42] DESC sl_sort
+[2018-11-15 15:32:42] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:32:42] DESC sl_smslog
+[2018-11-15 15:33:04] DESC sl_sort
+[2018-11-15 15:33:04] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:33:04] DESC sl_smslog
+[2018-11-15 15:33:39] DESC sl_sort
+[2018-11-15 15:33:39] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:33:39] DESC sl_smslog
+[2018-11-15 15:34:26] DESC sl_sort
+[2018-11-15 15:34:26] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:34:26] DESC sl_smslog
+[2018-11-15 15:35:27] DESC sl_sort
+[2018-11-15 15:35:27] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:35:27] DESC sl_smslog
+[2018-11-15 15:36:11] DESC sl_sort
+[2018-11-15 15:36:11] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:36:11] DESC sl_smslog
+[2018-11-15 15:36:17] DESC sl_smslog
+[2018-11-15 15:36:17] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:36:17] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:36:45] DESC sl_sort
+[2018-11-15 15:36:45] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:36:45] DESC sl_smslog
+[2018-11-15 15:36:51] DESC sl_smslog
+[2018-11-15 15:36:51] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:36:51] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:38:25] DESC sl_sort
+[2018-11-15 15:38:25] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:38:25] DESC sl_smslog
+[2018-11-15 15:39:56] DESC sl_sort
+[2018-11-15 15:39:56] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:39:56] DESC sl_smslog
+[2018-11-15 15:39:59] DESC sl_smslog
+[2018-11-15 15:39:59] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:39:59] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:41:48] DESC sl_smslog
+[2018-11-15 15:41:48] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:41:48] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:41:50] DESC sl_smslog
+[2018-11-15 15:41:50] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:41:50] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:41:51] DESC sl_smslog
+[2018-11-15 15:41:51] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:41:51] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:41:51] DESC sl_smslog
+[2018-11-15 15:41:51] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:41:51] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:41:52] DESC sl_smslog
+[2018-11-15 15:41:52] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:41:52] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:41:52] DESC sl_smslog
+[2018-11-15 15:41:52] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:41:52] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:41:53] DESC sl_smslog
+[2018-11-15 15:41:53] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:41:53] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:41:53] DESC sl_smslog
+[2018-11-15 15:41:53] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:41:53] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:41:54] DESC sl_smslog
+[2018-11-15 15:41:54] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:41:54] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:41:56] DESC sl_sort
+[2018-11-15 15:41:56] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:41:56] DESC sl_smslog
+[2018-11-15 15:41:58] DESC sl_smslog
+[2018-11-15 15:41:58] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:41:58] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:41:59] DESC sl_smslog
+[2018-11-15 15:41:59] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:41:59] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:42:00] DESC sl_smslog
+[2018-11-15 15:42:00] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:42:00] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:42:23] DESC sl_sort
+[2018-11-15 15:42:23] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:42:23] DESC sl_smslog
+[2018-11-15 15:42:39] DESC sl_sort
+[2018-11-15 15:42:39] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:42:39] DESC sl_smslog
+[2018-11-15 15:42:42] DESC sl_smslog
+[2018-11-15 15:42:42] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:42:42] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:42:43] DESC sl_smslog
+[2018-11-15 15:42:43] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:42:43] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:42:43] DESC sl_smslog
+[2018-11-15 15:42:43] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:42:43] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:42:44] DESC sl_smslog
+[2018-11-15 15:42:44] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:42:44] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:43:00] DESC sl_sort
+[2018-11-15 15:43:00] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:43:00] DESC sl_smslog
+[2018-11-15 15:43:02] DESC sl_smslog
+[2018-11-15 15:43:02] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:43:02] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:43:31] DESC sl_sort
+[2018-11-15 15:43:31] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:43:31] DESC sl_smslog
+[2018-11-15 15:43:48] DESC sl_sort
+[2018-11-15 15:43:48] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:43:48] DESC sl_smslog
+[2018-11-15 15:44:22] DESC sl_sort
+[2018-11-15 15:44:22] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:44:22] DESC sl_smslog
+[2018-11-15 15:44:51] DESC sl_sort
+[2018-11-15 15:44:51] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:44:51] DESC sl_smslog
+[2018-11-15 15:45:22] DESC sl_sort
+[2018-11-15 15:45:22] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:45:22] DESC sl_smslog
+[2018-11-15 15:45:45] DESC sl_sort
+[2018-11-15 15:45:45] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:45:45] DESC sl_smslog
+[2018-11-15 15:46:05] DESC sl_sort
+[2018-11-15 15:46:05] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:46:05] DESC sl_smslog
+[2018-11-15 15:46:14] DESC sl_smslog
+[2018-11-15 15:46:14] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:46:14] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:46:51] DESC sl_sort
+[2018-11-15 15:46:51] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:46:51] DESC sl_smslog
+[2018-11-15 15:47:12] DESC sl_sort
+[2018-11-15 15:47:12] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:47:12] DESC sl_smslog
+[2018-11-15 15:47:18] DESC sl_smslog
+[2018-11-15 15:47:18] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:47:18] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:47:47] DESC sl_sort
+[2018-11-15 15:47:47] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:47:47] DESC sl_smslog
+[2018-11-15 15:48:04] DESC sl_sort
+[2018-11-15 15:48:04] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:48:04] DESC sl_smslog
+[2018-11-15 15:48:11] DESC sl_smslog
+[2018-11-15 15:48:11] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:48:11] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:49:28] DESC sl_sort
+[2018-11-15 15:49:28] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:49:28] DESC sl_smslog
+[2018-11-15 15:49:56] DESC sl_sort
+[2018-11-15 15:49:56] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:49:56] DESC sl_smslog
+[2018-11-15 15:50:04] DESC sl_smslog
+[2018-11-15 15:50:04] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:50:04] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:51:14] DESC sl_sort
+[2018-11-15 15:51:14] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:51:14] DESC sl_smslog
+[2018-11-15 15:51:54] DESC sl_sort
+[2018-11-15 15:51:54] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:51:54] DESC sl_smslog
+[2018-11-15 15:51:59] DESC sl_smslog
+[2018-11-15 15:51:59] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:51:59] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:52:49] DESC sl_sort
+[2018-11-15 15:52:49] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:52:49] DESC sl_smslog
+[2018-11-15 15:52:59] DESC sl_smslog
+[2018-11-15 15:52:59] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:52:59] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:53:47] DESC sl_sort
+[2018-11-15 15:53:47] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:53:47] DESC sl_smslog
+[2018-11-15 15:53:52] DESC sl_smslog
+[2018-11-15 15:53:52] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:53:52] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:54:17] DESC sl_sort
+[2018-11-15 15:54:17] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:54:17] DESC sl_smslog
+[2018-11-15 15:54:20] DESC sl_smslog
+[2018-11-15 15:54:20] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:54:20] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:54:30] DESC sl_sort
+[2018-11-15 15:54:30] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:54:30] DESC sl_smslog
+[2018-11-15 15:54:32] DESC sl_smslog
+[2018-11-15 15:54:32] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:54:32] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:54:47] DESC sl_sort
+[2018-11-15 15:54:47] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:54:47] DESC sl_smslog
+[2018-11-15 15:54:51] DESC sl_smslog
+[2018-11-15 15:54:51] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:54:51] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:55:10] DESC sl_sort
+[2018-11-15 15:55:10] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:55:10] DESC sl_smslog
+[2018-11-15 15:55:17] DESC sl_smslog
+[2018-11-15 15:55:17] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:55:17] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:55:46] DESC sl_sort
+[2018-11-15 15:55:46] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:55:46] DESC sl_smslog
+[2018-11-15 15:55:49] DESC sl_smslog
+[2018-11-15 15:55:49] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:55:49] select count(id) as countnum from sl_smslog 
+[2018-11-15 15:56:34] DESC sl_sort
+[2018-11-15 15:56:34] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 15:56:34] DESC sl_smslog
+[2018-11-15 15:56:38] DESC sl_smslog
+[2018-11-15 15:56:38] select * from `sl_smslog` limit 0,20
+[2018-11-15 15:56:38] select count(id) as countnum from sl_smslog 
