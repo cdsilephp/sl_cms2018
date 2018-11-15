@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : utf-8
 
- Date: 11/15/2018 01:11:03 AM
+ Date: 11/15/2018 16:18:40 PM
 */
 
 SET NAMES utf8;
@@ -187,13 +187,13 @@ CREATE TABLE `sl_menu_group` (
   `u5` varchar(255) DEFAULT NULL COMMENT '控制器名称',
   `u6` varchar(255) DEFAULT NULL COMMENT '控制器方法',
   PRIMARY KEY (`col_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3844 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=3861 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 --  Records of `sl_menu_group`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sl_menu_group` VALUES ('1', '0', '主页', '0', ' ', '显示', '1', 'cdsile', '3827', ' layui-icon layui-icon-home', '', ''), ('1004', '1', '控制台', '0', '/admin/index/main', '显示', '1', 'cdsile', '3828', '', 'index', ''), ('1009', '1', '网站栏目', '1', '/admin/sort/index?classid=1', '显示', '1', 'cdsile', '3829', '', 'sort', ''), ('8', '0', '内容管理', '1', '', '显示', '1', 'cdsile', '3830', '', '', ''), ('10', '0', '用户管理', '2', '', '显示', '1', 'cdsile', '3831', 'layui-icon layui-icon-user', '', ''), ('19', '10', '管理员管理', '0', '/admin/admin/index', '显示', '1', 'cdsile', '3832', '', 'admin', ''), ('976', '10', '管理员权限', '2', '/admin/group/index', '显示', '1', 'cdsile', '3833', '', 'group', ''), ('12', '0', '系统管理', '4', '', '显示', '1', 'cdsile', '3834', 'layui-icon layui-icon-set', '', ''), ('857', '12', '参数管理', '0', '/admin/parameter/index', '显示', '1', 'cdsile', '3835', '', 'parameter', ''), ('15', '12', '网站配置', '1', '/admin/set', '显示', '1', 'cdsile', '3836', '', 'set', ''), ('1006', '15', '基础设置', '0', '/admin/set', '显示', '1', 'cdsile', '3837', '', 'set', ''), ('1007', '15', '第三方账号设置', '0', '/admin/set/account', '显示', '1', 'cdsile', '3838', '', 'set', ''), ('14', '12', '系统日志', '2', '/admin/log/index', '显示', '1', 'cdsile', '3839', '', 'log', ''), ('16', '12', '模型管理', '3', '/admin/table/index', '显示', '1', 'cdsile', '3840', '', 'table', ''), ('17', '12', '菜单管理', '4', '/admin/menu/index', '显示', '1', 'cdsile', '3841', '', 'menu', ''), ('13', '0', '功能拓展', '5', '', '显示', '1', 'cdsile', '3842', 'layui-icon layui-icon-senior', '', ''), ('1008', '13', '附件管理', '0', '/admin/smslog/index', '显示', '1', 'cdsile', '3843', '', 'smslog', '');
+INSERT INTO `sl_menu_group` VALUES ('1', '0', '主页', '0', ' ', '显示', '1', 'cdsile', '3844', ' layui-icon layui-icon-home', '', ''), ('1004', '1', '控制台', '0', '/admin/index/main', '显示', '1', 'cdsile', '3845', '', 'index', ''), ('1009', '1', '网站栏目', '1', '/admin/sort/index?classid=1', '显示', '1', 'cdsile', '3846', '', 'sort', ''), ('8', '0', '内容管理', '1', '', '显示', '1', 'cdsile', '3847', '', '', ''), ('10', '0', '用户管理', '2', '', '显示', '1', 'cdsile', '3848', 'layui-icon layui-icon-user', '', ''), ('19', '10', '管理员管理', '0', '/admin/admin/index', '显示', '1', 'cdsile', '3849', '', 'admin', ''), ('976', '10', '管理员权限', '2', '/admin/group/index', '显示', '1', 'cdsile', '3850', '', 'group', ''), ('12', '0', '系统管理', '4', '', '显示', '1', 'cdsile', '3851', 'layui-icon layui-icon-set', '', ''), ('857', '12', '参数管理', '0', '/admin/parameter/index', '显示', '1', 'cdsile', '3852', '', 'parameter', ''), ('15', '12', '网站配置', '1', '/admin/set', '显示', '1', 'cdsile', '3853', '', 'set', ''), ('1006', '15', '基础设置', '0', '/admin/set', '显示', '1', 'cdsile', '3854', '', 'set', ''), ('1007', '15', '第三方账号设置', '0', '/admin/set/account', '显示', '1', 'cdsile', '3855', '', 'set', ''), ('14', '12', '系统日志', '2', '/admin/log/index', '显示', '1', 'cdsile', '3856', '', 'log', ''), ('16', '12', '模型管理', '3', '/admin/table/index', '显示', '1', 'cdsile', '3857', '', 'table', ''), ('17', '12', '菜单管理', '4', '/admin/menu/index', '显示', '1', 'cdsile', '3858', '', 'menu', ''), ('13', '0', '功能拓展', '5', '', '显示', '1', 'cdsile', '3859', 'layui-icon layui-icon-senior', '', ''), ('1008', '13', '短信发送记录', '0', '/admin/smslog/index', '显示', '1', 'cdsile', '3860', '', 'smslog', '');
 COMMIT;
 
 -- ----------------------------
@@ -225,10 +225,10 @@ CREATE TABLE `sl_smslog` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
   `user` varchar(11) NOT NULL,
   `log` varchar(255) NOT NULL DEFAULT '' COMMENT '日志说明',
-  `code` varchar(10) NOT NULL COMMENT '验证码',
+  `type` varchar(10) NOT NULL COMMENT '短信类型',
   `dtime` date NOT NULL COMMENT '添加日期',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Table structure for `sl_sort`
