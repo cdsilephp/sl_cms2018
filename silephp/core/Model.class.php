@@ -40,12 +40,12 @@ class Model
 
     public function __construct($table="")
     {
-        $dbconfig['host'] = $GLOBALS['config']['host'];
-        $dbconfig['user'] = $GLOBALS['config']['user'];
-        $dbconfig['password'] = $GLOBALS['config']['password'];
-        $dbconfig['dbname'] = $GLOBALS['config']['dbname'];
-        $dbconfig['port'] = $GLOBALS['config']['port'];
-        $dbconfig['charset'] = $GLOBALS['config']['charset'];
+        $dbconfig['host'] = $GLOBALS['config_db']['host'];
+        $dbconfig['user'] = $GLOBALS['config_db']['user'];
+        $dbconfig['password'] = $GLOBALS['config_db']['password'];
+        $dbconfig['dbname'] = $GLOBALS['config_db']['dbname'];
+        $dbconfig['port'] = $GLOBALS['config_db']['port'];
+        $dbconfig['charset'] = $GLOBALS['config_db']['charset'];
         // var_dump($dbconfig);die();
         $this->db = new CPdo(false, $dbconfig);
         if($table!="")
@@ -60,7 +60,7 @@ class Model
      */
     private function getPK()
     {
-        if ($this->table != $GLOBALS['config']['prefix'] && ! empty($this->table)) {
+        if ($this->table != $GLOBALS['config_db']['prefix'] && ! empty($this->table)) {
             $sql = "DESC " . $this->table;
             
             $result = $this->db->getValueBySelfCreateSql($sql);
@@ -90,8 +90,8 @@ class Model
      */
     public function M($table)
     {
-        $table = str_replace($GLOBALS['config']['prefix'], "", $table);
-        $this->table = $GLOBALS['config']['prefix'] . $table;
+        $table = str_replace($GLOBALS['config_db']['prefix'], "", $table);
+        $this->table = $GLOBALS['config_db']['prefix'] . $table;
         // 设置主键
         $this->getPK();
         return $this;

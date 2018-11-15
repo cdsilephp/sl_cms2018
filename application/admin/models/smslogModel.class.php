@@ -26,7 +26,7 @@ class smslogModel extends Model{
         $data['type']   = isset($type)?$type:"普通";    //发送类型
         $data['dtime']  = date("Y-m-d h:m:s",time());   //添加时间
         
-        var_dump($data);
+        //var_dump($data);
  
         $this->insert($data);
     }

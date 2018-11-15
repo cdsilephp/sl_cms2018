@@ -205,7 +205,7 @@ class Common
         return $filenames;
     }
 
-    public function get_allfiles($path, &$files)
+    private function get_allfiles($path, &$files)
     {
         if (is_dir($path)) {
             $dp = dir($path);
@@ -221,7 +221,7 @@ class Common
         }
     }
 
-    public function get_filenamesbydir($dir)
+    private function get_filenamesbydir($dir)
     {
         $files = array();
         $this->get_allfiles($dir, $files);
@@ -1080,6 +1080,36 @@ class Common
             $redata[]=$_tempdata1;
         }
         return $redata;
+        
+    }
+    
+    /**
+    
+    * 加载一个文件夹下的config.php 文件
+    
+    * @date: 2018年11月15日 下午6:33:18
+    
+    * @author: 龚华尧
+    
+    * @param: variable
+    
+    * @return:
+    
+    */
+    public function autoload_conf($conf_dir="")
+    {
+        $dir_conf = $this->getFileNameByDir($conf_dir);
+        foreach ($dir_conf as $k=>$v)
+        {
+            $filename = basename($v); // $base is "php.ini"
+            if(substr($filename, -11)==".config.php")
+            {
+                $config_name = "config_".str_replace(substr($filename, -11),"",$filename);
+                $GLOBALS[$config_name] =include $v;
+            }
+            
+            
+        }
         
     }
     

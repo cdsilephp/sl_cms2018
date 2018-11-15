@@ -323,7 +323,7 @@ class CPdo
     {
         // $this->setChars();
         //写日志
-        if ($GLOBALS['config']['log']) {
+        if ($GLOBALS['config_db']['log']) {
             $str = "[" . date("Y-m-d H:i:s") . "] ". $sql . PHP_EOL;
             file_put_contents("log.txt", $str,FILE_APPEND);
         }

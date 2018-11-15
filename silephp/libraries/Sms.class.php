@@ -47,10 +47,12 @@ class Sms{
         
         $message="";
         if($type=="验证码"){
-            $message=rand(1000,9999);               //验证码
+            $code=rand(1000,9999);
+            $message=$code;               //验证码
             $_SESSION['yzm'] = $message;            //存session
             $message = "您的验证码为".$message;     //编辑短信内容
-            $msg="【{$sign}】".$message;         //添加签名
+            $msg="【{$sign}】".$message;
+            $message=$code;//添加签名
         }else{
             $msg="【{$sign}】".$msg;         //添加签名
         }
@@ -63,7 +65,11 @@ class Sms{
         if ($result>0){
             $re_data["status"]=true;
             $re_data["msg"]="信息发送成功";
-            $smslogModel->addlog($tel, $re_data["msg"]." 内容：".$message, $type);
+            if($type=="验证码"){
+                $smslogModel->addlog($tel, $message, $type);
+            }else{
+                $smslogModel->addlog($tel, $re_data["msg"]." 内容：".$message, $type);
+            } 
         }else{
             $re_data["msg"]="发送失败:{lingkai_code[$result]}";
             $smslogModel->addlog($tel, $re_data["msg"]." 内容：".$message, $type);

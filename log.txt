@@ -1238,3 +1238,82 @@
 [2018-11-15 15:56:38] DESC sl_smslog
 [2018-11-15 15:56:38] select * from `sl_smslog` limit 0,20
 [2018-11-15 15:56:38] select count(id) as countnum from sl_smslog 
+[2018-11-15 16:32:39] DESC sl_smslog
+[2018-11-15 16:32:39] select * from `sl_smslog` limit 0,20
+[2018-11-15 16:32:39] select count(id) as countnum from sl_smslog 
+[2018-11-15 17:24:54] DESC sl_sort
+[2018-11-15 17:24:54] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 17:24:54] DESC sl_smslog
+[2018-11-15 17:25:10] DESC sl_sort
+[2018-11-15 17:25:10] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 17:25:10] DESC sl_smslog
+[2018-11-15 17:25:13] DESC sl_smslog
+[2018-11-15 17:25:13] select * from `sl_smslog` limit 0,20
+[2018-11-15 17:25:13] select count(id) as countnum from sl_smslog 
+[2018-11-15 17:25:34] DESC sl_sort
+[2018-11-15 17:25:34] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 17:25:34] DESC sl_smslog
+[2018-11-15 17:25:37] DESC sl_smslog
+[2018-11-15 17:25:37] select * from `sl_smslog` limit 0,20
+[2018-11-15 17:25:37] select count(id) as countnum from sl_smslog 
+[2018-11-15 17:51:03] DESC sl_table
+[2018-11-15 17:51:03] SELECT *,(SELECT u2 from sl_parameter where u1=mx.u3 ) as tablelianjie from sl_table as mx order by id desc limit 0,20
+[2018-11-15 17:51:03] select count(id) as countnum from sl_table 
+[2018-11-15 17:51:07] DESC sl_table
+[2018-11-15 17:51:07] SELECT *,(SELECT u2 from sl_parameter where u1=mx.u3 ) as tablelianjie from sl_table as mx order by id desc limit 0,20
+[2018-11-15 17:51:07] select count(id) as countnum from sl_table 
+[2018-11-15 17:51:09] DESC sl_filed
+[2018-11-15 17:51:09] select * from `sl_filed` where model_id= '108' AND 1 = 1 limit 0,20
+[2018-11-15 17:51:09] select * from `sl_filed` where model_id= '108' AND 1 = 1 
+[2018-11-15 17:51:17] DESC sl_filed
+[2018-11-15 17:51:17] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-15 17:51:17] select * from `sl_filed` where model_id= '109' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 17:51:17] select * from `sl_filed` where model_id= '109' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 17:51:17] DESC sl_table
+[2018-11-15 17:51:17] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-15 17:51:17] DESC sl_fenlei
+[2018-11-15 17:51:17] DESC sl_filed
+[2018-11-15 17:51:17] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 17:51:17] select * from sl_fenlei where  class_id =0  and    1=1 limit 0,20 
+[2018-11-15 17:51:17] DESC sl_filed
+[2018-11-15 17:51:17] select * from `sl_filed` where model_id= '109' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 17:51:17] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='class_id' 
+[2018-11-15 17:51:17] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='biaoti' 
+[2018-11-15 17:51:17] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='paixu' 
+[2018-11-15 17:51:17] select * from sl_filed where  u7='文本编辑器' and model_id='109' and u1='dtime' 
+[2018-11-15 17:51:17] select count(id) as countnum from sl_fenlei 
+[2018-11-15 17:51:21] DESC sl_table
+[2018-11-15 17:51:21] SELECT *,(SELECT u2 from sl_parameter where u1=mx.u3 ) as tablelianjie from sl_table as mx order by id desc limit 0,20
+[2018-11-15 17:51:21] select count(id) as countnum from sl_table 
+[2018-11-15 17:51:23] DESC sl_table
+[2018-11-15 17:51:23] select * from `sl_table` where id= '109' AND 1 = 1 
+[2018-11-15 17:51:23] DESC sl_parameter
+[2018-11-15 17:51:23] SELECT *, u1 as name,classid as parentid  FROM sl_parameter   where classid='1'  order by u4 asc,id asc
+[2018-11-15 17:51:23] DESC sl_sort
+[2018-11-15 17:51:23] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc
+[2018-11-15 17:51:26] DESC sl_filed
+[2018-11-15 17:51:26] select u1 as field , u9 as width ,u2 as title ,u13 as event,u11 as sort,u12 as align ,u7,u10 from `sl_filed` where model_id= '108' AND u5= '是' AND 1 = 1  order by u10 asc , id desc 
+[2018-11-15 17:51:26] select * from `sl_filed` where model_id= '108' AND u6= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 17:51:26] select * from `sl_filed` where model_id= '108' AND u5= '是' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 17:51:26] DESC sl_table
+[2018-11-15 17:51:26] select * from `sl_table` where id= '108' AND 1 = 1 
+[2018-11-15 17:51:26] DESC sl_yonghu
+[2018-11-15 17:51:26] DESC sl_filed
+[2018-11-15 17:51:26] select * from `sl_filed` where model_id= '108' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 17:51:26] select * from sl_yonghu where  1=1  limit 0,20 
+[2018-11-15 17:51:26] DESC sl_filed
+[2018-11-15 17:51:26] select * from `sl_filed` where model_id= '108' AND 1 = 1  order by u10 asc,id desc  
+[2018-11-15 17:51:26] select * from sl_filed where  u7='文本编辑器' and model_id='108' and u1='xingming' 
+[2018-11-15 17:51:26] select * from sl_filed where  u7='文本编辑器' and model_id='108' and u1='dtime' 
+[2018-11-15 17:51:26] select count(id) as countnum from sl_yonghu 
+[2018-11-15 17:51:33] DESC sl_log
+[2018-11-15 17:51:33] select * from `sl_log` limit 0,20
+[2018-11-15 17:51:33] select count(id) as countnum from sl_log 
+[2018-11-15 18:37:51] DESC sl_table
+[2018-11-15 18:37:51] SELECT *,(SELECT u2 from sl_parameter where u1=mx.u3 ) as tablelianjie from sl_table as mx order by id desc limit 0,20
+[2018-11-15 18:37:51] select count(id) as countnum from sl_table 
+[2018-11-15 18:37:58] DESC sl_table
+[2018-11-15 18:37:58] SELECT *,(SELECT u2 from sl_parameter where u1=mx.u3 ) as tablelianjie from sl_table as mx order by id desc limit 0,20
+[2018-11-15 18:37:58] select count(id) as countnum from sl_table 
+[2018-11-15 18:38:54] DESC sl_sort
+[2018-11-15 18:38:54] SELECT *, u1 as name,classid as parentid  FROM sl_sort   order by u4 asc,id asc

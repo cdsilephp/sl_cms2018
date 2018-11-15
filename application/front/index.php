@@ -1,14 +1,7 @@
 <?php 
 if(version_compare(PHP_VERSION,'7.0.0','<'))  die('require PHP > 7.0.0 !');
-//载入配置文件
-//载入配置文件
-if(file_exists(APP_PATH."admin".DS. "config" .DS. "db.config.php"))
-{
-    $GLOBALS['config'] = include APP_PATH."admin".DS. "config" .DS. "db.config.php";
-}
-$GLOBALS['config_cache'] = include APP_PATH."admin".DS. "config" .DS. "cache.config.php";
-$GLOBALS['config_regular'] = include APP_PATH."admin".DS. "config" .DS. "regular.config.php";//正则匹配规则
-$GLOBALS['config_account'] = include APP_PATH."admin".DS. "config" .DS. "account.config.php";
+//自动挂载config文件
+$common->autoload_conf(APP_PATH."admin".DS. "config");
 
 //载入系统model类
 include APP_PATH."admin".DS. "models" .DS. "sortModel.class.php";//网站栏目分类类
