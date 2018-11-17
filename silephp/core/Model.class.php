@@ -40,15 +40,10 @@ class Model
 
     public function __construct($table="")
     {
-        $dbconfig['host'] = $GLOBALS['config_db']['host'];
-        $dbconfig['user'] = $GLOBALS['config_db']['user'];
-        $dbconfig['password'] = $GLOBALS['config_db']['password'];
-        $dbconfig['dbname'] = $GLOBALS['config_db']['dbname'];
-        $dbconfig['port'] = $GLOBALS['config_db']['port'];
-        $dbconfig['charset'] = $GLOBALS['config_db']['charset'];
+        
         // var_dump($dbconfig);die();
         //$this->db = new CPdo(false, $dbconfig);
-        $this->db = CPdo::getInstance($dbconfig);
+        $this->db = CPdo::getInstance();
         if($table!="")
         {
             $this->M($table);

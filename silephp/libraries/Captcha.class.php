@@ -11,7 +11,7 @@ class Captcha{
     private $fontcolor;                //指定字体颜色
 
     //构造方法初始化
-    public function __construct($codelen=4,$width=150,$height=50,$fontsize = 20,$font="elephant.ttf") {
+    public function __construct($codelen=4,$width=150,$height=50,$fontsize = 20,$font="public/font/elephant.ttf") {
 		$this->codelen = $codelen;
 		$this->width = $width;
 		$this->height = $height;

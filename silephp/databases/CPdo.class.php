@@ -74,14 +74,14 @@ class CPdo
     /**
      * 获取实例化对象
      */
-    public static function getInstance($config = array())
+    public static function getInstance()
     {
-        $dbconfig['host'] = $config['host'];
-        $dbconfig['user'] = $config['user'];
-        $dbconfig['password'] = $config['password'];
-        $dbconfig['dbname'] = $config['dbname'];
-        $dbconfig['port'] = $config['port'];
-        $dbconfig['charset'] = $config['charset'];
+        $dbconfig['host'] = $GLOBALS['config_db']['host'];
+        $dbconfig['user'] = $GLOBALS['config_db']['user'];
+        $dbconfig['password'] = $GLOBALS['config_db']['password'];
+        $dbconfig['dbname'] = $GLOBALS['config_db']['dbname'];
+        $dbconfig['port'] = $GLOBALS['config_db']['port'];
+        $dbconfig['charset'] = $GLOBALS['config_db']['charset'];
         //检测类是否被实例化
         if ( ! (self::$_instance instanceof self) ) {
             self::$_instance = new CPdo(false, $dbconfig);
@@ -343,7 +343,7 @@ class CPdo
     {
         // $this->setChars();
         //写日志
-        if ($GLOBALS['config_db']['log']) {
+        if ($GLOBALS['config_db']['log']=="true") {
             $str = "[" . date("Y-m-d H:i:s") . "] ". $sql . PHP_EOL;
             file_put_contents("log.txt", $str,FILE_APPEND);
         }
