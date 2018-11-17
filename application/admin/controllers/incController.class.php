@@ -24,81 +24,93 @@ class incController extends baseController{
 	}
 	
 	//显示多条记录表列表
-	public function showDuotiaojiluAction(){
-	    $guanlianziduan=empty($_REQUEST['guanlianziduan'])?"":$_REQUEST['guanlianziduan']  ;
-	    $guanlianziduan_val=empty($_REQUEST['guanlianziduan_val'])?"":$_REQUEST['guanlianziduan_val']  ;
-	    $model_id =empty($_REQUEST['model_id'])?"":$_REQUEST['model_id'];
-	    //$sort_id = $_REQUEST['sort_id'];
-	    $u6 = empty($_REQUEST['u6'])?"":$_REQUEST['u6'];
-	    $where = " 1=1 ";
-	    // 获得当前表名
-	    $moxingModel = new MoxingModel("moxing");
-	    $tableName = $moxingModel->oneRowCol("u1", "id={$model_id}")['u1'];
-	    //先获取文章信息
-	    $tableModel = new Model($tableName);
-	    //查询条件
-	    if(trim(str_replace("1=1", " ", $tableModel->getSqlWhereStr()))!="")
+	public function showduotiaojiluAction(){
+	    $table_id = $this->common->Get('table_id');
+	    if($table_id=="")
 	    {
-	        $where .= " and ".$tableModel->getSqlWhereStr();
-	    }
-	    //增加多条记录的查询手段
-	    if($guanlianziduan_val=="")
-	    {
-	        $where .=" and  1=2 ";
-	    }else
-	    {
-	        $where .=" and  {$guanlianziduan} in ({$guanlianziduan_val}) ";
+	        die("table_id 不能为空");
 	    }
 	    
-	
-	    //得到字段模型
-	    $filedModel=new FiledModel("filed");
-	    if(trim($u6)!='')
-	    {
-	        $filedListU6=$filedModel->select("select * from sl_filed where model_id='{$model_id}' and u6='是' ");//模糊查询字段
-	        if(count($filedListU6)>0)
-	        {
-	            $where=$where." and ";
-	            foreach ($filedListU6 as $v)
-	            {
-	                $where=$where."  {$v['u1']} like '%{$u6}%' or ";
-	            }
-	            $where=$where." 1=2 ";
-	        }
-	         
-	    }
-	    //需要显示的字段
-	    $filedLists=$filedModel->select("select * from sl_filed where model_id='{$model_id}' and u5='是' order by u10 asc ");//显示查询字段
-	     
-	
-	    // 载入分页类
-	    include LIB_PATH . "Page.class.php";
-	    // 获取autotable总的记录数
-	    $total = $tableModel->total($where);
-	    // 指定分页数，每一页显示的记录数
-	    $pagesize = 10;
-	    // $pagesize = $GLOBALS['config']['pagesize'];
-	    // 获取当前页数，默认是1
-	    $current = isset($_GET['page']) ? $_GET['page'] : 1;
-	    $offset = ($current - 1) * $pagesize;
-	    // 使用模型完成数据的查询
-	    $tableModel = $tableModel->pageRows($offset, $pagesize, $where);
-	    // 使用分页类获取分页信息
-	    $page = new Page($total, $pagesize, $current, "index.php", array(
-	        "p" => "admin",
-	        "c" => "autotable",
-	        "a" => "index",
-	        "model_id" => "{$model_id}",
-	        //"sort_id" => "{$sort_id}"
-	    ));
-	    $pageinfo = $page->showPage();
+	    $guanlianziduan=$this->common->Get('guanlianziduan');
+	    $guanlianziduan_val=$this->common->Get('guanlianziduan_val');
+	    
+	    
+        $filedModel = new filedModel();
+        $filedlistJson =$filedModel->getFiledJsonByTableid($table_id);
+        
+        $filedSearchList = $filedModel->getsearchfiledByTableid($table_id);
+        //会显示出来的字段
+        $filedShowList = $filedModel->getshowfiledByTableid($table_id);
+        //挂载  组件类
+        $this->library('Component');
+        $component = new Component();
 	     
 	    include CUR_VIEW_PATH  ."inc".DS."Sautotable".DS. "autotable_list.html";
 	}
 
 	
+	//更具表的ID查询需要显示的数据
+	public function gettablelistbytableidAction(){
+	    
+	    $tableModel = new tableModel();
+	    $table_id = $this->common->Get('table_id');
+	    $tableName = $tableModel->getTablenameByTableid($table_id);
+	    
+	    //echo $tableModel->getSqlWhereStr_new($table_id);die();
+	    
+	    $_tableModel = new Model($tableName);
+	    
+	    $page = $this->common->Get("page");
+	    $limit= $this->common->Get("limit");
+	    $page = ($page-1)*$limit;
+	    $table_sql = $tableModel->getSqlWhereStr_new($table_id);
+	    
+	    if($table_sql=="")
+	    {
+	        $table_sql = " 1=1 ";
+	    }
+	    
+	    $guanlianziduan=empty($_REQUEST['guanlianziduan'])?"":$_REQUEST['guanlianziduan']  ;
+	    $guanlianziduan_val=empty($_REQUEST['guanlianziduan_val'])?"":$_REQUEST['guanlianziduan_val']  ;
+
+	    //增加多条记录的查询手段
+	    if($guanlianziduan_val=="")
+    	    {
+    	        $table_sql.=" and  1=2 ";
+	    }else
+    	    {
+    	        $table_sql.=" and  {$guanlianziduan} in ({$guanlianziduan_val}) ";
+    	    }
+    	    
+	        
+	    $_tableList1 = $_tableModel->findBySql("select * from {$tableName} where {$table_sql} limit {$page},{$limit} ");
+	    
+	    //处理html编码格式
+	    $filedModel=new filedModel();
+	    $filedAraay=$filedModel->getallFiledByTableid($table_id);
+	    foreach ($filedAraay as $v)
+	    {
+	        $filedList=$filedModel->findBySql("select * from sl_filed where  u7='文本编辑器' and model_id='{$table_id}' and u1='{$v['u1']}' ");
+	        if(count($filedList)>0)
+	        {
+	            //$data[$v['u1']]=md5($data[$v['u1']]);
+	            foreach ($_tableList1 as $k1=>$v1) {
+	                $v1[$v['u1']] = html_entity_decode($v1[$v['u1']]);
+	                $_tableList1[$k1]=$v1;
+	            }
+	        }
+	    }
+	    
+	    $_tableList["data"]=$_tableList1;
+	    $_tableList["code"]="0";
+	    $_tableList["msg"]="";
+	    $_tableList["count"]=$_tableModel->getCountNum();
+	    
+	    $this->common->ajaxReturn($_tableList);
+	}
+	
 	//载入添加多条记录表页面
-	public function addDuotiaojiluAction(){
+	public function addduotiaojiluAction(){
 	     
 	    $model_id = $_REQUEST['model_id'];
 	    //得到字段模型
@@ -110,7 +122,7 @@ class incController extends baseController{
 	}
 	
 	//载入添加多条记录表页面
-	public function editDuotiaojiluAction(){
+	public function editduotiaojiluAction(){
 	    $model_id = $_REQUEST['model_id'];
 	    // 获取autotable_id
 	    $autotable_id = $_GET['id'] ;
@@ -119,8 +131,8 @@ class incController extends baseController{
 	    $filedLists=$filedModel->select("select * from sl_filed where model_id='{$model_id}'  order by  u10 asc,id desc ");//显示查询字段
 	     
 	    // 获得当前表名
-	    $moxingModel = new MoxingModel("moxing");
-	    $tableName = $moxingModel->oneRowCol("u1", "id={$model_id}")['u1'];
+	    $tableModel = new tableModel("moxing");
+	    $tableName = $tableModel->oneRowCol("u1", "id={$model_id}")['u1'];
 	    //先获取文章信息
 	    $tableModel = new Model($tableName);
 	     
@@ -134,8 +146,8 @@ class incController extends baseController{
 	public function insertDuotiaojiluAction(){
 	    $model_id = $_REQUEST['model_id'];
 	    // 获得当前表名
-	    $moxingModel = new MoxingModel("moxing");
-	    $tableName = $moxingModel->oneRowCol("u1", "id={$model_id}")['u1'];
+	    $tableModel = new tableModel("moxing");
+	    $tableName = $tableModel->oneRowCol("u1", "id={$model_id}")['u1'];
 	    //先获取文章信息
 	    $tableModel = new Model($tableName);
 	     
@@ -225,12 +237,12 @@ class incController extends baseController{
 	}
 	
 	//定义update方法，完成自动表的更新
-	public function updateDuotiaojiluAction(){
+	public function updateduotiaojiluAction(){
 	    $model_id = $_REQUEST['model_id'];
 	     
 	    // 获得当前表名
-	    $moxingModel = new MoxingModel("moxing");
-	    $tableName = $moxingModel->oneRowCol("u1", "id={$model_id}")['u1'];
+	    $tableModel = new tableModel("moxing");
+	    $tableName = $tableModel->oneRowCol("u1", "id={$model_id}")['u1'];
 	    //先获取文章信息
 	    $tableModel = new Model($tableName);
 	     
@@ -298,7 +310,7 @@ class incController extends baseController{
 	}
 	
 	//定义delete方法，完成自动表的删除
-	public function deleteDuotiaojiluAction(){
+	public function deleteduotiaojiluAction(){
 	    $model_id = $_REQUEST['model_id'];
 	    // 获取autotable_id
 	    if($_REQUEST['id']=='')
@@ -310,8 +322,8 @@ class incController extends baseController{
 	    $array_id=array_unique($array_id);
 	     
 	    // 获得当前表名
-	    $moxingModel = new MoxingModel("moxing");
-	    $tableName = $moxingModel->oneRowCol("u1", "id={$model_id}")['u1'];
+	    $tableModel = new tableModel("moxing");
+	    $tableName = $tableModel->oneRowCol("u1", "id={$model_id}")['u1'];
 	    //先获取文章信息
 	    $tableModel = new Model($tableName);
 	     
@@ -487,6 +499,7 @@ class incController extends baseController{
 	    
 	    if (!empty($_FILES)) {
 	        if ($_FILES["file"]["error"] || !is_uploaded_file($_FILES["file"]["tmp_name"])) {
+	           
 	            die('{"jsonrpc" : "2.0", "error" : {"code": 103, "message": "Failed to move uploaded file."}, "id" : "id"}');
 	        }
 	        

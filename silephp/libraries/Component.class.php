@@ -329,12 +329,11 @@ class Component
                 $selectValue = $commomClass->getOrderId();
             }
             //echo '/index.php?p=admin&c=Inc&a=showDuotiaojilu&model_id='.$_model_id.'&guanlianziduan_val='.$selectValue.'&guanlianziduan='.$_guanlianziduan.'&field='.$filedName.'&field_id='.$filedId.'';die();
-            return '<tr style="display: table-row;">
-				    		    <th>'.$kjName.'</th>
-				    		    <td>'.
-				    		    '<input name="'.$filedName.'" id="'.$filedName.'" type="hidden"  value="'.$selectValue.'">'.
-				    		    '
-                                <iframe width="100%" onload="this.height=50" src="/index.php?p=admin&c=Inc&a=showDuotiaojilu&model_id='.$_model_id.'&guanlianziduan_val='.$selectValue.'&guanlianziduan='.$_guanlianziduan.'&field='.$filedName.'&field_id='.$filedId.'" scrolling="no" frameborder="0" id="if'.$filedName.'" ></iframe>
+            return '<div class="layui-form-item">
+				    		    <label class="layui-form-label">'.$kjName.'</label>
+				    		    <div class="layui-input-block"> 
+                                <input name="'.$filedName.'" id="'.$filedName.'" type="hidden"  value="'.$selectValue.'">
+                                <iframe width="100%" onload="this.height=50" src="/admin/inc/showduotiaojilu?table_id='.$_model_id.'&guanlianziduan_val='.$selectValue.'&guanlianziduan='.$_guanlianziduan.'&field='.$filedName.'&field_id='.$filedId.'" scrolling="no" frameborder="0" id="if'.$filedName.'" ></iframe>
                     	        <script>
                     	        function reinitIframe'.$filedName.'(){
                     	            var iframe = document.getElementById("if'.$filedName.'");
@@ -346,10 +345,11 @@ class Component
                     	                //console.log(height);
                     	            }catch (ex){}
                     	        }
+
                     	        window.setInterval("reinitIframe'.$filedName.'()", 200);
-                    	        </script>'.
-                    	        '</td>
-                        </tr>';
+                    	        </script>
+                                </div>
+                        </div>';
             
             
         }else if($type=="省市县三级联动")
@@ -589,7 +589,11 @@ class Component
             
             if($filedName=="laiyuanbianhao" && !empty($_GET['guanlianziduan_val']))
             {
-                $selectValue=$_GET['guanlianziduan_val'];
+                if($_GET['guanlianziduan']==$filedName)
+                {
+                    $selectValue=$_GET['guanlianziduan_val'];
+                }
+                
             }
             
             return  '<div class="layui-form-item">

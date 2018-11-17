@@ -40,6 +40,7 @@ class CPdo
     private static $get_mode;
 
     private static $get_fetch_action;
+    private static $_instance;    //保存类实例的私有静态成员变量
 
     /**
      * pdo construct
@@ -69,6 +70,25 @@ class CPdo
         $this->setChars($charset);
     }
 
+    
+    /**
+     * 获取实例化对象
+     */
+    public static function getInstance($config = array())
+    {
+        $dbconfig['host'] = $config['host'];
+        $dbconfig['user'] = $config['user'];
+        $dbconfig['password'] = $config['password'];
+        $dbconfig['dbname'] = $config['dbname'];
+        $dbconfig['port'] = $config['port'];
+        $dbconfig['charset'] = $config['charset'];
+        //检测类是否被实例化
+        if ( ! (self::$_instance instanceof self) ) {
+            self::$_instance = new CPdo(false, $dbconfig);
+        }
+        return self::$_instance;
+    }
+    
     /**
      * pdo connect
      */

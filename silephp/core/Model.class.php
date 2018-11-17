@@ -47,7 +47,8 @@ class Model
         $dbconfig['port'] = $GLOBALS['config_db']['port'];
         $dbconfig['charset'] = $GLOBALS['config_db']['charset'];
         // var_dump($dbconfig);die();
-        $this->db = new CPdo(false, $dbconfig);
+        //$this->db = new CPdo(false, $dbconfig);
+        $this->db = CPdo::getInstance($dbconfig);
         if($table!="")
         {
             $this->M($table);
