@@ -214,4 +214,33 @@ class filedModel extends Model
        
         
     }
+
+
+
+    /**
+    
+    * 通过fieldID查询表名的ID
+    
+    * @date: 2018年11月19日 上午3:28:26
+    
+    * @author: 龚华尧
+    
+    * @param: variable
+    
+    * @return:
+    
+    */
+    public function getTableidByFieldid($fieldid){
+        $fieldDetail= $this->findOne($fieldid);
+        if(empty($fieldDetail))
+        {
+            return "";
+        }else{
+            return $fieldDetail["model_id"];
+        }
+        
+        
+    }
+
+
 }

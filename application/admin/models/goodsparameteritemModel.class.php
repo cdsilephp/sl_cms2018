@@ -48,7 +48,7 @@ class goodsparameteritemModel extends Model
     
     */
     public function deleteItemBygoodnumber($goodnumber) {
-        $this->where("goodsnumber = {$goodnumber} ")->delete();
+        $this->where("goodsnumber = '{$goodnumber}' ")->delete();
     }
     
     
@@ -69,7 +69,7 @@ class goodsparameteritemModel extends Model
     */
     
     public function getGoodsparameteridsBygoodnumber($goodnumber) {
-        $GoodsparameterList = $this->where("goodsnumber = {$goodnumber} ")->all();
+        $GoodsparameterList = $this->where("goodsnumber = '{$goodnumber}' ")->all();
         $ids="";
         foreach ($GoodsparameterList as $k=>$v)
         {

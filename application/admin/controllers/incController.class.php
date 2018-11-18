@@ -610,14 +610,18 @@ class incController extends baseController{
 	        //删除原来的规格
 	        $goodsparameteritemMode->deleteItemBygoodnumber($goodnumber);
 	        $goodsparameteritemMode->insertItemBygoodsparameterids($goodsparameter_ids,$goodnumber);
+	        $goodsparameteritemMode->comit_T();
+	        
+	        $data_return["status"]=true;
+	        $data_return["msg"]="操作成功";
+	        $data_return["code"]=0;
+	        
 	    } catch (Exception $e) {
 	        $goodsparameteritemMode->roll_T();
-	        $data_return["msg"]="操作失败";
+	        $data_return["msg"]="操作失败,数据已回滚";
 	    }
-	    $goodsparameteritemMode->comit_T();
-	    $data_return["status"]=true;
-	    $data_return["msg"]="操作成功";
-	    $data_return["code"]=0;
+
+	    
 	    $this->common->ajaxReturn($data_return);
 	    
 	}

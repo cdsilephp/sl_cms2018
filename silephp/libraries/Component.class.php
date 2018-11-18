@@ -357,9 +357,11 @@ class Component
             $commomClass = new Common();
             $filedModel1=new filedModel();
             $filedVal=$filedModel1->getFiledDefaultValue($filedId);
+            $tableId = $filedModel1->getTableidByFieldid($filedId);
             if($selectValue=="" || empty($selectValue))
             {
-                $selectValue = $commomClass->getOrderId();
+                //$selectValue = $commomClass->getOrderId();
+                $selectValue = $commomClass->get_cookie("{$tableId}_number");
             }
             //echo '/index.php?p=admin&c=Inc&a=showDuotiaojilu&model_id='.$_model_id.'&guanlianziduan_val='.$selectValue.'&guanlianziduan='.$_guanlianziduan.'&field='.$filedName.'&field_id='.$filedId.'';die();
             return '<div class="layui-form-item">
@@ -424,7 +426,10 @@ class Component
             foreach ($datas as $v){
                 $str .= '<option value="'.$v['id'].'">'.$v["area_name"].'</option>';
             }
-            return '<tr style="display: table-row"><th>'.$kjName.'</th><td><select name="'.$filedName.'" id="province" onchange="show(1)" class="input">'.$str.'</select></td></tr><script >
+            return '<tr style="display: table-row">
+            <th>'.$kjName.'</th>
+            <td><select name="'.$filedName.'" id="province" onchange="show(1)" class="input">'.$str.'</select></td></tr>
+            <script >
                 function show(type){
                     if (type==1){
                         var pid = $("#province").val();
@@ -445,7 +450,7 @@ class Component
                            }
                     },"json")
                 }
-</script>';
+            </script>';
         }else if($type=="省市县（市）"){
             if ($selectValue){
                 $str = "<option value='".$selectValue."' selected>".self::selectCity($selectValue)."</option>";
@@ -618,6 +623,23 @@ class Component
                         <div class="layui-form-mid layui-word-aux">'.$tipString.'</div>
                     </div>';
             
+        }else if($type=="编号")  {
+            
+            $commomClass = new Common();
+            $filedModel1=new filedModel();
+            $filedVal=$filedModel1->getFiledDefaultValue($filedId);
+            $tableId = $filedModel1->getTableidByFieldid($filedId);
+            if($selectValue==""){
+                $selectValue=$filedVal.$commomClass->getOrderId();
+                $commomClass->set_cookie("{$tableId}_number", $selectValue);
+            }
+            return  '<div class="layui-form-item">
+                          <label class="layui-form-label">'.$kjName.'</label>
+                          <div class="layui-input-inline">
+                            <input readonly="readonly"  name="'.$filedName.'"  id="'.$filedName.'" value="'.$selectValue.'"  placeholder="请输入'.$kjName.'"   autocomplete="off" class="layui-input"   >
+                          </div>
+                        <div class="layui-form-mid layui-word-aux">'.$tipString.'</div>
+                    </div>';
         }else  {
             
             if($filedName=="laiyuanbianhao" && !empty($_GET['guanlianziduan_val']))

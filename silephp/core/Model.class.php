@@ -441,6 +441,18 @@ class Model
         //链式查询where start
         if (is_array($this->condition) && count($this->condition)>0) {
             foreach ($this->condition as $key => $value) {
+                if($key=="condition_str")
+                {
+                    if($where=='0')
+                    {
+                        $where = $value;
+                    }
+                    else {
+                        $where = $where . $value;
+                    }
+                    continue;
+                }
+                
                 if($where=='0')
                 {
                     $where = " {$key} = '{$value}'  ";
@@ -453,16 +465,7 @@ class Model
             
         }
         
-        if($this->condition_str!="")
-        {
-            if($where=='0')
-            {
-                $where = $this->condition_str ;
-            }
-            else {
-                $where = $where . " and {$this->condition_str}  ";
-            }
-        }
+         
         
          
         
@@ -533,6 +536,18 @@ class Model
         //链式查询where start
         if (is_array($this->condition) && count($this->condition)>0) {
             foreach ($this->condition as $key => $value) {
+                if($key=="condition_str")
+                {
+                    if($where=='0')
+                    {
+                        $where = $value;
+                    }
+                    else {
+                        $where = $where . $value;
+                    }
+                    continue;
+                }
+                
                 if($where=='0')
                 {
                     $where = " {$key} = '{$value}'  ";
@@ -545,16 +560,7 @@ class Model
             
         }
         
-        if($this->condition_str!="")
-        {
-            if($where=='0')
-            {
-                $where = $this->condition_str ;
-            }
-            else {
-                $where = $where . " and {$this->condition_str}  ";
-            }
-        }
+         
         
         
         
@@ -575,7 +581,7 @@ class Model
         
         // 构造sql语句
         $sql = "DELETE FROM `{$this->table}` WHERE $where";
-    
+        //die($sql);
         if ($rows =$this->db->exec_update_delete($sql)) {
             // 成功，并判断受影响的记录数
             if ($rows) {

@@ -82,6 +82,11 @@ class tableModel extends Model
                 $this->createCategoryModelTable($type, $tableName);
                 $this->addFiled($tableName);
                 break;
+                
+            case "商品模型":
+                $this->createGoodsModelTable($type, $tableName);
+                $this->addFiled($tableName);
+                break;
             
             default:
                 echo "没有这个模型!";
@@ -132,6 +137,12 @@ class tableModel extends Model
                         if($data['u2']=="密码")
                         {
                             $filed_type = "密码";
+                        }else if($data['u2']=="编号"){
+                            $filed_type = "编号";
+                        }else if($data['u2']=="商品规格"){
+                            $filed_type = "商品规格";
+                        }else if($data['u2']=="商品价格"){
+                            $filed_type = "商品价格";
                         }else 
                         {
                             $filed_type = "文本框";
@@ -145,8 +156,8 @@ class tableModel extends Model
                         $filed_type = "文本域";
                         break;
                     case "timestamp":
-                            $filed_type = "时间框";
-                            break;
+                        $filed_type = "时间框";
+                        break;
                 }
                 $data['u7'] = $filed_type;
                 
@@ -236,6 +247,32 @@ class tableModel extends Model
         `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
         `class_id` char(100) DEFAULT '0' COMMENT '分类id',
         `biaoti` char(100) NOT NULL DEFAULT '' COMMENT '标题',
+        `paixu` int(10) unsigned DEFAULT '1' COMMENT '排序',
+        `dtime` timestamp NULL DEFAULT now() COMMENT '添加时间',
+        PRIMARY KEY (`id`)
+        ) ENGINE=INNODB  DEFAULT CHARSET=utf8  AUTO_INCREMENT=1 COMMENT='{$tableName}模型主表';";
+        
+        if ($this->db->exec_update_delete($sql)) {
+            // 成功，并判断受影响的记录数
+            return true;
+        } else {
+            // 失败返回false
+            return false;
+        }
+    }
+    
+    
+    // 创建商品模型表的SQL
+    public function createGoodsModelTable($type, $tableName)
+    {
+        $sql = "
+        CREATE TABLE `{$tableName}` (
+        `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+        `goods_number` char(100) DEFAULT '' COMMENT '编号',
+        `biaoti` char(100) NOT NULL DEFAULT '' COMMENT '标题',
+        `goods_parameter` char(100) DEFAULT '' COMMENT '商品规格',
+        `goods_price` char(100) DEFAULT '0' COMMENT '商品价格',
+        `goods_stock` char(100) DEFAULT '0' COMMENT '商品库存',
         `paixu` int(10) unsigned DEFAULT '1' COMMENT '排序',
         `dtime` timestamp NULL DEFAULT now() COMMENT '添加时间',
         PRIMARY KEY (`id`)

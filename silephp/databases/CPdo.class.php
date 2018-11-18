@@ -201,7 +201,7 @@ class CPdo
         $where = "";
         if ($condition != null && is_array($condition)) {
             foreach ($condition as $k => $value) {
-                $value = addslashes($value);
+                //$value = addslashes($value);
                 if($k=="condition_str")
                 {
                     $where.= $value."  AND ";
