@@ -215,7 +215,12 @@ class CPdo
             }
             $sql .= "where $where";
             $sql .= "1 = 1 ";
+        }else if ($condition != null && !is_array($condition)) {
+            
+            $sql .= "where $condition";
         }
+        
+        
         if ($group != "") {
             $sql .= "group by " . $group . " ";
         }

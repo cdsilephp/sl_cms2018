@@ -111,13 +111,25 @@ class Model
      *  增加条件
      * @param unknown $condition
      */
-    public function where($condition = array())
+    public function where($condition )
     {
-        if (count($this->condition) == 0) {
-            $this->condition = $condition;
-        } else {
-            $this->condition = $this->condition + $condition;
+        if ($condition != null && !is_array($condition)) {
+            if(is_array($this->condition) && count($this->condition)==0)
+            {
+                $this->condition = $condition ;
+            }else{
+                $this->condition = $this->condition ." ". $condition ;
+            }
+            
+            
+        }else{
+            if (count($this->condition) == 0) {
+                $this->condition = $condition;
+            } else {
+                $this->condition = $this->condition + $condition;
+            }
         }
+       
         
         return $this;
     }
@@ -420,7 +432,7 @@ class Model
         }
         
         //链式查询where start
-        if (count($this->condition)>0) {
+        if (is_array($this->condition) && count($this->condition)>0) {
             foreach ($this->condition as $key => $value) {
                 if($where=='0')
                 {
@@ -432,7 +444,11 @@ class Model
                 
             }
            
+        }else{
+            $where = $this->condition;
         }
+        
+         
         
         if ($this->having != "") {
             if($where=='0')
@@ -499,7 +515,7 @@ class Model
         
         
         //链式查询where start
-        if (count($this->condition)>0) {
+        if (is_array($this->condition) && count($this->condition)>0) {
             foreach ($this->condition as $key => $value) {
                 if($where=='0')
                 {
@@ -508,10 +524,15 @@ class Model
                 else {
                     $where = $where . " and {$key} = '{$value}'  ";
                 }
-        
+                
             }
-             
+            
+        }else{
+            $where = $this->condition;
         }
+        
+        
+        
         
         if ($this->having != "") {
             if($where=='0')

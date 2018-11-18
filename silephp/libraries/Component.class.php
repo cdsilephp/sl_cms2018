@@ -352,6 +352,39 @@ class Component
                         </div>';
             
             
+        }else if($type=="商品规格")
+        {
+            $commomClass = new Common();
+            $filedModel1=new filedModel();
+            $filedVal=$filedModel1->getFiledDefaultValue($filedId);
+            if($selectValue=="" || empty($selectValue))
+            {
+                $selectValue = $commomClass->getOrderId();
+            }
+            //echo '/index.php?p=admin&c=Inc&a=showDuotiaojilu&model_id='.$_model_id.'&guanlianziduan_val='.$selectValue.'&guanlianziduan='.$_guanlianziduan.'&field='.$filedName.'&field_id='.$filedId.'';die();
+            return '<div class="layui-form-item">
+				    		    <label class="layui-form-label">'.$kjName.'</label>
+				    		    <div class="layui-input-block">
+                                <input name="'.$filedName.'" id="'.$filedName.'" type="hidden"  value="'.$selectValue.'">
+                                <iframe width="100%" onload="this.height=50" src="/admin/inc/goodsparameter?field='.$filedName.'&field_id='.$filedId.'&classid='.$filedVal.'&goodnumber='.$selectValue.' " scrolling="no" frameborder="0" id="if'.$filedName.'" ></iframe>
+                    	        <script>
+                    	        function reinitIframe'.$filedName.'(){
+                    	            var iframe = document.getElementById("if'.$filedName.'");
+                    	            try{
+                    	                var bHeight = iframe.contentWindow.document.body.scrollHeight;
+                    	                var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+                    	                var height = Math.max(bHeight, dHeight);
+                    	                iframe.height = height;
+                    	                //console.log(height);
+                    	            }catch (ex){}
+                    	        }
+                    	                
+                    	        window.setInterval("reinitIframe'.$filedName.'()", 200);
+                    	        </script>
+                                </div>
+                        </div>';
+            
+            
         }else if($type=="省市县三级联动")
         {
             $filedModel1=new filedModel();

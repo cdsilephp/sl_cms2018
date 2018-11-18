@@ -177,7 +177,8 @@ class Tree
         }
         $spacer = $adds ? $adds.$j : '';
   
-        $selected = $this->have($sid,$id) ? 'selected' : '';
+        $selected = $this->have($sid,$a['id']) ? "checked": '';
+        eval("\$nstr = \"$selected\";");
         @extract($a);
         eval("\$nstr = \"$str\";");
         $this->ret .= $nstr;

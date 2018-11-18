@@ -558,4 +558,71 @@ class incController extends baseController{
 	    die($commom->getHostDomain()."/".$uploadPath);  
 	}
 	
+	
+	//载入显示下拉框选中值页面
+	public function goodsparameterAction(){
+	    $Common = $this->common;
+	    $goodsparameterModel = new goodsparameterModel();
+	    $goodsparameteritemModel = new goodsparameteritemModel();
+	    $classid = $Common->Get('classid');
+	    $classid = $classid==""?"0":$classid;
+	    $classidArray = $goodsparameterModel->getgoodsparameterByclassid("");
+	    $goodnumber = $Common->Requert("goodnumber");
+	    //挂载 TREE 类
+	    $this->helper('tree');
+	    $tree =new Tree($classidArray) ;
+	    
+	    $goodsparameterItemIds = $goodsparameteritemModel->getGoodsparameteridsBygoodnumber($goodnumber);
+	    $str = "
+        <tr>
+            <td> 
+                <input type='checkbox' name='goodsparameter_value[]' value='\$id' lay-skin='primary' \$selected  > 
+            </td>
+            <td>\$spacer  \$u1</td> 
+        </tr>";
+	    
+	    
+	    $html='';
+	    $html .= $tree->get_tree_multi($classid,$str,$goodsparameterItemIds,"","checked");
+	    
+	    include CUR_VIEW_PATH ."inc".DS."Sgoodsparameter".DS."goodsparameter_list.html";
+	    
+	}
+	
+	public function goodsparameteritemupdateAction(){
+	    $data_return["status"]=false;
+	    $data_return["msg"]="";
+	    $data_return["code"]=1;
+	    
+	    $goodsparameter_value = $this->common->Post("goodsparameter_value");
+	    $goodnumber = $this->common->Requert("goodnumber");
+	    $goodsparameter_ids="";
+	    foreach ($goodsparameter_value as $k=>$v)
+	    {
+	        if($goodsparameter_ids=="")
+	        {
+	            $goodsparameter_ids=$v;
+	        }else{
+	            $goodsparameter_ids= $goodsparameter_ids .",". $v;
+	        }
+	    }
+	    
+	    $goodsparameteritemMode = new goodsparameteritemModel();
+	    $goodsparameteritemMode->start_T();
+	    try {
+	        //删除原来的规格
+	        $goodsparameteritemMode->deleteItemBygoodnumber($goodnumber);
+	        $goodsparameteritemMode->insertItemBygoodsparameterids($goodsparameter_ids,$goodnumber);
+	    } catch (Exception $e) {
+	        $goodsparameteritemMode->roll_T();
+	        $data_return["msg"]="操作失败";
+	    }
+	    $goodsparameteritemMode->comit_T();
+	    $data_return["status"]=true;
+	    $data_return["msg"]="操作成功";
+	    $data_return["code"]=0;
+	    $this->common->ajaxReturn($data_return);
+	    
+	}
+	
 }

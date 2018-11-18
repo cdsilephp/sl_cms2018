@@ -136,7 +136,7 @@ class filedModel extends Model
     
      
     
-    PUBLIC function getFiledDefaultValue($filed_id)
+    public function getFiledDefaultValue($filed_id)
     {
         $defaultValueArray=array();
         $filedDetail=$this->findOne($filed_id);
@@ -207,7 +207,7 @@ class filedModel extends Model
         }else 
         {
             
-            $defaultValueArray=$defaultValue;
+            return $defaultValue;
             
         }
         
