@@ -202,7 +202,10 @@ class CPdo
         if ($condition != null && is_array($condition)) {
             foreach ($condition as $k => $value) {
                 $value = addslashes($value);
-                if(!strpos($k,'>') && !strpos($k,'<') && !strpos($k,'=') && substr($value, 0, 1) != '%' && substr($value, -1) != '%'){    //where(array('age'=>'22'))
+                if($k=="condition_str")
+                {
+                    $where.= $value."  AND ";
+                }else if(!strpos($k,'>') && !strpos($k,'<') && !strpos($k,'=') && substr($value, 0, 1) != '%' && substr($value, -1) != '%'){    //where(array('age'=>'22'))
                     $where.= $k."= '".$value."' AND ";
                 }else if(substr($value, 0, 1) == '%' || substr($value, -1) == '%'){	//where(array('name'=>'%php%'))
                     $where.= $k." LIKE '".$value."' AND ";

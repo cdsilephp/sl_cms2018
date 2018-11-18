@@ -21,6 +21,8 @@ class Model
     protected $column = "*";
 
     protected $condition = array();
+    
+    protected $condition_str = "";
 
     protected $group;
 
@@ -114,13 +116,19 @@ class Model
     public function where($condition )
     {
         if ($condition != null && !is_array($condition)) {
-            if(is_array($this->condition) && count($this->condition)==0)
+            if($this->condition_str=="")
             {
-                $this->condition = $condition ;
+                $this->condition_str= $condition ;
             }else{
-                $this->condition = $this->condition ." ". $condition ;
+                $this->condition_str= $this->condition_str." ". $condition ;
             }
             
+            $data=["condition_str"=>$this->condition_str];
+            if (count($this->condition) == 0) {
+                $this->condition = $data;
+            } else {
+                $this->condition = $this->condition + $data;
+            }
             
         }else{
             if (count($this->condition) == 0) {
@@ -243,7 +251,6 @@ class Model
      */
     private function do_sql()
     {
-        
         $result = $this->db->query($this->table, $this->column, $this->condition, $this->group, $this->order, $this->having, $this->startSet, $this->endSet, "assoc",null);
         return $result;
     }
@@ -443,9 +450,18 @@ class Model
                 }
                 
             }
-           
-        }else{
-            $where = $this->condition;
+            
+        }
+        
+        if($this->condition_str!="")
+        {
+            if($where=='0')
+            {
+                $where = $this->condition_str ;
+            }
+            else {
+                $where = $where . " and {$this->condition_str}  ";
+            }
         }
         
          
@@ -527,8 +543,17 @@ class Model
                 
             }
             
-        }else{
-            $where = $this->condition;
+        }
+        
+        if($this->condition_str!="")
+        {
+            if($where=='0')
+            {
+                $where = $this->condition_str ;
+            }
+            else {
+                $where = $where . " and {$this->condition_str}  ";
+            }
         }
         
         

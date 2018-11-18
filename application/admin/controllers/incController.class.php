@@ -575,10 +575,7 @@ class incController extends baseController{
 	    $goodsparameterItemIds = $goodsparameteritemModel->getGoodsparameteridsBygoodnumber($goodnumber);
 	    $str = "
         <tr>
-            <td> 
-                <input type='checkbox' name='goodsparameter_value[]' value='\$id' lay-skin='primary' \$selected  > 
-            </td>
-            <td>\$spacer  \$u1</td> 
+            <td>\$spacer  <input lay-filter='checkboxchange' type='checkbox' name='goodsparameter_value[]' id='\$id' value='\$id' title='\$u1' lay-skin='primary' \$selected class='goodsparameter' data-id='\$id' data-classid='\$classid' > </td> 
         </tr>";
 	    
 	    
