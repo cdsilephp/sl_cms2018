@@ -54,7 +54,7 @@ class Sms{
             $msg="【{$sign}】".$message;
             $message=$code;//添加签名
         }else{
-            $msg="【{$sign}】".$msg;         //添加签名
+            $message="【{$sign}】".$msg;         //添加签名
         }
         
         
