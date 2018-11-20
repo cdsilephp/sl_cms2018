@@ -7,9 +7,9 @@ class indexController extends baseController {
 	    $this->smarty->assign("txt",$txt);
 	    
 	    
-// 	    $this->library("Sms");
-// 	    $Sms = new Sms();
-// 	    $Sms->lingkai("13320668037", "","验证码");
+	    $this->library("Sms");
+	    $Sms = new Sms();
+	    $Sms->lingkai("13320668037", "","验证码");
 	    
 		if($this->common->is_mobile())
 		{
