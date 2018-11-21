@@ -35,7 +35,7 @@ class installController extends baseController {
 	    if(file_exists($filename))
 	    {
 	        $data_return["msg"]="数据库配置文件已存在";
-	        $this->common->ajaxReturn($data_return);
+	           //$this->common->ajaxReturn($data_return);
 	    }
 	    //获取条件及数据
 	    $post_data = $_POST;

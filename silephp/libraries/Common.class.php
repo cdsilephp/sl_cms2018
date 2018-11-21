@@ -1114,5 +1114,15 @@ class Common
     }
     
     
+    public function getfilecontent($file_path){
+        if(file_exists($file_path)){
+            $fp = fopen($file_path,"r");
+            $str = fread($fp,filesize($file_path));//指定读取大小，这里把整个文件内容读取出来
+            fclose($fp);
+            return $str;
+        }
+        
+    }
+    
     
 }
