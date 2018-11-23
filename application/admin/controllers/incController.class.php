@@ -650,10 +650,12 @@ class incController extends baseController{
 	
 	//全部更新价格
 	public function refreshgoodspricelistAction(){
-	    $goods_number= $this->common->Get("goods_number");
+	    $goods_number= $this->common->Requert("goods_number");
+	    $goods_price= $this->common->Requert("goods_price");
+	    $goods_stock= $this->common->Requert("goods_stock");
 	     
 	    $goodspriceModel = new goodspriceModel();
-	    $goodspriceModel->refreshgoodspriceBygoodsnumber($goods_number);
+	    $goodspriceModel->refreshgoodspriceBygoodsnumber($goods_number,$goods_price,$goods_stock);
 	    
 	    $data["msg"]="更新成功";
 	    $data["status"]=true;

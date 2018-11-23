@@ -68,36 +68,6 @@ layui.define(function(exports) {
 	}
 	
 	
-	//更新商品的价格
-	refresh_goods_price  = function(goods_number = "") {
-		layer.confirm('重现生成价格会清空原来的价格记录，且不可恢复，确认重新生成？', function(index) {
-			$.ajax({          
-				  url: "/admin/inc/refreshgoodspricelist",
-		          type: "get",
-		          data: "goods_number="+goods_number,
-		          dataType: 'JSON',
-	          success: function(data) {            
-				if(data.status) {              
-					parent.layer.msg(data.msg, {
-						icon: 6
-					}); //添加成功后提示
-					            
-					location.reload() //刷父界面
-					            
-				} else {              
-					parent.layer.msg(data.msg, {
-						icon: 5,
-						time: 1000
-					});            
-				}          
-			}
-			})
-		});
-		
-		
-		
-	}
-	
 	
 	//退出
 	admin.events.logout = function() {

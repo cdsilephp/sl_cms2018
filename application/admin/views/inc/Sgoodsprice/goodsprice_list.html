@@ -2,47 +2,85 @@
 
 <html>
 
-	<head>
-		<meta charset="utf-8">
-		<title>日志管理</title>
-		<meta name="renderer" content="webkit">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-		<link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/layui/css/layui.css" media="all">
-		<link rel="stylesheet" href="<?=CUR_TPL_PATH?>src/layuiadmin/style/admin.css" media="all">
-	</head>
+<head>
+<meta charset="utf-8">
+<title>日志管理</title>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link rel="stylesheet"
+	href="<?=CUR_TPL_PATH?>src/layuiadmin/layui/css/layui.css" media="all">
+<link rel="stylesheet"
+	href="<?=CUR_TPL_PATH?>src/layuiadmin/style/admin.css" media="all">
+</head>
 
-	<body>
-		<div class="layui-fluid">
-			<div class="layui-row layui-col">
-				<div class="layui-col-md12">
-					<div class="layui-card">
-						<!--<div class="layui-card-header">操作日志</div>-->
-						<div class="layui-card-body">
-							 
-							<div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
-								<a  class="layui-btn" onclick="refresh_goods_price('<?=$goods_number?>')"><i class="layui-icon layui-icon-refresh"></i>生成价格</a>
+<body>
+	<div class="layui-fluid">
+		<div class="layui-row layui-col">
+			<div class="layui-col-md12">
+				<div class="layui-card">
+
+					<div
+						class="layui-form layui-card-header layuiadmin-card-header-auto">
+						<div class="layui-form-item">
+
+							<div class="layui-inline">
+								<label class="layui-form-label">默认价格</label>
+								<div class="layui-input-inline">
+									<input type="text" name="goods_price" id="goods_price"
+										value="0" placeholder="请输入价格" lay-verify="number" autocomplete="off"
+										class="layui-input">
+								</div>
 							</div>
-							
-							<table class="layui-hide" id="test-table-operate" lay-filter="test-table-operate"></table>
+							<div class="layui-inline">
+								<label class="layui-form-label">默认库存</label>
+								<div class="layui-input-inline">
+									<input type="text" name="goods_stock" id="goods_stock" value="0"
+										placeholder="请输入库存" lay-verify="number"  autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline" style="display:none">
+								<label class="layui-form-label">商品规格</label>
+								<div class="layui-input-inline">
+									<input type="text" name="goods_number" id="goods_number"
+										value="<?=$goods_number?>" autocomplete="off"
+										class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<button class="layui-btn layuiadmin-btn-list" lay-submit=""
+									lay-filter="LAY-app-contlist-search">
+									<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+								</button>
+							</div>
 
-							
 						</div>
+					</div>
+					<!--<div class="layui-card-header">操作日志</div>-->
+					<div class="layui-card-body">
+						<table class="layui-hide" id="test-table-operate"
+							lay-filter="test-table-operate"></table>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<script src="<?=CUR_TPL_PATH?>src/layuiadmin/layui/layui.js"></script>
-		<script>
+	<script src="<?=CUR_TPL_PATH?>src/layuiadmin/layui/layui.js"></script>
+	<script>
 			layui.config({
 				base: '<?=CUR_TPL_PATH?>src/layuiadmin/' //静态资源所在路径
 			}).extend({
 				index: 'lib/index' //主入口模块
-			}).use(['index', 'table'], function() {
-				var table = layui.table,
+			}).use(['index', 'form', 'table'], function() {
+				var $ = layui.$,
+					table = layui.table,
+					form = layui.form,
 					admin = layui.admin;
 
+				form.render(null, 'component-form-group');
+				
 				table.render({
 					elem: '#test-table-operate',
 					url: '/admin/inc/getgoodspricelist?goods_number=<?=$goods_number?>',
@@ -110,11 +148,52 @@
 			       
 			      
 			    });
+				
+				
+			    /* 监听提交 */
+			    
+			    form.on('submit(LAY-app-contlist-search)', function(data){
+			      var field = data.field;
+			      //refresh_goods_price('<?=$goods_number?>');
+			      layer.confirm('重现生成价格会清空原来的价格记录，且不可恢复，确认重新生成？', function(index) {
+						$.ajax({          
+							  url: "/admin/inc/refreshgoodspricelist",
+					          type: "get",
+					          data: field,
+					          dataType: 'JSON',
+				          success: function(data) {            
+							if(data.status) {              
+								parent.layer.msg(data.msg, {
+									icon: 6,
+									time: 1000
+								}); //添加成功后提示
+								            
+								//location.reload() //刷父界面
+								//执行重载
+							    table.reload('test-table-operate', {
+							        
+							    });
+								            
+							} else {              
+								parent.layer.msg(data.msg, {
+									icon: 5,
+									time: 1000
+								});            
+							}          
+						}
+						})
+						layer.close(index);
+					});
+			      
+			      
+			    });
+			    
+				 
 
 
 			});
 		</script>
 
-	</body>
+</body>
 
 </html>
