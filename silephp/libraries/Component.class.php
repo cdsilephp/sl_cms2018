@@ -20,6 +20,7 @@ class Component
                          <div class="layui-input-block">
                             <textarea name="'.$filedName.'"  placeholder="请输入内容" class="layui-textarea" style="width:'.$width.'" >'.$selectValue.'</textarea>
                          </div>
+                         <div class="layui-form-mid layui-word-aux">'.$tipString.'</div>
                     </div>';
             
         }else if($type=="图片")
@@ -43,9 +44,9 @@ class Component
                             <a id="img_a_'.$filedName.'"  href="'.$selectValue.'"  target="_blank" >
 				    		       <img id="img_'.$filedName.'" src="'.$selectValue.'" class="layui-upload-img" style="max-width: 200px;max-height: 100px;overflow: hidden;" onerror="javascript:this.src=\'/application/admin/views/images/nopic.jpg\';" />
 				    		</a>
-                            <button onclick="upload_'.$filedName.'()"  type="button" class="layui-btn" id="test-upload-normal">上传图片</button>
-
+                            <div class="layui-form-mid layui-word-aux">'.$tipString.'</div>
                           </div>
+                          <button onclick="upload_'.$filedName.'()"  type="button" class="layui-btn" id="test-upload-normal">上传图片</button>
                     </div>';
             
             
@@ -74,10 +75,11 @@ class Component
             
             
             return '<div class="layui-form-item">
-								<label class="layui-form-label">'.$kjName.'</label>
-								<div class="layui-input-block">
-								'.$temp_radio_html.'
-								</div>
+						<label class="layui-form-label">'.$kjName.'</label>
+						<div class="layui-input-block">
+						'.$temp_radio_html.'
+						</div>
+                        <div class="layui-form-mid layui-word-aux">'.$tipString.'</div>
 					</div>
                  ';
             
@@ -106,10 +108,11 @@ class Component
             }
                 
             return '<div class="layui-form-item">
-								<label class="layui-form-label">'.$kjName.'</label>
-								<div class="layui-input-block">
-								'.$temp_radio_html.'
-								</div>
+						<label class="layui-form-label">'.$kjName.'</label>
+						<div class="layui-input-block">
+						'.$temp_radio_html.'
+						</div>
+                        <div class="layui-form-mid layui-word-aux">'.$tipString.'</div>
 					</div>
                  ';
                 
@@ -135,7 +138,7 @@ class Component
                           <div class="layui-input-inline">
                             <input type="text"   name="'.$filedName.'" id="'.$filedName.'" value="'.$selectValue.'"     placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input ghy-date">
                           </div>
-                        <div class="layui-form-mid layui-word-aux">'.$tipString.'</div>
+                          <div class="layui-form-mid layui-word-aux">'.$tipString.'</div>
                     </div>
                     
                     ';
@@ -239,6 +242,7 @@ class Component
                     		</fieldset>
 
                           </div>
+                         <div class="layui-form-mid layui-word-aux">'.$tipString.'</div>
                     </div>';
             
             
@@ -307,14 +311,15 @@ class Component
             }
 										
             return '<div class="layui-form-item">
-									<label class="layui-form-label">'.$kjName.'</label>
-									<div class="layui-input-inline">
-									<select name="'.$filedName.'" id="'.$filedName.'"  lay-search=""  >
-										<option value="">请选择'.$kjName.'</option>
-										'.$selectedStr.'
-									</select>
-									</div>
-								</div>';
+						<label class="layui-form-label">'.$kjName.'</label>
+						<div class="layui-input-inline">
+						<select name="'.$filedName.'" id="'.$filedName.'"  lay-search=""  >
+							<option value="">请选择'.$kjName.'</option>
+							'.$selectedStr.'
+						</select>
+						</div>
+                        <div class="layui-form-mid layui-word-aux">'.$tipString.'</div>
+					</div>';
             
             
         }else if($type=="多条记录")
