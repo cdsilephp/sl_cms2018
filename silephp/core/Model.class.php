@@ -115,6 +115,7 @@ class Model
      */
     public function where($condition )
     {
+        //var_dump($condition);die();
         if ($condition != null && !is_array($condition)) {
             if($this->condition_str=="")
             {

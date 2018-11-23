@@ -27,6 +27,7 @@ class goodsparameteritemModel extends Model
         foreach ($goodsparameterList as $k=>$v)
         {
             $data["goodsparameter_id"]=$v["id"];
+            $data["goodsparameter_classid"]=$v["classid"];
             $data["goodsparameter_name"]=$v["u1"];
             $data["goodsnumber"]=$goodnumber;
             $this->insert($data);

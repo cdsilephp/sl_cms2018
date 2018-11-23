@@ -352,6 +352,23 @@ class Component
                         </div>';
             
             
+        }else if($type=="编号")  {
+            
+            $commomClass = new Common();
+            $filedModel1=new filedModel();
+            $filedVal=$filedModel1->getFiledDefaultValue($filedId);
+            $tableId = $filedModel1->getTableidByFieldid($filedId);
+            if($selectValue==""|| $selectValue==$filedVal){
+                $selectValue=$filedVal.$commomClass->getOrderId();
+                $commomClass->set_cookie("{$tableId}_number", $selectValue);
+            }
+            return  '<div class="layui-form-item">
+                          <label class="layui-form-label">'.$kjName.'</label>
+                          <div class="layui-input-inline">
+                            <input readonly="readonly"  name="'.$filedName.'"  id="'.$filedName.'" value="'.$selectValue.'"  placeholder="请输入'.$kjName.'"   autocomplete="off" class="layui-input"   >
+                          </div>
+                        <div class="layui-form-mid layui-word-aux">'.$tipString.'</div>
+                    </div>';
         }else if($type=="商品规格")
         {
             $commomClass = new Common();
@@ -391,25 +408,26 @@ class Component
         {
             $commomClass = new Common();
             $filedModel1=new filedModel();
-           
+            $tableId = $filedModel1->getTableidByFieldid($filedId);
+            
             if($selectValue=="" || empty($selectValue))
             {
-                $selectValue = $commomClass->getOrderId();
+                $selectValue = $commomClass->get_cookie("{$tableId}_number");
             }
             //echo '/index.php?p=admin&c=Inc&a=showDuotiaojilu&model_id='.$_model_id.'&guanlianziduan_val='.$selectValue.'&guanlianziduan='.$_guanlianziduan.'&field='.$filedName.'&field_id='.$filedId.'';die();
-                return '<div class="layui-form-item">
+            return '<div class="layui-form-item">
 				    		    <label class="layui-form-label">'.$kjName.'</label>
 				    		    <div class="layui-input-block">
                                 <input name="'.$filedName.'" id="'.$filedName.'" type="hidden"  value="'.$selectValue.'">
-                                <iframe width="100%" onload="this.height=50" src="/admin/inc/showduotiaojilu?table_id='.$_model_id.'&guanlianziduan_val='.$selectValue.'&guanlianziduan='.$_guanlianziduan.'&field='.$filedName.'&field_id='.$filedId.'" scrolling="no" frameborder="0" id="if'.$filedName.'" ></iframe>
+                                <iframe width="100%" onload="this.height=50" src="/admin/inc/showgoodsprice?field='.$filedName.'&field_id='.$filedId.'&goods_number='.$selectValue.'" scrolling="no" frameborder="0" id="if'.$filedName.'" ></iframe>
                     	        <script>
                     	        function reinitIframe'.$filedName.'(){
-                    	            var iframe = document.getElementById("if'.$filedName.'");
+                    	            var iframe'.$filedName.' = document.getElementById("if'.$filedName.'");
                     	            try{
-                    	                var bHeight = iframe.contentWindow.document.body.scrollHeight;
-                    	                var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+                    	                var bHeight = iframe'.$filedName.'.contentWindow.document.body.scrollHeight;
+                    	                var dHeight = iframe'.$filedName.'.contentWindow.document.documentElement.scrollHeight;
                     	                var height = Math.max(bHeight, dHeight);
-                    	                iframe.height = height;
+                    	                iframe'.$filedName.'.height = height;
                     	                //console.log(height);
                     	            }catch (ex){}
                     	        }
@@ -656,23 +674,6 @@ class Component
                         <div class="layui-form-mid layui-word-aux">'.$tipString.'</div>
                     </div>';
             
-        }else if($type=="编号")  {
-            
-            $commomClass = new Common();
-            $filedModel1=new filedModel();
-            $filedVal=$filedModel1->getFiledDefaultValue($filedId);
-            $tableId = $filedModel1->getTableidByFieldid($filedId);
-            if($selectValue==""){
-                $selectValue=$filedVal.$commomClass->getOrderId();
-                $commomClass->set_cookie("{$tableId}_number", $selectValue);
-            }
-            return  '<div class="layui-form-item">
-                          <label class="layui-form-label">'.$kjName.'</label>
-                          <div class="layui-input-inline">
-                            <input readonly="readonly"  name="'.$filedName.'"  id="'.$filedName.'" value="'.$selectValue.'"  placeholder="请输入'.$kjName.'"   autocomplete="off" class="layui-input"   >
-                          </div>
-                        <div class="layui-form-mid layui-word-aux">'.$tipString.'</div>
-                    </div>';
         }else  {
             
             if($filedName=="laiyuanbianhao" && !empty($_GET['guanlianziduan_val']))

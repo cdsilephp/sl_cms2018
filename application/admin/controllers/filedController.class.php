@@ -17,8 +17,8 @@ class filedController extends baseController
         $page = $this->common->Get("page");
         $limit= $this->common->Get("limit");
         $filedModel = new filedModel();
-        $filedList= $filedModel->getfieldlistBytableid($table_id,$page,$limit);
-        $filedList["data"]=$filedList;
+        $_filedList= $filedModel->getfieldlistBytableid($table_id,$page,$limit);
+        $filedList["data"]=$_filedList;
         $filedList["code"]="0";
         $filedList["msg"]="";
         $filedList["count"]=count($filedModel->where(["model_id"=>$table_id])->all());

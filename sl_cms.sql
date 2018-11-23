@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : utf-8
 
- Date: 11/20/2018 18:16:17 PM
+ Date: 11/23/2018 21:25:30 PM
 */
 
 SET NAMES utf8;
@@ -74,21 +74,7 @@ CREATE TABLE `sl_filed` (
   `u14` varchar(250) DEFAULT NULL COMMENT '正则严重规则',
   `u15` varchar(250) DEFAULT '文章设置' COMMENT '字段显示分类',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1398 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-
--- ----------------------------
---  Table structure for `sl_goods_price_item`
--- ----------------------------
-DROP TABLE IF EXISTS `sl_goods_price_item`;
-CREATE TABLE `sl_goods_price_item` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `goods_number` varchar(100) CHARACTER SET utf8 DEFAULT ' ' COMMENT '商品编号',
-  `goodsparameter_names` varchar(100) CHARACTER SET utf8 DEFAULT ' ' COMMENT '商品规格全称',
-  `goodsparameter_ids` varchar(100) CHARACTER SET utf8 DEFAULT ' ' COMMENT '商品规格IDs',
-  `goods_price` float unsigned NOT NULL DEFAULT '0' COMMENT '商品价格',
-  `goods_stock` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '商品库存',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 --  Table structure for `sl_goodsparameter`
@@ -120,15 +106,23 @@ CREATE TABLE `sl_goodsparameter_item` (
   `goodsparameter_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '商品规格ID',
   `goodsparameter_name` varchar(100) CHARACTER SET utf8 DEFAULT ' ' COMMENT '商品规格NAME',
   `goodsnumber` varchar(50) CHARACTER SET utf8 DEFAULT ' ' COMMENT '商品编号',
+  `goodsparameter_classid` int(11) DEFAULT NULL COMMENT '规格父级ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=514 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=676 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
---  Records of `sl_goodsparameter_item`
+--  Table structure for `sl_goodsprice`
 -- ----------------------------
-BEGIN;
-INSERT INTO `sl_goodsparameter_item` VALUES ('494', '357', '网络', '2018111919084'), ('495', '360', '电信', '2018111919084'), ('496', '361', '移动', '2018111919084'), ('497', '362', '联通', '2018111919084'), ('498', '363', '黑色', '2018111919084'), ('499', '357', '网络', '2018111933130'), ('500', '360', '电信', '2018111933130'), ('501', '361', '移动', '2018111933130'), ('502', '362', '联通', '2018111933130'), ('507', '357', '网络', 'goods_2018111963704'), ('508', '358', '颜色', 'goods_2018111963704'), ('509', '360', '电信', 'goods_2018111963704'), ('510', '361', '移动', 'goods_2018111963704'), ('511', '362', '联通', 'goods_2018111963704'), ('512', '363', '黑色', 'goods_2018111963704'), ('513', '364', '白色', 'goods_2018111963704');
-COMMIT;
+DROP TABLE IF EXISTS `sl_goodsprice`;
+CREATE TABLE `sl_goodsprice` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `goods_number` varchar(100) CHARACTER SET utf8 DEFAULT ' ' COMMENT '商品编号',
+  `goodsparameter_names` varchar(100) CHARACTER SET utf8 DEFAULT ' ' COMMENT '商品规格全称',
+  `goodsparameter_ids` varchar(100) CHARACTER SET utf8 DEFAULT ' ' COMMENT '商品规格IDs',
+  `goods_price` float unsigned NOT NULL DEFAULT '0' COMMENT '商品价格',
+  `goods_stock` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '商品库存',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=230 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 --  Table structure for `sl_group`
@@ -255,13 +249,13 @@ CREATE TABLE `sl_smslog` (
   `type` varchar(10) NOT NULL COMMENT '短信类型',
   `dtime` date NOT NULL COMMENT '添加日期',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `sl_smslog`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sl_smslog` VALUES ('24', '18782140263', '2706', '验证码', '2018-11-15'), ('25', '18782140263', '6700', '验证码', '2018-11-15'), ('26', '13320668037', '6710', '验证码', '2018-11-15'), ('27', '13320668037', '6274', '验证码', '2018-11-20');
+INSERT INTO `sl_smslog` VALUES ('24', '18782140263', '2706', '验证码', '2018-11-15'), ('25', '18782140263', '6700', '验证码', '2018-11-15'), ('26', '13320668037', '6710', '验证码', '2018-11-15'), ('27', '13320668037', '6274', '验证码', '2018-11-20'), ('28', '13320668037', '5444', '验证码', '2018-11-20');
 COMMIT;
 
 -- ----------------------------
@@ -307,6 +301,6 @@ CREATE TABLE `sl_table` (
   `u9` varchar(250) CHARACTER SET utf8 DEFAULT 'Sautotable' COMMENT '自定义试图文件夹',
   `u10` int(10) DEFAULT '0' COMMENT '所属栏目ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 SET FOREIGN_KEY_CHECKS = 1;

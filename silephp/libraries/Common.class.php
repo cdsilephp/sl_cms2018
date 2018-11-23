@@ -670,7 +670,7 @@ class Common
     */
     function set_cookie($key, $value)
     {
-        
+        $_COOKIE[$key] = $value;
         setcookie($key,$value,time()+4*7*24*3600, '/',  $_SERVER['SERVER_NAME']);
     }
     

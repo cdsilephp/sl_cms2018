@@ -272,7 +272,6 @@ class tableModel extends Model
         `biaoti` char(100) NOT NULL DEFAULT '' COMMENT '标题',
         `goods_parameter` char(100) DEFAULT '' COMMENT '商品规格',
         `goods_price` char(100) DEFAULT '0' COMMENT '商品价格',
-        `goods_stock` char(100) DEFAULT '0' COMMENT '商品库存',
         `paixu` int(10) unsigned DEFAULT '1' COMMENT '排序',
         `dtime` timestamp NULL DEFAULT now() COMMENT '添加时间',
         PRIMARY KEY (`id`)

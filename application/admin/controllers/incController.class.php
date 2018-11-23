@@ -575,7 +575,7 @@ class incController extends baseController{
 	    $goodsparameterItemIds = $goodsparameteritemModel->getGoodsparameteridsBygoodnumber($goodnumber);
 	    $str = "
         <tr>
-            <td>\$spacer  <input lay-filter='checkboxchange' type='checkbox' name='goodsparameter_value[]' id='\$id' value='\$id' title='\$u1' lay-skin='primary' \$selected class='goodsparameter' data-id='\$id' data-classid='\$classid' > </td> 
+            <td>\$spacer  <input lay-filter='checkboxchange' type='checkbox' name='goodsparameter_value[]' id='\$id' value='\$id' title='\$u1' lay-skin='primary' \$selected class='goodsparameter' data-id='\$id' data-classid='\$parentid' > </td> 
         </tr>";
 	    
 	    
@@ -625,5 +625,67 @@ class incController extends baseController{
 	    $this->common->ajaxReturn($data_return);
 	    
 	}
+	
+	
+	
+	//显示多条记录表列表
+	public function showgoodspriceAction(){
+	    $goods_number= $this->common->Get("goods_number");
+	    include CUR_VIEW_PATH  ."inc".DS."Sgoodsprice".DS. "goodsprice_list.html";
+	}
+	
+	public function getgoodspricelistAction(){
+	    $goods_number= $this->common->Get("goods_number");
+	    $page = $this->common->Get("page");
+	    $limit= $this->common->Get("limit");
+	    $goodspriceModel = new goodspriceModel();
+	    $_goodspriceList= $goodspriceModel->getgoodspriceBygoodsnumber($page,$limit,$goods_number);
+	    $goodspriceList["data"]=$_goodspriceList;
+	    $goodspriceList["code"]="0";
+	    $goodspriceList["msg"]="";
+	    $goodspriceList["count"]=count($goodspriceModel->where(["goods_number"=>$goods_number])->all());
+	    
+	    $this->common->ajaxReturn($goodspriceList);
+	}
+	
+	//全部更新价格
+	public function refreshgoodspricelistAction(){
+	    $goods_number= $this->common->Get("goods_number");
+	     
+	    $goodspriceModel = new goodspriceModel();
+	    $goodspriceModel->refreshgoodspriceBygoodsnumber($goods_number);
+	    
+	    $data["msg"]="更新成功";
+	    $data["status"]=true;
+	    
+	    $this->common->ajaxReturn($data);
+	}
+	
+	
+	public function updategoodspriceByidAction(){
+	    $data["msg"]="更新失败";
+	    $data["status"]=false;
+	    
+	    $goods_number= $this->common->Get("goods_number");
+	    $goodspriceModel = new goodspriceModel();
+	    
+	    $data = $goodspriceModel->getFieldArray();
+	    if(!$this->common->isNumber($this->common->Post("value"))){
+	        $data["msg"]="请输入数字";
+	        $this->common->ajaxReturn($data);
+	    }
+	    
+	    $data[$this->common->Post("field")]=$this->common->Post("value");
+	    //var_dump($data);die();
+	    if($goodspriceModel->update($data))
+	    {
+	        $data["msg"]="更新成功";
+	        $data["status"]=true;
+	    }
+	    
+	    
+	    $this->common->ajaxReturn($data);
+	}
+	
 	
 }
