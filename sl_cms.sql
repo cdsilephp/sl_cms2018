@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : utf-8
 
- Date: 11/23/2018 21:25:30 PM
+ Date: 11/24/2018 02:20:07 AM
 */
 
 SET NAMES utf8;
@@ -48,7 +48,25 @@ CREATE TABLE `sl_admin` (
 --  Records of `sl_admin`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sl_admin` VALUES ('23', 'cdsile', '01ac3d95a020811609ceef9ed8336e2e', 'wahson-gong@outlook.com', '思乐管理员', '', '1', '', '0', '2018-11-18 02:53:07', '::1', '0', '1509730011', '0', 'public/uploads/20180702/201807021343565b39bb9c7397a.png', '1', '0', '0');
+INSERT INTO `sl_admin` VALUES ('23', 'cdsile', '01ac3d95a020811609ceef9ed8336e2e', 'wahson-gong@outlook.com', '思乐管理员', '', '1', '', '0', '2018-11-24 01:19:29', '::1', '0', '1509730011', '0', 'public/uploads/20180702/201807021343565b39bb9c7397a.png', '1', '0', '0');
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `sl_ceshi`
+-- ----------------------------
+DROP TABLE IF EXISTS `sl_ceshi`;
+CREATE TABLE `sl_ceshi` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `dtime` datetime DEFAULT NULL COMMENT '添加时间',
+  `biaoti` char(100) NOT NULL COMMENT '标题',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='sl_ceshi模型主表';
+
+-- ----------------------------
+--  Records of `sl_ceshi`
+-- ----------------------------
+BEGIN;
+INSERT INTO `sl_ceshi` VALUES ('1', '2018-11-10 00:00:00', '123'), ('2', '2018-11-24 01:51:25', '321');
 COMMIT;
 
 -- ----------------------------
@@ -73,8 +91,16 @@ CREATE TABLE `sl_filed` (
   `u13` char(50) DEFAULT '' COMMENT '点击事件',
   `u14` varchar(250) DEFAULT NULL COMMENT '正则严重规则',
   `u15` varchar(250) DEFAULT '文章设置' COMMENT '字段显示分类',
+  `u16` char(50) DEFAULT '是' COMMENT '是否导出',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+--  Records of `sl_filed`
+-- ----------------------------
+BEGIN;
+INSERT INTO `sl_filed` VALUES ('10', '3', 'dtime', '添加时间', '', '否', '是', '是', '时间框', 'CURRENT_TIMESTAMP', '180', '2', '是', 'left', '', '无', '文章设置', '是'), ('11', '3', 'biaoti', '标题', '123', '是', '是', '是', '文本框', '', '120', '0', '否', '', '', '无', '文章设置', '是'), ('12', '4', 'goods_number', '编号', '', '是', '是', '是', '编号', '', '80', '2', '是', 'left', '', '无', '文章设置', '是'), ('13', '4', 'biaoti', '标题', '', '是', '是', '是', '文本框', '', '120', '3', '是', 'left', '', '无', '文章设置', '是'), ('14', '4', 'goods_parameter', '商品规格', '', '否', '否', '否', '商品规格', '355', '80', '4', '否', 'left', '', '无', '文章设置', '是'), ('15', '4', 'goods_price', '商品价格', '', '否', '否', '否', '商品价格', '0', '80', '5', '否', 'left', '', null, '文章设置', '是'), ('16', '4', 'paixu', '排序', '', '否', '否', '否', '数字', '1', '80', '6', '否', 'left', '', null, '文章设置', '是'), ('17', '4', 'dtime', '添加时间', '', '否', '否', '否', '时间框', 'CURRENT_TIMESTAMP', '80', '7', '否', 'left', '', null, '文章设置', '是');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `sl_goodsparameter`
@@ -108,7 +134,14 @@ CREATE TABLE `sl_goodsparameter_item` (
   `goodsnumber` varchar(50) CHARACTER SET utf8 DEFAULT ' ' COMMENT '商品编号',
   `goodsparameter_classid` int(11) DEFAULT NULL COMMENT '规格父级ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=676 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+--  Records of `sl_goodsparameter_item`
+-- ----------------------------
+BEGIN;
+INSERT INTO `sl_goodsparameter_item` VALUES ('1', '357', '网络', '2018112345721', '355'), ('2', '358', '颜色', '2018112345721', '355'), ('3', '360', '电信', '2018112345721', '357'), ('4', '361', '移动', '2018112345721', '357'), ('5', '362', '联通', '2018112345721', '357'), ('6', '363', '黑色', '2018112345721', '358'), ('7', '364', '白色', '2018112345721', '358'), ('8', '358', '颜色', '2018112309292', '355'), ('9', '359', '内存', '2018112309292', '355'), ('10', '363', '黑色', '2018112309292', '358'), ('11', '364', '白色', '2018112309292', '358'), ('12', '365', '32G', '2018112309292', '359'), ('13', '366', '64G', '2018112309292', '359'), ('14', '367', '128G', '2018112309292', '359'), ('15', '357', '网络', '2018112313230', '355'), ('16', '358', '颜色', '2018112313230', '355'), ('17', '360', '电信', '2018112313230', '357'), ('18', '361', '移动', '2018112313230', '357'), ('19', '362', '联通', '2018112313230', '357'), ('20', '363', '黑色', '2018112313230', '358'), ('21', '364', '白色', '2018112313230', '358'), ('22', '357', '网络', '2018112347632', '355'), ('23', '358', '颜色', '2018112347632', '355'), ('24', '360', '电信', '2018112347632', '357'), ('25', '361', '移动', '2018112347632', '357'), ('26', '362', '联通', '2018112347632', '357'), ('27', '363', '黑色', '2018112347632', '358'), ('28', '364', '白色', '2018112347632', '358'), ('29', '357', '网络', '2018112331795', '355'), ('30', '358', '颜色', '2018112331795', '355'), ('31', '360', '电信', '2018112331795', '357'), ('32', '361', '移动', '2018112331795', '357'), ('33', '362', '联通', '2018112331795', '357'), ('34', '363', '黑色', '2018112331795', '358'), ('35', '364', '白色', '2018112331795', '358'), ('54', '357', '网络', '2018112375797', '355'), ('55', '358', '颜色', '2018112375797', '355'), ('56', '359', '内存', '2018112375797', '355'), ('57', '360', '电信', '2018112375797', '357'), ('58', '361', '移动', '2018112375797', '357'), ('59', '362', '联通', '2018112375797', '357'), ('60', '363', '黑色', '2018112375797', '358'), ('61', '364', '白色', '2018112375797', '358'), ('62', '365', '32G', '2018112375797', '359'), ('63', '366', '64G', '2018112375797', '359'), ('64', '367', '128G', '2018112375797', '359'), ('78', '357', '网络', '2018112416624', '355'), ('79', '358', '颜色', '2018112416624', '355'), ('80', '360', '电信', '2018112416624', '357'), ('81', '361', '移动', '2018112416624', '357'), ('82', '362', '联通', '2018112416624', '357'), ('83', '363', '黑色', '2018112416624', '358'), ('84', '364', '白色', '2018112416624', '358'), ('89', '357', '网络', '2018112491650', '355'), ('90', '359', '内存', '2018112491650', '355'), ('91', '360', '电信', '2018112491650', '357'), ('92', '361', '移动', '2018112491650', '357'), ('93', '362', '联通', '2018112491650', '357'), ('94', '365', '32G', '2018112491650', '359'), ('95', '367', '128G', '2018112491650', '359');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `sl_goodsprice`
@@ -122,7 +155,14 @@ CREATE TABLE `sl_goodsprice` (
   `goods_price` float unsigned NOT NULL DEFAULT '0' COMMENT '商品价格',
   `goods_stock` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '商品库存',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=230 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+--  Records of `sl_goodsprice`
+-- ----------------------------
+BEGIN;
+INSERT INTO `sl_goodsprice` VALUES ('7', '2018112309292', '黑色,32G', '363,365', '0', '0'), ('8', '2018112309292', '黑色,64G', '363,366', '0', '0'), ('9', '2018112309292', '黑色,128G', '363,367', '0', '0'), ('10', '2018112309292', '白色,32G', '364,365', '0', '0'), ('11', '2018112309292', '白色,64G', '364,366', '0', '0'), ('12', '2018112309292', '白色,128G', '364,367', '0', '0'), ('13', '2018112313230', '电信,黑色', '360,363', '10', '10'), ('14', '2018112313230', '电信,白色', '360,364', '10', '10'), ('15', '2018112313230', '移动,黑色', '361,363', '10', '10'), ('16', '2018112313230', '移动,白色', '361,364', '10', '10'), ('17', '2018112313230', '联通,黑色', '362,363', '10', '10'), ('18', '2018112313230', '联通,白色', '362,364', '10', '10'), ('25', '2018112347632', '电信,黑色', '360,363', '120', '100'), ('26', '2018112347632', '电信,白色', '360,364', '120', '100'), ('27', '2018112347632', '移动,黑色', '361,363', '120', '100'), ('28', '2018112347632', '移动,白色', '361,364', '120', '100'), ('29', '2018112347632', '联通,黑色', '362,363', '120', '100'), ('30', '2018112347632', '联通,白色', '362,364', '120', '100'), ('31', '2018112331795', '电信,黑色', '360,363', '10', '10'), ('32', '2018112331795', '电信,白色', '360,364', '10', '10'), ('33', '2018112331795', '移动,黑色', '361,363', '10', '10'), ('34', '2018112331795', '移动,白色', '361,364', '10', '10'), ('35', '2018112331795', '联通,黑色', '362,363', '10', '10'), ('36', '2018112331795', '联通,白色', '362,364', '10', '10'), ('43', '2018112375797', '电信,黑色,32G', '360,363,365', '120', '110'), ('44', '2018112375797', '电信,黑色,64G', '360,363,366', '120', '1110'), ('45', '2018112375797', '电信,黑色,128G', '360,363,367', '120', '120'), ('46', '2018112375797', '电信,白色,32G', '360,364,365', '1120', '140'), ('47', '2018112375797', '电信,白色,64G', '360,364,366', '120', '10'), ('48', '2018112375797', '电信,白色,128G', '360,364,367', '120', '10'), ('49', '2018112375797', '移动,黑色,32G', '361,363,365', '120', '10'), ('50', '2018112375797', '移动,黑色,64G', '361,363,366', '120', '10'), ('51', '2018112375797', '移动,黑色,128G', '361,363,367', '120', '10'), ('52', '2018112375797', '移动,白色,32G', '361,364,365', '120', '10'), ('53', '2018112375797', '移动,白色,64G', '361,364,366', '120', '10'), ('54', '2018112375797', '移动,白色,128G', '361,364,367', '120', '10'), ('55', '2018112375797', '联通,黑色,32G', '362,363,365', '120', '10'), ('56', '2018112375797', '联通,黑色,64G', '362,363,366', '120', '10'), ('57', '2018112375797', '联通,黑色,128G', '362,363,367', '120', '10'), ('58', '2018112375797', '联通,白色,32G', '362,364,365', '120', '10'), ('59', '2018112375797', '联通,白色,64G', '362,364,366', '120', '10'), ('60', '2018112375797', '联通,白色,128G', '362,364,367', '120', '10'), ('68', '2018112416624', '电信,黑色', '360,363', '10', '10'), ('69', '2018112416624', '电信,白色', '360,364', '10', '10'), ('70', '2018112416624', '移动,黑色', '361,363', '10', '10'), ('71', '2018112416624', '移动,白色', '361,364', '10', '10'), ('72', '2018112416624', '联通,黑色', '362,363', '10', '10'), ('73', '2018112416624', '联通,白色', '362,364', '10', '10'), ('77', '2018112491650', '电信,32G', '360,365', '10', '100'), ('78', '2018112491650', '电信,128G', '360,367', '10', '100'), ('79', '2018112491650', '移动,32G', '361,365', '10', '100'), ('80', '2018112491650', '移动,128G', '361,367', '10', '100'), ('81', '2018112491650', '联通,32G', '362,365', '10', '100'), ('82', '2018112491650', '联通,128G', '362,367', '10', '100');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `sl_group`
@@ -156,13 +196,13 @@ CREATE TABLE `sl_log` (
   `yonghuming` char(100) DEFAULT NULL,
   `sql` text COMMENT '执行的sql语句',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 --  Records of `sl_log`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sl_log` VALUES ('1', 'cdsile', 'cdsile:登录成功,操作页面:danfeini/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=xpff', '::1', '管理员登录', '2018-11-06 15:31:24', null, null), ('2', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=m5pd', '::1', '管理员登录', '2018-11-06 17:33:10', null, null), ('3', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=9xbw', '::1', '管理员登录', '2018-11-14 23:35:37', null, null), ('4', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=fncg', '::1', '管理员登录', '2018-11-15 00:10:10', null, null), ('5', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=6xrv', '::1', '管理员登录', '2018-11-16 15:40:27', null, null), ('6', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=atsc', '::1', '管理员登录', '2018-11-16 15:44:37', null, null), ('7', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=2sed', '::1', '管理员登录', '2018-11-17 16:57:35', null, null), ('8', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=nawp', '::1', '管理员登录', '2018-11-18 02:53:07', null, null);
+INSERT INTO `sl_log` VALUES ('1', 'cdsile', 'cdsile:登录成功,操作页面:danfeini/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=xpff', '::1', '管理员登录', '2018-11-06 15:31:24', null, null), ('2', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=m5pd', '::1', '管理员登录', '2018-11-06 17:33:10', null, null), ('3', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=9xbw', '::1', '管理员登录', '2018-11-14 23:35:37', null, null), ('4', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=fncg', '::1', '管理员登录', '2018-11-15 00:10:10', null, null), ('5', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=6xrv', '::1', '管理员登录', '2018-11-16 15:40:27', null, null), ('6', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=atsc', '::1', '管理员登录', '2018-11-16 15:44:37', null, null), ('7', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=2sed', '::1', '管理员登录', '2018-11-17 16:57:35', null, null), ('8', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=nawp', '::1', '管理员登录', '2018-11-18 02:53:07', null, null), ('9', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=d69b', '::1', '管理员登录', '2018-11-23 22:51:23', null, null), ('10', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=7pfc', '::1', '管理员登录', '2018-11-24 01:18:53', null, null), ('11', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=cta3', '::1', '管理员登录', '2018-11-24 01:19:29', null, null);
 COMMIT;
 
 -- ----------------------------
@@ -239,6 +279,21 @@ INSERT INTO `sl_parameter` VALUES ('1', '0', '模型类型', ' ', ' ', '0'), ('2
 COMMIT;
 
 -- ----------------------------
+--  Table structure for `sl_shangpin`
+-- ----------------------------
+DROP TABLE IF EXISTS `sl_shangpin`;
+CREATE TABLE `sl_shangpin` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `goods_number` varchar(250) NOT NULL COMMENT '编号',
+  `biaoti` char(100) NOT NULL COMMENT '标题',
+  `goods_parameter` varchar(250) DEFAULT NULL COMMENT '商品规格',
+  `goods_price` char(100) DEFAULT '0' COMMENT '商品价格',
+  `paixu` int(10) unsigned DEFAULT '1' COMMENT '排序',
+  `dtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '添加时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='sl_shangpin模型主表';
+
+-- ----------------------------
 --  Table structure for `sl_smslog`
 -- ----------------------------
 DROP TABLE IF EXISTS `sl_smslog`;
@@ -301,6 +356,13 @@ CREATE TABLE `sl_table` (
   `u9` varchar(250) CHARACTER SET utf8 DEFAULT 'Sautotable' COMMENT '自定义试图文件夹',
   `u10` int(10) DEFAULT '0' COMMENT '所属栏目ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+--  Records of `sl_table`
+-- ----------------------------
+BEGIN;
+INSERT INTO `sl_table` VALUES ('3', 'sl_ceshi', '测试', '表单模型', 'on', ' ', '/', 'on', 'autotable', 'Sautotable', '0'), ('4', 'sl_shangpin', '商品', '商品模型', 'on', ' ', '/', 'on', 'autotable', 'Sautotable', '0');
+COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
