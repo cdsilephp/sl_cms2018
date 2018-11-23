@@ -71,6 +71,7 @@ class filedController extends baseController
         $data['u5'] = empty($data['u5'])?"否":"是";
         $data['u6'] = empty($data['u6'])?"否":"是";
         $data['u11'] = empty($data['u11'])?"否":"是";
+        $data['u16'] = empty($data['u16'])?"否":"是";
         $data['model_id']=$table_id;
         
         //判断字段是否已经存在
@@ -133,6 +134,7 @@ class filedController extends baseController
         $data['u5'] = empty($data['u5'])?"否":"是";
         $data['u6'] = empty($data['u6'])?"否":"是";
         $data['u11'] = empty($data['u11'])?"否":"是";
+        $data['u16'] = empty($data['u16'])?"否":"是";
         $data['model_id']=$table_id;
         
         //判断字段是否已经存在

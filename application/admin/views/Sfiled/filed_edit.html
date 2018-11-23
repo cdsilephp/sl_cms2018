@@ -183,6 +183,23 @@
 									</div>
 								</div>
 								
+								
+								<div class="layui-form-item">
+									<label class="layui-form-label">是否导出</label>
+									<div class="layui-input-block">
+										<?php if($filed['u16']=='是'){ ?>
+											<input type="checkbox" checked="checked" name="u16" lay-skin="switch" lay-filter="component-form-switchTest" lay-text="是|否">
+											<div class="layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch"><em>是</em><i></i></div>
+									
+										<?php }else{ ?>
+											<input type="checkbox"   name="u16" lay-skin="switch" lay-filter="component-form-switchTest" lay-text="是|否">
+											<div class="layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch"><em>否</em><i></i></div>
+									
+										<?php } ?>
+											
+									</div>
+								</div>
+								
 								<div class="layui-form-item layui-form-text">
 						            <label class="layui-form-label">默认值</label>
 						            <div class="layui-input-block">

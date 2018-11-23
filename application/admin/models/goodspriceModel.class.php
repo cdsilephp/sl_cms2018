@@ -72,19 +72,36 @@ class goodspriceModel extends Model
             
         }
         
-        $goodsparameter_names_array=$this->CartesianProduct($goodsparameter_names_array,",");
-        $goodsparameter_ids_array=$this->CartesianProduct($goodsparameter_ids_array,",");
-        
-        //插入价格表
-        foreach ($goodsparameter_names_array as $k=>$v)
-        {
-            $data_goodsprice["goods_number"]=$goods_number;
-            $data_goodsprice["goodsparameter_names"]=$goodsparameter_names_array[$k];
-            $data_goodsprice["goodsparameter_ids"]=$goodsparameter_ids_array[$k];
-            $data_goodsprice["goods_price"]=$goods_price;
-            $data_goodsprice["goods_stock"]=$goods_stock;
-            $this->insert($data_goodsprice);
+        if(count($goodsparameter_names_array)>1){
+            //多个规格
+            $goodsparameter_names_array=$this->CartesianProduct($goodsparameter_names_array,",");
+            $goodsparameter_ids_array=$this->CartesianProduct($goodsparameter_ids_array,",");
+            
+            //插入价格表
+            foreach ($goodsparameter_names_array as $k=>$v)
+            {
+                $data_goodsprice["goods_number"]=$goods_number;
+                $data_goodsprice["goodsparameter_names"]=$goodsparameter_names_array[$k];
+                $data_goodsprice["goodsparameter_ids"]=$goodsparameter_ids_array[$k];
+                $data_goodsprice["goods_price"]=$goods_price;
+                $data_goodsprice["goods_stock"]=$goods_stock;
+                $this->insert($data_goodsprice);
+            }
+        }else if(count($goodsparameter_names_array)==1){
+            //只有一个分类
+            //插入价格表
+            foreach ($goodsparameter_names_array[0] as $k=>$v)
+            {
+                $data_goodsprice["goods_number"]=$goods_number;
+                $data_goodsprice["goodsparameter_names"]=$goodsparameter_names_array[0][$k];
+                $data_goodsprice["goodsparameter_ids"]=$goodsparameter_ids_array[0][$k];
+                $data_goodsprice["goods_price"]=$goods_price;
+                $data_goodsprice["goods_stock"]=$goods_stock;
+                $this->insert($data_goodsprice);
+            }
+            
         }
+        
         
          
         

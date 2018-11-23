@@ -42,6 +42,10 @@
 							<div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
 								<a onclick="layOpen('添加内容', '/admin/autotable/add?table_id=<?=$table_id?>','100%','100%')" href="javascript:;" class="layui-btn"><i class="layui-icon"></i>添加数据</a>
 							</div>
+							
+							<!-- <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
+								<a onclick="layOpen('添加内容', '/admin/autotable/export?table_id=<?=$table_id?>','100%','100%')" href="javascript:;" class="layui-btn layui-btn-warm"><i class="layui-icon layui-icon-download-circle"></i>导出数据</a>
+							</div> -->
 
 							<table class="layui-hide" id="test-table-operate" lay-filter="test-table-operate"></table>
 
@@ -62,7 +66,8 @@
 			}).extend({
 				index: 'lib/index' //主入口模块
 			}).use(['index', 'table', 'form', 'laydate', 'contlist'], function() {
-				var table = layui.table,
+				var $ = layui.$,
+				    table = layui.table,
 					admin = layui.admin,
 					laydate = layui.laydate,
 					form = layui.form;
@@ -97,8 +102,28 @@
 							layer.close(index);
 							var id = data.id;
 							var table_id ="<?=$table_id?>";
-							myAjax("/admin/autotable/delete?"+"id="+id+"&table_id="+table_id,"get","");
-							
+							//myAjax("/admin/autotable/delete?"+"id="+id+"&table_id="+table_id,"get","");
+							$.ajax({          
+								  url: "/admin/autotable/delete?"+"id="+id+"&table_id="+table_id,
+						          type: "get",
+						          data: "",
+						          dataType: 'JSON',
+						          success: function(data) {            
+										if(data.status) {              
+											var index = parent.layer.getFrameIndex(window.name);              
+											parent.layer.msg(data.msg, {
+												icon: 6
+											}); //添加成功后提示
+										} else {              
+											parent.layer.msg(data.msg, {
+												icon: 5,
+												time: 1000
+											});            
+										}  
+										//更新行数据
+										obj.del(); //删除对应行（tr）的DOM结构，并更新缓存        
+									}
+								})
 							//window.location.href="/admin/autotable/delete?id="+id;
 						});
 					} else if(obj.event === 'edit') {

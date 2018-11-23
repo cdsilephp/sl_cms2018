@@ -74,7 +74,7 @@
 	          <a href="http://www.cdsile.com/"  target="_blank" class="layadmin-user-jump-change layadmin-link" style="margin-top: 7px;">忘记密码？</a>
 	        </div>
 	        <div class="layui-form-item">
-	          <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit">登 入</button>
+	          <button id="btn_login" class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit">登 入</button>
 	        </div>
 	        
 	      </div>
@@ -90,6 +90,7 @@
   </div>
 
   <script src="<?=CUR_TPL_PATH?>src/layuiadmin/layui/layui.js"></script>  
+  <script src="<?=CUR_TPL_PATH?>js/jquery-1.7.2.min.js"></script>
   <script>
   layui.config({
     base: '<?=CUR_TPL_PATH?>src/layuiadmin/' //静态资源所在路径
@@ -132,13 +133,24 @@
         }
       });
       
-      
+      //更新验证码
+      $("#LAY-user-get-vercode").click();
       
       
     });
     
     
   });
+  
+  
+//回车键触发提交
+  $("input").keydown(function(event){
+                if (event.keyCode == 13) {
+                    document.getElementById("btn_login").click();
+                }
+      })
+            
+   
   </script>
 </body>
 </html>
