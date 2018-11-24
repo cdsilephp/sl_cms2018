@@ -580,7 +580,16 @@ class incController extends baseController{
 	    
 	    
 	    $html='';
-	    $html .= $tree->get_tree_multi($classid,$str,$goodsparameterItemIds,"","checked");
+	     
+	    if(count(explode('|', $classid))>0)
+	    {
+	        //处理有多个类型的规格
+	        foreach (explode('|', $classid) as $k=>$v){
+	            $html = $tree->get_tree_multi($v,$str,$goodsparameterItemIds,"","checked");
+	        }
+	    }else{
+	        $html .= $tree->get_tree_multi($classid,$str,$goodsparameterItemIds,"","checked");
+	    }
 	    
 	    include CUR_VIEW_PATH ."inc".DS."Sgoodsparameter".DS."goodsparameter_list.html";
 	    
