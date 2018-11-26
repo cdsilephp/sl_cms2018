@@ -123,6 +123,7 @@ class sortController extends baseController{
 	    $sortModel = new  sortModel();
 	    //1.收集表单数据
 	    $data=$sortModel->getFieldArray();
+	    //var_dump($data);die();
 	    //2.验证和处理
 	    
 		//调用模型完成更新

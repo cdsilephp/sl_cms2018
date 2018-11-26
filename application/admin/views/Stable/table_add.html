@@ -156,7 +156,7 @@
 			    
 			    //将输入的中文转换为拼音
 			    $("#u2").blur(function(){
-			    	var re_str=$.ajax({url:"/admin/filed/Zh2Py?&Zh_str="+$("#u2").val(),async:false}).responseText;
+			    	var re_str=$.ajax({url:"/admin/filed/zh2py?zh_str="+$("#u2").val(),async:false}).responseText;
 			    	var re_json=JSON.parse(re_str);
 			    	if(re_json.status=="true")
 			    		{

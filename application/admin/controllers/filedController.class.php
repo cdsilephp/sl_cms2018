@@ -207,10 +207,10 @@ class filedController extends baseController
     public function zh2pyAction()
     {
         //挂载中文转拼音类
-        include LIB_PATH . "CUtf8_PY.class.php";
+        $this->library("CUtf8_PY");
         $ch2ypClass =new CUtf8_PY();
         //接收参数
-        $temp_str=$this->common->Get('Zh_str');
+        $temp_str=$this->common->Get('zh_str');
         $table_id=$this->common->Get('table_id');
         $type=$this->common->Get('type'); 
 
