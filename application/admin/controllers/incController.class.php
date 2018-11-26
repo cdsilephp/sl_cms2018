@@ -570,7 +570,13 @@ class incController extends baseController{
 	    $goodnumber = $Common->Requert("goodnumber");
 	    //挂载 TREE 类
 	    $this->helper('tree');
-	    $tree =new Tree($classidArray) ;
+	    //转换数组
+	    $tree_data = array();
+	    foreach ($classidArray as $key=>$value){
+	        $tree_data[$value['id']]=$value;
+	    }
+	    
+	    $tree =new Tree($tree_data) ;
 	    
 	    $goodsparameterItemIds = $goodsparameteritemModel->getGoodsparameteridsBygoodnumber($goodnumber);
 	    $str = "
@@ -696,6 +702,55 @@ class incController extends baseController{
 	    
 	    
 	    $this->common->ajaxReturn($data);
+	}
+	
+	//导出excel
+	public function exportexcelBytableidAction(){
+	    $table_id= $this->common->Get("table_id");
+	    if($table_id=="")
+	    {
+	        echo "table_id不能为空";die();
+	    }
+	    //引用导出excel文件的类
+	    $this->library("Excel");
+	    $excel = new Excel();
+	    $filedModel = new filedModel();
+	    $tableModel = new tableModel();
+	   
+	    $table_detail = $tableModel->findOne($table_id);
+	    $excelName = $table_detail["u2"];
+	    $exceltabName = $table_detail["u1"];
+	    $excelData=array();
+	    $excelHeaderstr=["编号"];
+	    
+	    $_tableModel = new Model($exceltabName);//具体的某一张表
+	    
+	    $filedexprotList = $filedModel->getexportfiledByTableid($table_id);
+	    $filedexprotstr="id";
+	    foreach ($filedexprotList as $k=>$v){
+	        $excelHeaderstr[$k+1] =$v["u2"];
+	        $filedexprotstr .=",".$v["u1"];
+	    }
+	    //var_dump($excelHeaderstr);die();
+	    $excelData = $_tableModel->find($filedexprotstr)->all();
+	    
+	    //处理每一行数据的控件数据
+	    //挂载控件类
+	    $this->library("Component");
+	    $ComponentClass = new Component();
+	    foreach ($filedexprotList as $v)
+	    {
+	        //处理不同字段的显示数据
+	        foreach ($excelData as $k1=>$v1) {
+	            $v1[$v['u1']] =$ComponentClass->showKj($v['u7'],$v['u2'],$v['u1'] ,$v1[$v['u1']],$v['u3'] ,$v['id']) ;
+	            $excelData[$k1]=$v1;
+	        }
+	    }
+	    
+	    
+	    $excel->export($exceltabName,$excelName,$excelHeaderstr, $excelData, "");
+	    
+	    
 	}
 	
 	

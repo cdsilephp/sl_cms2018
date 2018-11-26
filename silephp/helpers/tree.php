@@ -22,6 +22,8 @@ class Tree
    */
   //var $icon = array("<em class='ficon ficon-down-open'></em>","<em class='ficon ficon-right-open'></em>","<em class='ficon ficon-up-open'></em>");
   var $icon = array(' &nbsp&nbsp&nbsp│ ',' &nbsp&nbsp&nbsp├─ ',' &nbsp&nbsp&nbsp└─ ');
+  //public $icon = array('│','├','└');
+  public $nbsp = " ";
   
   /**
   * @access private
@@ -56,17 +58,49 @@ class Tree
   function get_parent($myid)
   {
     $newarr = array();
-    if(!isset($this->arr[$myid])) return false;
-    $pid = $this->arr[$myid]['parentid'];
-    $pid = $this->arr[$pid]['parentid'];
-    if(is_array($this->arr))
+    $tree_data = array();
+    foreach ($this->arr  as $key=>$value){
+        $tree_data[$value['id']]=array(
+            'id'=>$value['id'],
+            'parentid'=>$value['parentid'],
+            'name'=>$value['name']
+        );
+    }
+    
+    if(!isset($tree_data[$myid])) return false;
+    $pid = $tree_data[$myid]['parentid'];
+    $pid = $tree_data[$pid]['parentid'];
+    if(is_array($tree_data))
     {
-      foreach($this->arr as $id => $a)
-      {
-        if($a['parentid'] == $pid) $newarr[$id] = $a;
-      }
+        foreach($tree_data as $id => $a)
+          {
+            if($a['parentid'] == $pid) $newarr[$id] = $a;
+          }
     }
     return $newarr;
+  }
+  
+  
+  /**
+   * 得到父级ID
+   * @param int
+   * @return array
+   */
+  function get_parentID($myid)
+  {
+      //转换数组
+      $tree_data = array();
+      foreach ($this->arr  as $key=>$value){
+          $tree_data[$value['id']]=array(
+              'id'=>$value['id'],
+              'parentid'=>$value['parentid'],
+              'name'=>$value['name']
+          );
+      }
+      if(!isset($tree_data[$myid])) return false;
+      $pid = $tree_data[$myid]['parentid'];
+      
+      return $pid;
   }
   
   /**

@@ -134,6 +134,13 @@ class filedModel extends Model
         return $showfiledList;
     }
     
+    //获取需要导出的字段
+    public function  getexportfiledByTableid($table_id)
+    {
+        $showfiledList =  $this->find("*")->where(["model_id"=>$table_id,"u16"=>"是"])->orderBy("u10 asc,id desc ")->all();
+        return $showfiledList;
+    }
+    
      
     
     public function getFiledDefaultValue($filed_id)

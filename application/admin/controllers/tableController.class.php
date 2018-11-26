@@ -48,19 +48,17 @@ class tableController extends baseController{
 	    }
 	    $_tableList1 = $_tableModel->findBySql("select * from {$tableName} where {$table_sql} limit {$page},{$limit} ");
 	    
-	    //处理html编码格式
+	    //挂载控件类
+	    $this->library("Component");
+	    $ComponentClass = new Component();
 	    $filedModel=new filedModel();
 	    $filedAraay=$filedModel->getallFiledByTableid($table_id);
 	    foreach ($filedAraay as $v)
 	    {
-	        $filedList=$filedModel->findBySql("select * from sl_filed where  u7='文本编辑器' and model_id='{$table_id}' and u1='{$v['u1']}' ");
-	        if(count($filedList)>0)
-	        {
-	            //$data[$v['u1']]=md5($data[$v['u1']]);
-	            foreach ($_tableList1 as $k1=>$v1) {
-	                $v1[$v['u1']] = html_entity_decode($v1[$v['u1']]);
-	                $_tableList1[$k1]=$v1;
-	            }
+	        //处理不同字段的显示数据
+	        foreach ($_tableList1 as $k1=>$v1) {
+	            $v1[$v['u1']] =$ComponentClass->showKj($v['u7'],$v['u2'],$v['u1'] ,$v1[$v['u1']],$v['u3'] ,$v['id']) ;
+	            $_tableList1[$k1]=$v1;
 	        }
 	    }
 	    

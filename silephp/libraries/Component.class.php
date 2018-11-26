@@ -66,9 +66,9 @@ class Component
             {
                 if($selectValue==trim($val['value']) )
                 {
-                    $temp_radio_html.='<input id="'.$filedName.'" type="radio" name="'.$filedName.'" checked="checked"  title="'.$val['key'].'"  value="'.$val['value'].'">';
+                    $temp_radio_html.='<input id="'.$filedName.'" type="radio" name="'.$filedName.'" checked="checked"  title="'.$val['value'].'"  value="'.$val['value'].'">';
                 }else{
-                    $temp_radio_html.='<input id="'.$filedName.'" type="radio" name="'.$filedName.'"  title="'.$val['key'].'"  value="'.$val['value'].'" >';
+                    $temp_radio_html.='<input id="'.$filedName.'" type="radio" name="'.$filedName.'"  title="'.$val['value'].'"  value="'.$val['value'].'" >';
                 }
                 $i++;
             }
@@ -711,11 +711,36 @@ class Component
      * $filedId
      * */
     public function showKj($type,$kjName,$filedName,$selectValue,$tipString,$filedId){
-        if($type=="图片")
+        if($type=="单选" ||$type=="多选"||$type=="下拉框")
         {
-            return ' <img src="'.$selectValue.'" style="max-width: 200px;max-height: 100px;overflow: hidden;" onerror="javascript:this.src=\'application/views/admin/images/nopic.jpg\';" />';
+            $filedModel1=new filedModel();
+            $filedVal=$filedModel1->getFiledDefaultValue($filedId);
             
-        }else if($type=="单选")
+            //var_dump($filedVal);die();
+            $selectedStr = "";
+            foreach ($filedVal as $k=>$v){
+                if($selectValue==$v["key"])
+                {
+                    if($selectedStr==""){
+                        $selectedStr=$v["value"];
+                    }else{
+                        $selectedStr = $selectedStr.",".$v["value"];
+                    }
+                    
+                } 
+                
+            }
+            return $selectedStr;
+            
+        }else if($type=="文本编辑器")
+        {
+            return  html_entity_decode($selectValue) ;
+            
+        }else if($type=="文本域")
+        {
+            return  html_entity_decode($selectValue) ;
+            
+        } else if($type=="下拉框")
         {
             $filedModel1=new filedModel();
             $filedVal=$filedModel1->getFiledDefaultValue($filedId);
@@ -731,7 +756,7 @@ class Component
             {
                 if($selectValue==trim($val) )
                 {
-                    $temp_radio_html=$val;
+                    $temp_radio_html.=$val;
                 }
                 
             }
@@ -739,162 +764,7 @@ class Component
             return $temp_radio_html;
             
             
-        }else if($type=="文本编辑器")
-        {
-            return ' <div class="bjq">
-                      '.html_entity_decode($selectValue).'
-                      </div>';
-            
-        }else if($type=="文本域")
-        {
-            return ' <div class="bjq">
-                      '.html_entity_decode($selectValue).'
-                      </div>';
-            
-        }else if($type=="时间框")
-        {
-            //return '<input name="'.$filedName.'" type="text" id="'.$filedName.'" class="dinput" value="'.$selectValue.'" onClick="WdatePicker({skin:\'whyGreen\',dateFmt:\'yyyy-MM-dd HH:mm:ss\',minDate:\'1900-01-01 00:00:00\',maxDate:\'2117-01-01 00:00:00\'})" />';
-            return $selectValue;
-            
-        }else if($type=="数字")
-        {
-            // return '<input type="text" class="input" style="width: 50px;"  name="'.$filedName.'"  id="'.$filedName.'"  value="'.$selectValue.'"/>';
-            return $selectValue;
-        }
-        else if($type=="密码")
-        {
-            return '<input name="'.$filedName.'" type="password" class="input" />';
-        } else if($type=="联动")
-        {
-            if(strlen($selectValue)==0)
-            {
-                $filedModel1=new filedModel();
-                $filedVal=$filedModel1->getFiledDefaultValue($filedId);
-                
-                //如果是村管理员1
-                if($_SESSION['admin']['zuming']=="村管理员")
-                {
-                    $adminModel = new AdminModel('admin');
-                    $canshuModel =new Model("canshu");
-                    $user = $adminModel->selectByPk($_SESSION['admin']['user_id']);
-                    $canshu = $canshuModel->selectByPk($user["cun_id"]);
-                    //村ID
-                    $cun_classid=  $canshu["classid"];
-                    //只查询本村
-                    if(!empty($cun_classid))
-                    {
-                        $filedVal=$cun_classid;
-                    }
-                }
-                
-                return $this->getLiandongHtml($filedVal,$filedName);
-            }else
-            {
-                $filedModel1=new filedModel();
-                $filedVal=$filedModel1->getFiledDefaultValue($filedId);
-                
-                //默认值
-                $classid=$filedVal;
-                //已选中，递归全部选中项
-                //$temp_html=$this->getAllLiandongHtml($selectValue,$filedName,$classid,"");
-                return $this->getAllLiandongHtml($selectValue,$filedName,$classid,"");
-            }
-            
-            
-            
-        }else if($type=="组图")
-        {
-            $randNumber=rand(1,10000);
-            $filedModel1=new filedModel();
-            $filedVal=$filedModel1->getFiledDefaultValue($filedId);
-            return  '<input name="'.$filedName.'" id="'.$filedName.'" type="hidden"  value="'.$selectValue.'">'.
-                '
-                                <iframe width="100%" onload="this.height=50" src="/index.php?p=admin&c=Inc&a=addWebuploader&field='.$filedName.'" scrolling="no" frameborder="0" id="if'.$filedName.'" ></iframe>
-                    	        <script>
-                    	        function reinitIframe'.$randNumber.'(){
-                    	            var iframe = document.getElementById("if'.$filedName.'");
-                    	            try{
-                    	                var bHeight = iframe.contentWindow.document.body.scrollHeight;
-                    	                var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-                    	                var height = Math.max(bHeight, dHeight);
-                    	                iframe.height = height;
-                    	                console.log(height);
-                    	            }catch (ex){}
-                    	        }
-                    	        window.setInterval("reinitIframe'.$randNumber.'()", 200);
-                    	        </script>';
-            
-            
-        }else if($type=="文件")
-        {
-            
-            return '<a href="'.$selectValue.'">'.$selectValue.'</a>';
-            
-        }else if($type=="下拉框")
-        {
-            $randNumber=rand(1,10000);
-            $filedModel1=new filedModel();
-            //$filedModel1->selectByPk($pk)
-            //$filedVal=$filedModel1->getFiledDefaultValue($filedId);
-            
-            $filedModel1=new filedModel();
-            $filedDetail=$filedModel1->selectByPk($filedId);
-            $filedVal=$filedModel1->getFiledDefaultValue($filedId);
-            foreach($filedVal as $k=>$v)
-            {
-                if($v["key"]==$selectValue)
-                {
-                    return $v['value'];
-                }
-                
-            }
-            
-            return "无";
-            
-            // 	        return     '<input name="'.$filedName.$randNumber.'" id="'.$filedName.$randNumber.'" type="hidden"  value="'.$selectValue.'">'.
-            // 					    		    '
-            //                                 <iframe  onload="this.height=25;this.width=150;" src="/index.php?p=admin&c=Inc&a=getSelectValue&field='.$filedName.$randNumber.'&field_id='.$filedId.'" scrolling="no" frameborder="0" id="if'.$filedName.'" ></iframe>
-            //                     	        <script>
-            //                     	        function reinitIframe'.$randNumber.'(){
-            //                     	            var iframe = document.getElementById("if'.$filedName.'");
-            //                     	            try{
-            //                     	                var bHeight = iframe.contentWindow.document.body.scrollHeight;
-            //                         	                var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-            //                         	                var height = Math.max(bHeight, dHeight);
-            
-            //                         	                //var bWidth = iframe.contentWindow.document.body.scrollWidth;
-            //                         	                //var dWidth = iframe.contentWindow.document.documentElement.scrollWidth;
-            //                         	                //var width = Math.min(bWidth, width);
-            //                         	                iframe.height = height;
-            //                         	                 //iframe.width = width;
-            //                     	            }catch (ex){}
-            //                     	        }
-            //                     	        //window.setInterval("reinitIframe'.$randNumber.'()", 200);
-            //                     	        </script>';
-            
-            //return $selectValue;
-        }else if($type=="城市选择器(多选)" || $type=="城市选择器(单选)")
-        {
-            
-            $selectValue_array = explode("|",$selectValue);
-            if(count($selectValue_array)<2)
-            {
-                $selectValue1=$selectValue;
-                $selectValue2=$selectValue;
-            }else
-            {
-                $selectValue1=$selectValue_array[0];
-                $selectValue2=$selectValue_array[1];
-            }
-            return   '  <a id="city_a_'.$filedName.'"  target="_blank" >
-				    		    '.$selectValue2.'
-                         </a>';
-            
-            
-        }else if($type=="省市县（省）" || $type =="省市县（县）"|| $type=="省市县（市）"){
-            $model = new ModelNew("area");
-            $name = $model->where(["id"=>$selectValue])->find("area_name")->one()["area_name"];
-            return $name;
+             
         }else  {
             
             return $selectValue;
