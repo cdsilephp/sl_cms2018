@@ -74,6 +74,7 @@ class Framework {
 		define("CUR_CONTROLLER_PATH", APP_PATH.PLATFORM.DS. "controllers" .DS);		//控制器
 		define("CUR_MODEL_PATH", APP_PATH.PLATFORM.DS. "models" .DS);				//模型
 		define("CUR_VIEW_PATH", APP_PATH.PLATFORM.DS. "views" .DS);					//视图
+		define("CUR_MODULES_PATH", "modules" .DS);				//模块 modules
 		//TPLPATH
 		define("CUR_TPL_PATH", $common->getHostDomain().DS.'application'.DS.PLATFORM.DS. "views" .DS);
 
@@ -113,15 +114,33 @@ class Framework {
 	//自动加载功能,此处我们只实现控制器和数据库模型的自动加载
 	//如GoodsController、 GoodsModel
 	private static function load($classname){
+	    $file="";
 		if (substr($classname, -10) == 'Controller') {
 			//载入控制器
-			include CUR_CONTROLLER_PATH . "{$classname}.class.php";
+		    $file = CUR_CONTROLLER_PATH . "{$classname}.class.php";
+		   
+			    
 		} elseif (substr($classname, -5) == 'Model') {
 			//载入数据库模型 
-		    include CUR_MODEL_PATH  . "{$classname}.class.php";
+		    $file = CUR_MODEL_PATH  . "{$classname}.class.php";
+		     
+		} elseif (substr($classname, -6) == 'Module') {
+		    //载入模块
+		    $file = CUR_MODULES_PATH. "{$classname}.class.php";
+		     
 		} else {
 			//暂略
 		}
+		
+		if(file_exists($file))
+		{
+		    require_once($file);
+		    if(class_exists($classname,false))
+		    {
+		        return true;
+		    }
+		}
+		
 	}
 	
 	

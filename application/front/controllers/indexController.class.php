@@ -10,6 +10,8 @@ class indexController extends baseController {
 // 	    $this->library("Sms");
 // 	    $Sms = new Sms();
 // 	    $Sms->lingkai("13320668037", "","验证码");
+
+	    $parameterModule = new parameterModule();
 	    
 		if($this->common->is_mobile())
 		{
