@@ -20,9 +20,10 @@ class loginController extends Controller
         $data["data"]["access_token"]="";
         
         // 获取用户名和密码
-        $username = $this->common->Get("username");
-        $password = $this->common->Get("password");
-        $vercode= $this->common->Get("vercode");
+        $username = $this->common->Post("username");
+        $password = $this->common->Post("password");
+        $vercode= $this->common->Post("vercode");
+        $vercode= strtolower($vercode);
         //$_SESSION['admin']['captcha']
         
         if($_SESSION['captcha']!==$vercode)
