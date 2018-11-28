@@ -3,6 +3,19 @@
 class Common
 {
 
+    /**
+    
+    * 判断是空或者null
+    
+    * @date: 2018年11月27日 下午11:26:56
+    
+    * @author: 龚华尧
+    
+    * @param: variable
+    
+    * @return:
+    
+    */
     public function isEmpty($val)
     {
         if (! is_string($val))

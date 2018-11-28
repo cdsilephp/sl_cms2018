@@ -14,6 +14,7 @@ class loginController extends Controller
     // 验证用户名和密码
     public function signinAction()
     {
+        
         $data["status"]=false;
         $data["msg"]="";
         $data["code"]=1;
