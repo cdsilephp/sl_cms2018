@@ -1125,6 +1125,26 @@ class Common
         }
         
     }
+
+
+    /**
+
+    
+    * dongdong 测试 
+    
+    * @date: 2018年11月28日 下午6:33:18
+    
+    * @author: dongdong
+    
+    * @param: variable
+    
+    * @return:
+    
+    */
+    public function dongdongdev()
+    {
+
+    }
     
     
     public function getfilecontent($file_path){
