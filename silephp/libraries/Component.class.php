@@ -30,7 +30,7 @@ class Component
 	               //iframe窗
 	               function upload_".$filedName."()
                    {
-                       layOpen('上传图片','/admin/inc/showWebUploader?type=image&field=".$filedName."');
+                       layOpen('上传图片','/admin/inc/showwebuploader?type=image&field=".$filedName."');
                         
                    }
                  </script>
@@ -223,7 +223,7 @@ class Component
                     			<ul id="thumbnails" class="picBox">
 
                                     <input name="'.$filedName.'" id="'.$filedName.'" type="hidden"  value="'.$selectValue.'">
-                                    <iframe width="100%" onload="this.height=50" src="/admin/inc/addWebuploader?field='.$filedName.'" scrolling="no" frameborder="0" id="if'.$filedName.'" ></iframe>
+                                    <iframe width="100%" onload="this.height=50" src="/admin/inc/addwebuploader?field='.$filedName.'" scrolling="no" frameborder="0" id="if'.$filedName.'" ></iframe>
                             	        <script>
                             	        function reinitIframe(){
                             	            var iframe = document.getElementById("if'.$filedName.'");
@@ -260,7 +260,7 @@ class Component
                           shade: false,
                           maxmin: true, //开启最大化最小化按钮
                           area: ['500px', '500px'],
-                          content: '/admin/inc/showWebUploader?type=file&field=".$filedName."'
+                          content: '/admin/inc/showwebuploader?type=file&field=".$filedName."'
                        });
                    }
                  </script>

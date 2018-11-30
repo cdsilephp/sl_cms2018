@@ -786,7 +786,9 @@ class Common
     public function getHostDomain()
     {
         // return $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'];
-        return $this->getHttpType() . $_SERVER['SERVER_NAME'];
+//        return $this->getHttpType() . $_SERVER['SERVER_NAME'];
+        # 存在 SERVER_NAME = dongdong.com  HTTP_HOST = www.dongdong.com
+        return $this->getHttpType() . $_SERVER['HTTP_HOST'];
     }
     
     /**
