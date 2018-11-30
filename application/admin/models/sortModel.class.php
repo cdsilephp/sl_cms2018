@@ -16,13 +16,16 @@ class sortModel extends Model
             $sql.=" where classid='$classid' ";
         }
         $sql.=" order by u4 asc,id asc";
-        
+
         return $this->db->getAll($sql);
         //对获取的分类进行重新排序
-        
+
     }
-    
-    
+
+    public function getListType($type){
+        return $lists = $this->where(['u2'=>$type])->all();
+
+    }
     /*
      * 把sort 及其子级添加到栏目
      * id 当前sort 的id

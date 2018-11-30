@@ -30,7 +30,7 @@ class Component
 	               //iframe窗
 	               function upload_".$filedName."()
                    {
-                       layOpen('上传图片','/admin/inc/showwebuploader?type=image&field=".$filedName."');
+                       layOpen('上传图片','/admin/inc/showWebUploader?type=image&field=".$filedName."');
                         
                    }
                  </script>
@@ -66,9 +66,9 @@ class Component
             {
                 if($selectValue==trim($val['value']) )
                 {
-                    $temp_radio_html.='<input id="'.$filedName.'" type="radio" name="'.$filedName.'" checked="checked"  title="'.$val['value'].'"  value="'.$val['value'].'">';
+                    $temp_radio_html.='<input id="'.$filedName.'" type="radio" name="'.$filedName.'" checked="checked"  title="'.$val['value'].'"  value="'.$val['key'].'">';
                 }else{
-                    $temp_radio_html.='<input id="'.$filedName.'" type="radio" name="'.$filedName.'"  title="'.$val['value'].'"  value="'.$val['value'].'" >';
+                    $temp_radio_html.='<input id="'.$filedName.'" type="radio" name="'.$filedName.'"  title="'.$val['value'].'"  value="'.$val['key'].'" >';
                 }
                 $i++;
             }
@@ -223,7 +223,7 @@ class Component
                     			<ul id="thumbnails" class="picBox">
 
                                     <input name="'.$filedName.'" id="'.$filedName.'" type="hidden"  value="'.$selectValue.'">
-                                    <iframe width="100%" onload="this.height=50" src="/admin/inc/addwebuploader?field='.$filedName.'" scrolling="no" frameborder="0" id="if'.$filedName.'" ></iframe>
+                                    <iframe width="100%" onload="this.height=50" src="/admin/inc/addWebuploader?field='.$filedName.'" scrolling="no" frameborder="0" id="if'.$filedName.'" ></iframe>
                             	        <script>
                             	        function reinitIframe(){
                             	            var iframe = document.getElementById("if'.$filedName.'");
@@ -260,7 +260,7 @@ class Component
                           shade: false,
                           maxmin: true, //开启最大化最小化按钮
                           area: ['500px', '500px'],
-                          content: '/admin/inc/showwebuploader?type=file&field=".$filedName."'
+                          content: '/admin/inc/showWebUploader?type=file&field=".$filedName."'
                        });
                    }
                  </script>
@@ -715,7 +715,7 @@ class Component
         {
             $filedModel1=new filedModel();
             $filedVal=$filedModel1->getFiledDefaultValue($filedId);
-            
+
             //var_dump($filedVal);die();
             $selectedStr = "";
             foreach ($filedVal as $k=>$v){
@@ -726,12 +726,12 @@ class Component
                     }else{
                         $selectedStr = $selectedStr.",".$v["value"];
                     }
-                    
-                } 
-                
+
+                }
+
             }
             return $selectedStr;
-            
+
         }else if($type=="文本编辑器")
         {
             return  html_entity_decode($selectValue) ;
