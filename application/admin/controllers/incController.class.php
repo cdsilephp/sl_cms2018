@@ -349,6 +349,10 @@ class incController extends baseController{
 	}
 	
 	
+	//载入批量上传页面
+	public function BatchUploadAction(){
+	    include CUR_VIEW_PATH ."inc".DS."webuploader".DS."image-upload".DS."index_batch.html";
+	}
 	
 	//载入编辑上传图片页面
 	public function editAction(){
@@ -463,7 +467,6 @@ class incController extends baseController{
 	    
 	    $filePath = $targetDir . "/" . $fileName;
 	    $uploadPath = $uploadDir . "/". $fileName;
-	    
 	    // Chunking might be enabled
 	    $chunk = isset($_REQUEST["chunk"]) ? intval($_REQUEST["chunk"]) : 0;
 	    $chunks = isset($_REQUEST["chunks"]) ? intval($_REQUEST["chunks"]) : 1;

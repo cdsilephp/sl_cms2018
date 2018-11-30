@@ -610,6 +610,8 @@ class Component
         }else if($type=="批量上传")
         {
             $_js_str="
+                <script src='".CUR_TPL_PATH."/js/jquery.js'></script>
+                <script src='".CUR_TPL_PATH."/js/jquery.lazyload.js'></script>
 	            <script type='text/javascript'>
 	               //iframe窗
 	               function upload_".$filedName."()
@@ -626,8 +628,8 @@ class Component
                           shadeClose: true,
                           shade: false,
                           maxmin: true, //开启最大化最小化按钮
-                          area: ['893px', '600px'],
-                          content: '/index.php?p=admin&c=inc&a=BatchUpload&field=".$filedName."&path='+_path
+                          area: ['80%', '100%'],
+                          content: '/admin/inc/batchupload?field=".$filedName."&path='+_path
                        });
                    }
                               
@@ -654,17 +656,18 @@ class Component
                     $img_html.='<img src="application/views/admin/images/loading.gif"  data-original="'.$v.'" style="max-width: 200px;max-height: 100px;overflow: hidden;"   /> ';
                     
             }
-            return $_js_str.' <tr style="display: table-row;">
-				    		    <th>'.$kjName.'</th>
-				    		    <td>
-				    		    <input type="text" name="'.$filedName.'"  id="'.$filedName.'" value="'.$selectValue.'"  >
-                                <a onclick="upload_'.$filedName.'()"  class="btn btn-blue"><em class="ficon  ficon-uploading"></em> 上传图片</a>
-                                <i>上传路径:'.$uploadDir.$tipString.'</i>
-                                <div>
-                                '. $img_html.'
-                                </div>
-				    		    </td>
-				    	     </tr>';
+            
+            return  $_js_str.'<div class="layui-form-item">
+                          <label class="layui-form-label">'.$kjName.'</label>
+                          <div class="layui-input-inline">
+                            <input name="'.$filedName.'"  id="'.$filedName.'" value="'.$selectValue.'"  placeholder="请输入'.$kjName.'"   autocomplete="off" class="layui-input"   >
+                            <button onclick="upload_'.$filedName.'()" type="button" class="layui-btn" id="test-upload-normal">上传文件</button>
+'. $img_html.'
+                          </div>
+
+                        <div class="layui-form-mid layui-word-aux">上传路径:'.$uploadDir.$tipString.'</div>
+                    </div>';
+             
             
             
         }else if($type=="单行输入框")
