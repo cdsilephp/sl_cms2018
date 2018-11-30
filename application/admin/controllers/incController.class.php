@@ -8,7 +8,7 @@ class incController extends baseController{
 	}
 
 	//载入添加上传图片页面===>组图
-	public function addWebuploaderAction(){
+	public function addwebuploaderAction(){
 	    include CUR_VIEW_PATH ."inc".DS."webuploader_add.html";
 	    
 	}
@@ -344,7 +344,7 @@ class incController extends baseController{
 	
 	
 	//载入显示下拉框选中值页面
-	public function showWebUploaderAction(){
+	public function showwebuploaderAction(){
 	    include CUR_VIEW_PATH ."inc".DS."webuploader".DS."image-upload".DS."index.html";
 	}
 	
