@@ -225,17 +225,17 @@ class Component
                                     <input name="'.$filedName.'" id="'.$filedName.'" type="hidden"  value="'.$selectValue.'">
                                     <iframe width="100%" onload="this.height=50" src="/admin/inc/addwebuploader?field='.$filedName.'" scrolling="no" frameborder="0" id="if'.$filedName.'" ></iframe>
                             	        <script>
-                            	        function reinitIframe(){
-                            	            var iframe = document.getElementById("if'.$filedName.'");
+                            	        function reinitIframe'.$filedName.'(){
+                            	            var iframe'.$filedName.' = document.getElementById("if'.$filedName.'");
                             	            try{
-                            	                var bHeight = iframe.contentWindow.document.body.scrollHeight;
-                            	                var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+                            	                var bHeight = iframe'.$filedName.'.contentWindow.document.body.scrollHeight;
+                            	                var dHeight = iframe'.$filedName.'.contentWindow.document.documentElement.scrollHeight;
                             	                var height = Math.max(bHeight, dHeight);
-                            	                iframe.height = height;
+                            	                iframe'.$filedName.'.height = height;
                             	                //console.log(height);
                             	            }catch (ex){}
                             	        }
-                            	        window.setInterval("reinitIframe()", 200);
+                            	        window.setInterval("reinitIframe'.$filedName.'()", 200);
                             	        </script>
 
                     			</ul>
