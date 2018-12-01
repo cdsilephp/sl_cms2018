@@ -82,9 +82,9 @@ class filedController extends baseController
             
         }
         
-        $this->helper('input');
-        $data = deepspecialchars($data);
-        $data = deepslashes($data);
+//         $this->helper('input');
+//         $data = deepspecialchars($data);
+//         $data = deepslashes($data);
         
         
         // 加载字段名和其所属表名
@@ -145,9 +145,9 @@ class filedController extends baseController
             
         }
         
-        $this->helper('input');
-        $data = deepspecialchars($data);
-        $data = deepslashes($data);
+//         $this->helper('input');
+//         $data = deepspecialchars($data);
+//         $data = deepslashes($data);
         
         
         // 加载字段名和其所属表名

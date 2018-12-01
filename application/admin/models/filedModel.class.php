@@ -180,9 +180,14 @@ class filedModel extends Model
                 
                 foreach ($temp_array as $k=>$v)
                 {
+                    $__v = array();
+                    foreach ($v as $_k=>$_v){
+                        $__v[].=$_v;
+                    }
                     //echo $v[$key_array[0]] ;die();
-                    $defaultValueArray[$k]["key"]=$v[trim($key_array[0])];
-                    $defaultValueArray[$k]["value"]=$v[trim($key_array[1])];
+                    $defaultValueArray[$k]["key"]=$__v[0];
+                    $defaultValueArray[$k]["value"]=$__v[1];
+                    
                 }
                 
             }else

@@ -743,32 +743,7 @@ class Component
         {
             return  html_entity_decode($selectValue) ;
             
-        } else if($type=="下拉框")
-        {
-            $filedModel1=new filedModel();
-            $filedVal=$filedModel1->getFiledDefaultValue($filedId);
-            $temp_radio_html=' ';
-            $i=1;
-            
-            if($filedVal==$selectValue || $selectValue=="")
-            {
-                $temp_radio_html.='无';
-            }
-            
-            foreach($filedVal as $key=>$val)
-            {
-                if($selectValue==trim($val) )
-                {
-                    $temp_radio_html.=$val;
-                }
-                
-            }
-            
-            return $temp_radio_html;
-            
-            
-             
-        }else  {
+        } else  {
             
             return $selectValue;
         }
