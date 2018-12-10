@@ -26,26 +26,40 @@ class incController extends baseController{
 	//显示多条记录表列表
 	public function showduotiaojiluAction(){
 	    $table_id = $this->common->Get('table_id');
+	    $class_id= $this->common->Get('class_id');
 	    if($table_id=="")
 	    {
 	        die("table_id 不能为空");
 	    }
+	    
+	    $class_id==""?"0":$class_id;
 	    
 	    $guanlianziduan=$this->common->Get('guanlianziduan');
 	    $guanlianziduan_val=$this->common->Get('guanlianziduan_val');
 	    
 	    
         $filedModel = new filedModel();
-        $filedlistJson =$filedModel->getFiledJsonByTableid($table_id);
+        $tableModel = new tableModel();
+        $tableDetail = $tableModel->findOne($table_id);
         
-        $filedSearchList = $filedModel->getsearchfiledByTableid($table_id);
-        //会显示出来的字段
-        $filedShowList = $filedModel->getshowfiledByTableid($table_id);
-        //挂载  组件类
-        $this->library('Component');
-        $component = new Component();
-	     
-	    include CUR_VIEW_PATH  ."inc".DS."Sautotable".DS. "autotable_list.html";
+        if($tableDetail['u3']=="表单模型"){
+            $filedlistJson =$filedModel->getFiledJsonByTableid($table_id);
+            
+            $filedSearchList = $filedModel->getsearchfiledByTableid($table_id);
+            //会显示出来的字段
+            $filedShowList = $filedModel->getshowfiledByTableid($table_id);
+            //挂载  组件类
+            $this->library('Component');
+            $component = new Component();
+            
+            include CUR_VIEW_PATH  ."inc".DS."Sautotable".DS. "autotable_list.html";
+            
+        }else{
+            $this->jump("/admin/{$tableDetail['u8']}/index?table_id={$table_id}", "",0);
+            
+        }
+        
+       
 	}
 
 	
