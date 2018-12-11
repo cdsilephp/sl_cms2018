@@ -43,7 +43,8 @@ class Framework {
 		$p="front";
 		$c="index";
 		$a="index";
-		$route = $common->Get("route");
+		# 如果 路由没有过滤到html 这里进行处理
+		$route = self::routeStatic($common->Get("route"));
 		if($route!="")
 		{
 		    $routeArray = explode("/", $route);	//将字符串转为数组
@@ -142,6 +143,24 @@ class Framework {
 		}
 		
 	}
+
+    /**
+     * Notice: 判断是否处理为 伪静态路由
+     * Date: 2018/12/11
+     * Time: 10:24
+     * @author dongdong
+     */
+    private static function routeStatic($route)
+    {
+
+        if ($route && (strpos('.html',$route)||strpos('.htm',$route)) ) {
+            $rule = ['.html','htm'];
+            $replace = ['',''];
+            $route = str_replace($rule, $replace, $replace);
+        }
+        return $route;
+
+    }
 	
 	
 	
