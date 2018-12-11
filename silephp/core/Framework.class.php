@@ -3,7 +3,8 @@
 class Framework {
 	//定义一个run方法
 	public static function run(){
-	     
+
+        FRONT_ROUTE_HTML&&self::routeFrontHtml();
 		self::init(); 		//初始化方法
 		self::autoload();	//自动加载
 		self::dispatch();	//路由方法
@@ -145,7 +146,7 @@ class Framework {
 	}
 
     /**
-     * Notice: 判断是否处理为 伪静态路由
+     * Notice: 前台判断是否处理为 伪静态路由
      * Date: 2018/12/11
      * Time: 10:24
      * @author dongdong
@@ -161,6 +162,60 @@ class Framework {
         return $route;
 
     }
+
+    /**
+     * Notice: 伪静态路由处理，路由重定向；
+     * Date: 2018/12/11
+     * Time: 14:37
+     * @author dongdong
+     */
+    private static function routeFrontHtml()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            if(strpos('ss'.$_GET['route'],'admin')) {
+                return;
+            }
+            $html = strpos($_SERVER['REQUEST_URI'],'.html');
+            if (!$html) {
+                    $param =$_GET;
+                    unset($param['route']);
+                    $str = '/';
+                    foreach ($param as $key=>$val) {
+                        $str .= $key.'/'.$val.'/';
+                    }
+                    #参数拼接
+                    $str = substr($str,0,-1);
+                    $route = $_GET['route'];
+                    $route = str_replace('front/','',$route);
+                    $route = $route?'/'.$route:'';
+                    $redirct = 'http://'.$_SERVER['HTTP_HOST'].$route.'/indexs'.$str.'.html';
+                    header("Location:$redirct");
+
+                } else {
+
+                    $str = $_GET['route'];
+                    $str = str_replace('.html','',$str);
+                    $dataarr = explode('/indexs',$str);
+                    $_GET['route']  = $dataarr[0];
+                    $route = isset($dataarr[1])?explode('/',$dataarr[1]):[];
+
+                    # 过滤无参数状态
+                    if (count($route) > 1) {
+                        unset($route[0]);
+                        $index = '';
+                        foreach ($route as $key=>$val) {
+                            if ($key%2==0) {
+                                $_GET[$index] = $val;
+                            } else {
+                                $index = $val;
+                            }
+                        }
+                    }
+
+                }
+            }
+   }
+
 	
 	
 	
