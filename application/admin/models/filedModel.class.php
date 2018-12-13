@@ -196,6 +196,20 @@ class filedModel extends Model
                 $_defaultValueArray["value"]=$_defaultValueArray["key"];
                 foreach (explode("\n", $defaultValue) as $k=>$v)
                 {
+                    # 下拉框的, id 对应值  支持 "数字，值"
+                    $valarr = explode(',',$v);
+                    # 下拉框的, id 对应值
+                    $valarr = explode(',', $v);
+                    if (count($valarr)<2) {
+                        $valarr = explode('，', $v); # 中文,处理
+                    }
+
+                    if (count($valarr)>1 && is_numeric($valarr[0])) {
+                        $defaultValueArray[$k]["key"] = $valarr[0];
+                        $defaultValueArray[$k]["value"] = $valarr[1];
+                        continue;
+                    }
+
                     $defaultValueArray[$k]["key"]=$v;
                     $defaultValueArray[$k]["value"]=$v;
                 }
