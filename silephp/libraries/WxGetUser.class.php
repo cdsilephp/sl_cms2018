@@ -31,7 +31,7 @@ class WxGetUser{
     */
     private function get_code($callback){
         $appid = $GLOBALS['config_account']['WX_APPID'];
-        $scope = 'snsapi_userinfo';
+        $scope = 'sile_userinfo';
         $state = md5(uniqid(rand(), TRUE));//唯一ID标识符
         $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' . $appid . '&redirect_uri=' . urlencode($callback) .  '&response_type=code&scope=' . $scope . '&state=' . $state . '#wechat_redirect';
         header("Location:$url");
