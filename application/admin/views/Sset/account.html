@@ -23,21 +23,6 @@
 
 						<div class="layui-form" wid100 lay-filter="">
 
-							<!--  <div class="layui-form-item">
-              <label class="layui-form-label">凌凯账号</label>
-              <div class="layui-input-block">
-                <input type="text" name="LK_ACCOUNT" value="<?php echo $GLOBALS['config_account']['LK_ACCOUNT'] ?>" class="layui-input">
-              </div>
-            </div>
-
-            <div class="layui-form-item">
-              <label class="layui-form-label">凌凯密码</label>
-              <div class="layui-input-block">
-                <input type="password" name="LK_PASSWORD" value="<?php echo $GLOBALS['config_account']['LK_PASSWORD'] ?>" class="layui-input">
-              </div>
-            </div>
-             -->
-
 							<div class="layui-card">
 								<div class="layui-card-header">邮件服务</div>
 								<div class="layui-card-body">
@@ -91,7 +76,6 @@
 							<div class="layui-card">
 								<div class="layui-card-header">短信服务</div>
 								<div class="layui-card-body">
-
 									<div class="layui-form" wid100 lay-filter="">
 										<div class="layui-form-item">
 											<label class="layui-form-label">凌凯账号</label>
@@ -122,6 +106,36 @@
 
 								</div>
 							</div>
+
+							<div class="layui-card">
+								<div class="layui-card-header">微信服务</div>
+								<div class="layui-card-body">
+
+									<div class="layui-form" wid100 lay-filter="">
+										<div class="layui-form-item">
+											<label class="layui-form-label">AppID</label>
+											<div class="layui-input-inline">
+												<input type="text" name="WX_APPID"
+													   value="<?=$GLOBALS['config_account']['WX_APPID'] ?>"
+													   class="layui-input">
+											</div>
+										</div>
+										<div class="layui-form-item">
+											<label class="layui-form-label">Secret</label>
+											<div class="layui-input-inline" style="width: 300px;">
+												<input type="text" name="WX_SECRET"
+													   value="<?=$GLOBALS['config_account']['WX_SECRET'] ?>"
+													   class="layui-input">
+											</div>
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+
+
+
 							<div class="layui-form-item">
 								<div class="layui-input-block">
 									<button class="layui-btn" lay-submit lay-filter="save">确认保存</button>
