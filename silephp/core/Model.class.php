@@ -88,6 +88,7 @@ class Model
      */
     public function M($table)
     {
+        $table = trim($table); 
         $table = str_replace($GLOBALS['config_db']['prefix'], "", $table);
         $this->table = $GLOBALS['config_db']['prefix'] . $table;
         // 设置主键
