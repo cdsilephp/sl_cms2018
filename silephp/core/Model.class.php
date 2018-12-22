@@ -731,6 +731,7 @@ class Model
     //清空数据
     public function clearData(){
          $this->condition = array();
+         $this->condition_str ="";
         
          $this->group="";
         
