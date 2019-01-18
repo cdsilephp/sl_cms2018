@@ -2,7 +2,7 @@
 
 class Component
 {
-
+    
     /*
      * 加载自定义控件方法
      * $kjName        $v['u2']
@@ -31,11 +31,11 @@ class Component
 	               function upload_".$filedName."()
                    {
                        layOpen('上传图片','/admin/inc/showWebUploader?type=image&field=".$filedName."');
-                        
+                           
                    }
                  </script>
 	               ";
-           
+            
             
             return  $_js_str.'<div class="layui-form-item">
                           <label class="layui-form-label">'.$kjName.'</label>
@@ -64,7 +64,7 @@ class Component
             
             foreach($filedVal as $key=>$val)
             {
-                if($selectValue==trim($val['value']) )
+                if($selectValue==trim($val['key']) )
                 {
                     $temp_radio_html.='<input id="'.$filedName.'" type="radio" name="'.$filedName.'" checked="checked"  title="'.$val['value'].'"  value="'.$val['key'].'">';
                 }else{
@@ -90,14 +90,14 @@ class Component
             $filedVal=$filedModel1->getFiledDefaultValue($filedId);
             $temp_radio_html=' <input name="'.$filedName.'" id="'.$filedName.'" type="hidden"  value="'.$selectValue.'">';
             $i=1;
-             
+            
             //选中值数组
             $selectValueArray=explode(",", $selectValue);
             foreach($filedVal as $key=>$val)
             {
                 
                 
-                if(in_array(trim($val['value']),$selectValueArray) )
+                if(in_array(trim($val['key']),$selectValueArray) )
                 {
                     $temp_radio_html.='    <input lay-skin="primary" data-filedname="'.$filedName.'" lay-filter="checkboxchange"  class="'.$filedName.$filedId.'" id="'.$filedName.$filedId.$i.'" type="checkbox" name="'.$filedName.$filedId.'" checked="checked" value="'.$val['key'].'" title="'.$val['value'].'"  >';
                 }else{
@@ -106,7 +106,7 @@ class Component
                 
                 $i++;
             }
-                
+            
             return '<div class="layui-form-item">
 						<label class="layui-form-label">'.$kjName.'</label>
 						<div class="layui-input-block">
@@ -115,11 +115,11 @@ class Component
                         <div class="layui-form-mid layui-word-aux">'.$tipString.'</div>
 					</div>
                  ';
-                
-                
+            
+            
         }else if($type=="文本编辑器")
         {
-             
+            
             return '<div class="layui-form-item">
                          <label class="layui-form-label">'.$kjName.'</label>
                          <div class="layui-input-block">
@@ -140,7 +140,7 @@ class Component
                           </div>
                           <div class="layui-form-mid layui-word-aux">'.$tipString.'</div>
                     </div>
-                    
+                              
                     ';
             
         }else if($type=="金额")
@@ -155,7 +155,7 @@ class Component
             
         }else if($type=="数字")
         {
-             
+            
             return  '<div class="layui-form-item">
                           <label class="layui-form-label">'.$kjName.'</label>
                           <div class="layui-input-inline">
@@ -217,11 +217,11 @@ class Component
             return  '<div class="layui-form-item">
                           <label class="layui-form-label">'.$kjName.'</label>
                           <div class="layui-input-block">
-
+                              
                             <fieldset class="layui-elem-field site-demo-button">
                     			<legend>图片列表</legend>
                     			<ul id="thumbnails" class="picBox">
-
+                              
                                     <input name="'.$filedName.'" id="'.$filedName.'" type="hidden"  value="'.$selectValue.'">
                                     <iframe width="100%" onload="this.height=50" src="/admin/inc/addWebuploader?field='.$filedName.'" scrolling="no" frameborder="0" id="if'.$filedName.'" ></iframe>
                             	        <script>
@@ -237,10 +237,10 @@ class Component
                             	        }
                             	        window.setInterval("reinitIframe'.$filedName.'()", 200);
                             	        </script>
-
+                            	            
                     			</ul>
                     		</fieldset>
-
+                            	            
                           </div>
                          <div class="layui-form-mid layui-word-aux">'.$tipString.'</div>
                     </div>';
@@ -270,26 +270,26 @@ class Component
                           <label class="layui-form-label">'.$kjName.'</label>
                         <div class="layui-input-inline">
                             <button onclick="upload_'.$filedName.'()"  type="button" class="layui-btn" id="test-upload-normal">上传文件</button>
-                        </div>      
-
+                        </div>
+                                
                           <div class="layui-input-inline">
-                            <input type="hidden" name="'.$filedName.'" value="'.$selectValue.'"  id="'.$filedName.'"  > 
+                            <input type="hidden" name="'.$filedName.'" value="'.$selectValue.'"  id="'.$filedName.'"  >
                              <a id="file_'.$filedName.'"  href="'.$selectValue.'"  target="_blank" >'.$selectValue.'</a>
                           </div>
-
-                                                
+                                 
+                                 
                     </div>';
             
             
-//             return $_js_str.' <tr style="display: table-row;">
-// 				    		    <th>'.$kjName.'</th>
-// 				    		    <td>
-// 				    		    <input type="hidden" name="'.$filedName.'"  id="'.$filedName.'"  >
-// 				    		    <a id="file_'.$filedName.'"  href="'.$selectValue.'"  target="_blank" >'.$selectValue.'</a>
-//                                 <a onclick="upload_'.$filedName.'()"  class="btn btn-blue"><em class="ficon  ficon-uploading"></em> 上传文件</a>
-//                                 <i>'.$tipString.'</i>
-// 				    		    </td>
-// 				    	     </tr>';
+            //             return $_js_str.' <tr style="display: table-row;">
+            // 				    		    <th>'.$kjName.'</th>
+            // 				    		    <td>
+            // 				    		    <input type="hidden" name="'.$filedName.'"  id="'.$filedName.'"  >
+            // 				    		    <a id="file_'.$filedName.'"  href="'.$selectValue.'"  target="_blank" >'.$selectValue.'</a>
+            //                                 <a onclick="upload_'.$filedName.'()"  class="btn btn-blue"><em class="ficon  ficon-uploading"></em> 上传文件</a>
+            //                                 <i>'.$tipString.'</i>
+            // 				    		    </td>
+            // 				    	     </tr>';
             
             
         }else if($type=="下拉框")
@@ -299,7 +299,7 @@ class Component
             
             //var_dump($filedVal);die();
             $selectedStr = "";
-            foreach ($filedVal as $k=>$v){ 
+            foreach ($filedVal as $k=>$v){
                 if($selectValue==$v["key"])
                 {
                     $selectedStr.='<option value="'.$v["key"].'" selected="selected" >'.$v["value"].'</option>';
@@ -309,7 +309,7 @@ class Component
                 
                 
             }
-										
+            
             return '<div class="layui-form-item">
 						<label class="layui-form-label">'.$kjName.'</label>
 						<div class="layui-input-inline">
@@ -336,7 +336,7 @@ class Component
             //echo '/index.php?p=admin&c=Inc&a=showDuotiaojilu&model_id='.$_model_id.'&guanlianziduan_val='.$selectValue.'&guanlianziduan='.$_guanlianziduan.'&field='.$filedName.'&field_id='.$filedId.'';die();
             return '<div class="layui-form-item">
 				    		    <label class="layui-form-label">'.$kjName.'</label>
-				    		    <div class="layui-input-block"> 
+				    		    <div class="layui-input-block">
                                 <input name="'.$filedName.'" id="'.$filedName.'" type="hidden"  value="'.$selectValue.'">
                                 <iframe width="100%" onload="this.height=50" src="/admin/inc/showduotiaojilu?table_id='.$_model_id.'&guanlianziduan_val='.$selectValue.'&guanlianziduan='.$_guanlianziduan.'&field='.$filedName.'&field_id='.$filedId.'" scrolling="no" frameborder="0" id="if'.$filedName.'" ></iframe>
                     	        <script>
@@ -350,7 +350,7 @@ class Component
                     	                //console.log(height);
                     	            }catch (ex){}
                     	        }
-
+                    	                
                     	        window.setInterval("reinitIframe'.$filedName.'()", 200);
                     	        </script>
                                 </div>
@@ -436,7 +436,7 @@ class Component
                     	                //console.log(height);
                     	            }catch (ex){}
                     	        }
-                    	                
+                    	                    
                     	        window.setInterval("reinitIframe'.$filedName.'()", 200);
                     	        </script>
                                 </div>
@@ -664,10 +664,10 @@ class Component
                             <button onclick="upload_'.$filedName.'()" type="button" class="layui-btn" id="test-upload-normal">上传文件</button>
 '. $img_html.'
                           </div>
-
+    
                         <div class="layui-form-mid layui-word-aux">上传路径:'.$uploadDir.$tipString.'</div>
                     </div>';
-             
+            
             
             
         }else if($type=="单行输入框")
@@ -718,7 +718,7 @@ class Component
         {
             $filedModel1=new filedModel();
             $filedVal=$filedModel1->getFiledDefaultValue($filedId);
-
+            
             //var_dump($filedVal);die();
             $selectedStr = "";
             foreach ($filedVal as $k=>$v){
@@ -729,12 +729,12 @@ class Component
                     }else{
                         $selectedStr = $selectedStr.",".$v["value"];
                     }
-
+                    
                 }
-
+                
             }
             return $selectedStr;
-
+            
         }else if($type=="文本编辑器")
         {
             return  html_entity_decode($selectValue) ;
