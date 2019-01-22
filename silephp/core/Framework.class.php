@@ -6,6 +6,7 @@ class Framework {
 
         FRONT_ROUTE_HTML&&self::routeFrontHtml();
 		self::init(); 		//初始化方法
+        self::loadHelps();  // 挂载其他类
 		self::autoload();	//自动加载
 		self::dispatch();	//路由方法
 		
@@ -49,20 +50,27 @@ class Framework {
 		if($route!="")
 		{
 		    $routeArray = explode("/", $route);	//将字符串转为数组
-		    if(count($routeArray)==2)			//判断数组个数
-		    {
-		        $p=$routeArray[0];
-		        $c=$routeArray[1]==""?"index":$routeArray[1];
-		        
-		    }else if(count($routeArray)==3)
-		    {
-		        $p=$routeArray[0];
-		        $c=$routeArray[1];
-		        $a=$routeArray[2]==""?"index":$routeArray[2];
-		        
-		    }else {
-		        $p=$route;
-		    }
+////////////////////////dongdong update ///////////////////////////
+            switch (count($routeArray)) {
+                case 2:
+                    $p = $routeArray[0];
+                    $c = $routeArray[1]==""?"index":$routeArray[1];
+                    break;
+                case 3:
+                    $p = $routeArray[0];
+                    $c = $routeArray[1];
+                    $a = $routeArray[2]==""?"index":$routeArray[2];
+                    break;
+                case 4: # dongdong 添加
+                    $p = $routeArray[0];
+                    $c = $routeArray[1].'/'.$routeArray[2];
+                    $a = $routeArray[3]==""?"index":$routeArray[3];
+                    break;
+                default:
+                    $p=$route;
+                    break;
+            }
+////////////////////////dongdong update ///////////////////////////
 		}
 		
 		
@@ -100,7 +108,25 @@ class Framework {
 		
 		//获取方法名
 		$action_name = ACTION . "Action";
-		
+
+//        var_dump($controller_name);
+//////////////// 多级 文件夹路由处理 dongdong //////////////////////////
+        if (strpos($controller_name,'/')) {
+            $file = CUR_CONTROLLER_PATH . "{$controller_name}.class.php";
+            $file = str_replace('/', '\\', $file);
+            if (file_exists($file)) {
+                require_once($file);
+
+                $urlarr = explode('\\',$file);
+                $controller_name = explode('/', $controller_name)[1];
+                $controller = new $controller_name();
+                $controller->$action_name();
+                return false;
+            }
+        }
+////////////////多级 文件夹路由处理 dongdong //////////////////////////
+
+
 		//实例化控制器对象
 		$controller = new $controller_name();
 		//调用方法
@@ -215,6 +241,28 @@ class Framework {
                 }
             }
    }
+
+    /**
+     * Notice:挂载其他类
+     * Date: 2018/12/20
+     * Time: 16:07
+     * @author dongdong
+     */
+    public static function loadHelps()
+    {
+        //
+        $file = HELPER_PATH . 'helps.php';
+        if (file_exists($file) ) {
+            include $file;
+        };
+
+//        // 请求处理类
+        $file = LIB_PATH . '/Request/Request.php';
+        if (file_exists($file) ) {
+            include $file;
+        };
+    }
+
 
 	
 	
