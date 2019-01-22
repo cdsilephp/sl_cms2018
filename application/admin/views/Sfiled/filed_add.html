@@ -137,6 +137,22 @@
 								</div>
 								
 								
+								<div class="layui-form-item">
+									<label class="layui-form-label">接口权限</label>
+									<div class="layui-input-block">
+										<input name="u17" id="u17" type="hidden"  value="all">
+										<input data-filedname="u17" lay-filter="checkboxchange"  class="u17" id="u17-1" type="checkbox" name="u17-1" title="全部" value="all"  checked>
+										<input data-filedname="u17" lay-filter="checkboxchange"  class="u17" id="u17-2" type="checkbox" name="u17-2" title="增加" value="add"  >
+										<input data-filedname="u17" lay-filter="checkboxchange"  class="u17" id="u17-3" type="checkbox" name="u17-3" title="修改" value="edit"  >
+										<input data-filedname="u17" lay-filter="checkboxchange"  class="u17" id="u17-4" type="checkbox" name="u17-4" title="删除" value="del"  >
+										<input data-filedname="u17" lay-filter="checkboxchange"  class="u17" id="u17-5" type="checkbox" name="u17-5" title="查询" value="search"  >
+										  
+									</div>
+								</div>
+								
+								
+								
+								
 								<div class="layui-form-item layui-form-text">
 						            <label class="layui-form-label">默认值</label>
 						            <div class="layui-input-block">
@@ -229,6 +245,49 @@
 			    		}
 			         
 			    });
+				 
+				 
+			  //监听checkbox复选
+			    form.on('checkbox(checkboxchange)', function(data){
+//				  console.log(data.elem); //得到checkbox原始DOM对象
+//				  console.log(data.elem.checked); //是否被选中，true或者false
+//				  console.log(data.value); //复选框value值，也可以通过data.elem.value得到
+//				  console.log(data.othis); //得到美化后的DOM对象
+				  var filedid = $("#"+data.elem.id).data('filedname');
+				  var classname = $("#"+data.elem.id).attr('class');
+				  console.log(classname);
+				   
+				  
+				  var temp_val="";
+			      $("."+classname).each(function(){
+                    if ($(this).is(":checked")) {
+			            if(temp_val=="")
+			                {
+                              temp_val=$(this).val();
+                            }else
+			                {
+                             temp_val=temp_val+","+$(this).val();
+                            }
+                        //alert($(this).val());
+                    }
+                   
+                  });
+			    
+			      
+			      $("."+classname).each(function(){
+	                    
+	                  //点击全部事件
+	                    if($(this).is(":checked") && $(this).val()=="all" )
+	                    	{
+	                    	temp_val="all";
+	                    	}
+	              });
+			      
+			      
+			      $("#"+filedid).val(temp_val); 
+				  
+				}); 
+			  
 
 				/* 监听提交 */
 				form.on('submit(save)', function(data) {

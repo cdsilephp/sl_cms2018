@@ -49,6 +49,8 @@ class filedController extends baseController
         $filed_id = $this->common->Get('id');
         $filedModel = new filedModel();
         $filed = $filedModel->findOne($filed_id);
+        //处理权限字段
+        $filed['u17'] = explode(",", $filed['u17']);
         $filedshowtypeList = $filedModel->getallfiledShowType();
         
         if(empty($filed))
