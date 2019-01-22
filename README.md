@@ -25,6 +25,8 @@ LogChannel('sql')->info(); waring() error();   # LogChannel 通道的意识。�
 $paramid = config('kecheng.param_id','front'); #读配置 多维数组 用.的形式取; 第二个参数 为模块名称
 returnSuccess($data, $msg='success',$code=0)
 returnFail($data, $msg='fail',$code=1) 
+encrypt($data,'id',$this->common) # 加密   第一个参数 为数据源， 第一个参数可以 （array ,string）,第三个参数为 comm类的实例化对象； 
+
 ```
 
 
