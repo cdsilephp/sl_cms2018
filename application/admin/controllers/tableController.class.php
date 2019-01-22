@@ -122,6 +122,7 @@ class tableController extends baseController{
 	    //1.收集表单数据
 	    $data=$tableModel->getFieldArray();
 	    $data['u4'] = empty($data['u4'])?"off":"on";
+	    $data['u11'] = empty($data['u11'])?"off":"on";
 	    $data['u1']=$GLOBALS['config_db']['prefix'].$data['u1'];
 	    $data['u10'] = $data['u10']=="" ?0:$data['u10'];
 	    
@@ -160,6 +161,7 @@ class tableController extends baseController{
 	    //1.收集表单数据
 	    $data=$tableModel->getFieldArray();
 	    $data['u4'] = empty($data['u4'])?"off":"on";
+	    $data['u11'] = empty($data['u11'])?"off":"on";
 	    $data['u10'] = $data['u10']=="" ?0:$data['u10'];
 	    
 	   

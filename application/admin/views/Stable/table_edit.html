@@ -78,6 +78,26 @@
 										</div>
 							  </div>
 							  
+							  
+							  <div class="layui-form-item">
+									<label class="layui-form-label">接口访问</label>
+									<div class="layui-input-block">
+										
+										<?php if($table['u11']=="on" ){?>
+													
+											<input type="checkbox" checked="" name="u11" lay-skin="switch"  lay-text="ON|OFF">
+											<div class="layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch"><em>ON</em><i></i></div>
+									
+										<?php }else{?>
+											
+											<input type="checkbox"  name="u11" lay-skin="switch" lay-text="ON|OFF">
+											<div class="layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch"><em>OFF</em><i></i></div>
+									
+										<?php } ?>
+										
+									</div>
+							  </div>
+							  
 							  <div class="layui-form-item">
 									<label class="layui-form-label">默认设置</label>
 									<div class="layui-input-block">
