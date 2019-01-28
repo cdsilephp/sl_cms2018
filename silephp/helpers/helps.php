@@ -43,6 +43,7 @@ if (!function_exists('config')) {
 if(!function_exists("returnSuccess")) {
 
     function returnSuccess($data, $msg='success',$code=0) {
+        header('Access-Control-Allow-Origin:*');
         header('content-type:application/json;charset=utf-8');
         $arr = [
             'data' => $data,
