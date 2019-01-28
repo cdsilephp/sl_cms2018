@@ -606,6 +606,7 @@ class Common
         $data = base64_decode($data);
         $len = strlen($data);
         $l = strlen($key);
+        $char="";
         for ($i = 0; $i < $len; $i ++) {
             if ($x == $l) {
                 $x = 0;
@@ -613,6 +614,7 @@ class Common
             $char .= substr($key, $x, 1);
             $x ++;
         }
+        $str="";
         for ($i = 0; $i < $len; $i ++) {
             if (ord(substr($data, $i, 1)) < ord(substr($char, $i, 1))) {
                 $str .= chr((ord(substr($data, $i, 1)) + 256) - ord(substr($char, $i, 1)));
@@ -1121,6 +1123,38 @@ class Common
             {
                 $config_name = "config_".str_replace(substr($filename, -11),"",$filename);
                 $GLOBALS[$config_name] =include $v;
+            }
+            
+            
+        }
+        
+    }
+    
+    
+    /**
+    
+    * 加载一个文件夹下的*Function.class.php 文件
+    
+    * @date: 2019年1月28日 下午2:24:06
+    
+    * @author: 龚华尧
+    
+    * @param: variable
+    
+    * @return:
+    
+    */
+    public function autoload_func($conf_dir="")
+    {
+        
+        $dir_conf = $this->getFileNameByDir($conf_dir);
+        foreach ($dir_conf as $k=>$v)
+        {
+            $filename = basename($v); // $base is "php.ini"
+            if(substr($filename, -18)=="Function.class.php")
+            {
+                require_once $v;
+                 
             }
             
             
