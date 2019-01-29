@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : utf-8
 
- Date: 11/24/2018 02:20:07 AM
+ Date: 01/29/2019 14:50:09 PM
 */
 
 SET NAMES utf8;
@@ -48,7 +48,7 @@ CREATE TABLE `sl_admin` (
 --  Records of `sl_admin`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sl_admin` VALUES ('23', 'cdsile', '01ac3d95a020811609ceef9ed8336e2e', 'wahson-gong@outlook.com', '思乐管理员', '', '1', '', '0', '2018-11-24 01:19:29', '::1', '0', '1509730011', '0', 'public/uploads/20180702/201807021343565b39bb9c7397a.png', '1', '0', '0');
+INSERT INTO `sl_admin` VALUES ('23', 'cdsile', '01ac3d95a020811609ceef9ed8336e2e', 'wahson-gong@outlook.com', '思乐管理员', '', '1', '', '0', '2019-01-28 02:30:14', '127.0.0.1', '0', '1509730011', '0', 'public/uploads/20180702/201807021343565b39bb9c7397a.png', '1', '0', '0');
 COMMIT;
 
 -- ----------------------------
@@ -57,17 +57,13 @@ COMMIT;
 DROP TABLE IF EXISTS `sl_ceshi`;
 CREATE TABLE `sl_ceshi` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `dtime` datetime DEFAULT NULL COMMENT '添加时间',
-  `biaoti` char(100) NOT NULL COMMENT '标题',
+  `dtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '添加时间',
+  `xingming` char(100) DEFAULT NULL COMMENT '姓名',
+  `test` char(100) NOT NULL COMMENT 'test',
+  `test2` char(100) NOT NULL COMMENT 'test2',
+  `test3` char(100) NOT NULL COMMENT 'test3',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='sl_ceshi模型主表';
-
--- ----------------------------
---  Records of `sl_ceshi`
--- ----------------------------
-BEGIN;
-INSERT INTO `sl_ceshi` VALUES ('1', '2018-11-10 00:00:00', '123'), ('2', '2018-11-24 01:51:25', '321');
-COMMIT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='sl_ceshi模型主表';
 
 -- ----------------------------
 --  Table structure for `sl_filed`
@@ -89,17 +85,18 @@ CREATE TABLE `sl_filed` (
   `u11` char(50) DEFAULT '否' COMMENT '是否排序',
   `u12` char(50) DEFAULT 'left' COMMENT '所在位置',
   `u13` char(50) DEFAULT '' COMMENT '点击事件',
-  `u14` varchar(250) DEFAULT NULL COMMENT '正则严重规则',
-  `u15` varchar(250) DEFAULT '文章设置' COMMENT '字段显示分类',
+  `u14` varchar(250) DEFAULT NULL COMMENT '正则验证规则',
+  `u15` varchar(250) DEFAULT '基础参数' COMMENT '字段显示分类',
   `u16` char(50) DEFAULT '是' COMMENT '是否导出',
+  `u17` char(50) DEFAULT 'all' COMMENT '全局接口访问权限（all,add,edit,del,search）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 --  Records of `sl_filed`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sl_filed` VALUES ('10', '3', 'dtime', '添加时间', '', '否', '是', '是', '时间框', 'CURRENT_TIMESTAMP', '180', '2', '是', 'left', '', '无', '文章设置', '是'), ('11', '3', 'biaoti', '标题', '123', '是', '是', '是', '文本框', '', '120', '0', '否', '', '', '无', '文章设置', '是'), ('12', '4', 'goods_number', '编号', '', '是', '是', '是', '编号', '', '80', '2', '是', 'left', '', '无', '文章设置', '是'), ('13', '4', 'biaoti', '标题', '', '是', '是', '是', '文本框', '', '120', '3', '是', 'left', '', '无', '文章设置', '是'), ('14', '4', 'goods_parameter', '商品规格', '', '否', '否', '否', '商品规格', '355', '80', '4', '否', 'left', '', '无', '文章设置', '是'), ('15', '4', 'goods_price', '商品价格', '', '否', '否', '否', '商品价格', '0', '80', '5', '否', 'left', '', null, '文章设置', '是'), ('16', '4', 'paixu', '排序', '', '否', '否', '否', '数字', '1', '80', '6', '否', 'left', '', null, '文章设置', '是'), ('17', '4', 'dtime', '添加时间', '', '否', '否', '否', '时间框', 'CURRENT_TIMESTAMP', '80', '7', '否', 'left', '', null, '文章设置', '是');
+INSERT INTO `sl_filed` VALUES ('21', '8', 'dtime', '添加时间', '', '否', '否', '否', '时间框', 'CURRENT_TIMESTAMP', '80', '2', '否', 'left', '', null, '基础参数', '是', 'all'), ('22', '8', 'xingming', '姓名', '', '否', '是', '否', '文本框', '', '80', '0', '否', '', '', '无', '基础参数', '是', 'all'), ('23', '8', 'test', 'test', '', '是', '是', '否', '文本框', '', '80', '0', '否', '', '', '无', '基础参数', '是', 'all'), ('24', '8', 'test2', 'test2', '', '是', '是', '否', '文本框', '', '80', '0', '否', '', '', '无', '基础参数', '是', 'edit'), ('25', '8', 'test3', 'test3', '', '是', '是', '否', '文本框', '', '80', '0', '否', '', '', '无', '基础参数', '是', '');
 COMMIT;
 
 -- ----------------------------
@@ -196,13 +193,13 @@ CREATE TABLE `sl_log` (
   `yonghuming` char(100) DEFAULT NULL,
   `sql` text COMMENT '执行的sql语句',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 --  Records of `sl_log`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sl_log` VALUES ('1', 'cdsile', 'cdsile:登录成功,操作页面:danfeini/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=xpff', '::1', '管理员登录', '2018-11-06 15:31:24', null, null), ('2', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=m5pd', '::1', '管理员登录', '2018-11-06 17:33:10', null, null), ('3', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=9xbw', '::1', '管理员登录', '2018-11-14 23:35:37', null, null), ('4', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=fncg', '::1', '管理员登录', '2018-11-15 00:10:10', null, null), ('5', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=6xrv', '::1', '管理员登录', '2018-11-16 15:40:27', null, null), ('6', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=atsc', '::1', '管理员登录', '2018-11-16 15:44:37', null, null), ('7', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=2sed', '::1', '管理员登录', '2018-11-17 16:57:35', null, null), ('8', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=nawp', '::1', '管理员登录', '2018-11-18 02:53:07', null, null), ('9', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=d69b', '::1', '管理员登录', '2018-11-23 22:51:23', null, null), ('10', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=7pfc', '::1', '管理员登录', '2018-11-24 01:18:53', null, null), ('11', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=cta3', '::1', '管理员登录', '2018-11-24 01:19:29', null, null);
+INSERT INTO `sl_log` VALUES ('1', 'cdsile', 'cdsile:登录成功,操作页面:danfeini/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=xpff', '::1', '管理员登录', '2018-11-06 15:31:24', null, null), ('2', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=m5pd', '::1', '管理员登录', '2018-11-06 17:33:10', null, null), ('3', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=9xbw', '::1', '管理员登录', '2018-11-14 23:35:37', null, null), ('4', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=fncg', '::1', '管理员登录', '2018-11-15 00:10:10', null, null), ('5', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=6xrv', '::1', '管理员登录', '2018-11-16 15:40:27', null, null), ('6', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=atsc', '::1', '管理员登录', '2018-11-16 15:44:37', null, null), ('7', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=2sed', '::1', '管理员登录', '2018-11-17 16:57:35', null, null), ('8', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=nawp', '::1', '管理员登录', '2018-11-18 02:53:07', null, null), ('9', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=d69b', '::1', '管理员登录', '2018-11-23 22:51:23', null, null), ('10', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=7pfc', '::1', '管理员登录', '2018-11-24 01:18:53', null, null), ('11', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin&amp;amp;username=cdsile&amp;amp;password=cdsile&amp;amp;vercode=cta3', '::1', '管理员登录', '2018-11-24 01:19:29', null, null), ('12', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin', '127.0.0.1', '管理员登录', '2019-01-22 17:21:52', null, null), ('13', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin', '127.0.0.1', '管理员登录', '2019-01-28 14:16:00', null, null), ('14', 'cdsile', 'cdsile:登录成功,操作页面:cms/index.php?route=admin/login/signin', '127.0.0.1', '管理员登录', '2019-01-28 14:30:14', null, null);
 COMMIT;
 
 -- ----------------------------
@@ -275,23 +272,8 @@ CREATE TABLE `sl_parameter` (
 --  Records of `sl_parameter`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sl_parameter` VALUES ('1', '0', '模型类型', ' ', ' ', '0'), ('2', '1', '表单模型', 'autotable|Sautotable', '', '0'), ('3', '1', '文章模型', 'article|Sarticle', ' ', '0'), ('4', '0', '字段类型', ' ', ' ', '0'), ('6', '4', '文本框', 'char', ' ', '0'), ('7', '4', '文本编辑器', 'mediumtext', ' ', '0'), ('8', '4', '文本域', 'varchar', ' ', '0'), ('9', '4', '时间框', 'timestamp', ' ', '0'), ('10', '4', '单选', 'varchar', ' ', '0'), ('11', '4', '多选', 'varchar', ' ', '0'), ('12', '4', '图片', 'varchar', ' ', '0'), ('13', '4', '组图', 'text', ' ', '0'), ('14', '4', '数字', 'int', ' ', '0'), ('15', '4', '文件', 'varchar', ' ', '0'), ('16', '4', '密码', ' ', ' ', '0'), ('18', '1', '用户模型', 'user|Suser', ' ', '0'), ('58', '4', '联动', ' varchar', ' ', '0'), ('61', '0', '状态', ' ', ' ', '0'), ('62', '61', '待审', ' ', ' ', '0'), ('63', '61', '终审', ' ', ' ', '0'), ('64', '61', '回收站', ' ', ' ', '0'), ('209', '208', 'web_url', 'http://fhj.cdweni.com', ' ', '0'), ('242', '4', '下拉框', ' ', ' ', '0'), ('243', '4', '金额', 'double', ' ', '0'), ('252', '4', '多条记录', ' ', ' ', '0'), ('254', '253', '未支付', ' ', ' ', '0'), ('255', '253', '已支付', ' ', ' ', '0'), ('256', '253', '待发货', ' ', ' ', '0'), ('257', '253', '待收货', ' ', ' ', '0'), ('258', '253', '订单完成', ' ', ' ', '0'), ('259', '253', '退货', ' ', ' ', '0'), ('260', '253', '其他', ' ', ' ', '0'), ('261', '4', '省市县三级联动', ' ', ' ', '0'), ('263', '262', '2018年第1期', ' ', ' ', '1'), ('269', '4', '城市选择器(多选)', ' ', ' ', '0'), ('270', '4', '城市选择器(单选)', ' ', ' ', '0'), ('271', '4', '批量上传', ' ', ' ', '0'), ('324', '4', '单行输入框', '', ' ', '0'), ('325', '0', '字段显示分类', '', ' ', '0'), ('326', '325', '文章设置', '', ' ', '0'), ('327', '325', '文章描述', '', ' ', '2'), ('328', '325', 'SEO设置', '', ' ', '1'), ('329', '325', '基础参数', '', ' ', '3'), ('330', '0', '网站参数', '', ' ', '0'), ('349', '325', '图片设置', '', ' ', '4'), ('354', '1', '分类模型', 'category|Scategory', ' ', '4'), ('355', '4', '商品规格', 'varchar', ' ', '0'), ('356', '1', '商品模型', 'autotable|Sautotable', ' ', '4'), ('357', '4', '编号', 'char', ' ', '0'), ('358', '4', '商品价格', 'char', ' ', '0');
+INSERT INTO `sl_parameter` VALUES ('1', '0', '模型类型', ' ', ' ', '0'), ('2', '1', '表单模型', 'autotable|Sautotable', '', '0'), ('3', '1', '文章模型', 'article|Sarticle', ' ', '0'), ('4', '0', '字段类型', ' ', ' ', '0'), ('6', '4', '文本框', 'char', ' ', '0'), ('7', '4', '文本编辑器', 'mediumtext', ' ', '0'), ('8', '4', '文本域', 'varchar', ' ', '0'), ('9', '4', '时间框', 'timestamp', ' ', '0'), ('10', '4', '单选', 'varchar', ' ', '0'), ('11', '4', '多选', 'varchar', ' ', '0'), ('12', '4', '图片', 'varchar', ' ', '0'), ('13', '4', '组图', 'text', ' ', '0'), ('14', '4', '数字', 'int', ' ', '0'), ('15', '4', '文件', 'varchar', ' ', '0'), ('16', '4', '密码', ' ', ' ', '0'), ('18', '1', '用户模型', 'user|Suser', ' ', '0'), ('58', '4', '联动', ' varchar', ' ', '0'), ('61', '0', '状态', ' ', ' ', '0'), ('62', '61', '待审', ' ', ' ', '0'), ('63', '61', '终审', ' ', ' ', '0'), ('64', '61', '回收站', ' ', ' ', '0'), ('209', '208', 'web_url', 'http://fhj.cdweni.com', ' ', '0'), ('242', '4', '下拉框', ' ', ' ', '0'), ('243', '4', '金额', 'double', ' ', '0'), ('252', '4', '多条记录', ' ', ' ', '0'), ('254', '253', '未支付', ' ', ' ', '0'), ('255', '253', '已支付', ' ', ' ', '0'), ('256', '253', '待发货', ' ', ' ', '0'), ('257', '253', '待收货', ' ', ' ', '0'), ('258', '253', '订单完成', ' ', ' ', '0'), ('259', '253', '退货', ' ', ' ', '0'), ('260', '253', '其他', ' ', ' ', '0'), ('261', '4', '省市县三级联动', ' ', ' ', '0'), ('263', '262', '2018年第1期', ' ', ' ', '1'), ('269', '4', '城市选择器(多选)', ' ', ' ', '0'), ('270', '4', '城市选择器(单选)', ' ', ' ', '0'), ('271', '4', '批量上传', ' ', ' ', '0'), ('324', '4', '单行输入框', '', ' ', '0'), ('325', '0', '字段显示分类', '', ' ', '0'), ('326', '325', '文章设置', '', ' ', '3'), ('327', '325', '文章描述', '', ' ', '2'), ('328', '325', 'SEO设置', '', ' ', '1'), ('329', '325', '基础参数', '', ' ', '0'), ('330', '0', '网站参数', '', ' ', '0'), ('349', '325', '图片设置', '', ' ', '4'), ('354', '1', '分类模型', 'category|Scategory', ' ', '4'), ('355', '4', '商品规格', 'varchar', ' ', '0'), ('356', '1', '商品模型', 'autotable|Sautotable', ' ', '4'), ('357', '4', '编号', 'char', ' ', '0'), ('358', '4', '商品价格', 'char', ' ', '0');
 COMMIT;
-
--- ----------------------------
---  Table structure for `sl_shangpin`
--- ----------------------------
-DROP TABLE IF EXISTS `sl_shangpin`;
-CREATE TABLE `sl_shangpin` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `goods_number` varchar(250) NOT NULL COMMENT '编号',
-  `biaoti` char(100) NOT NULL COMMENT '标题',
-  `goods_parameter` varchar(250) DEFAULT NULL COMMENT '商品规格',
-  `goods_price` char(100) DEFAULT '0' COMMENT '商品价格',
-  `paixu` int(10) unsigned DEFAULT '1' COMMENT '排序',
-  `dtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '添加时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='sl_shangpin模型主表';
 
 -- ----------------------------
 --  Table structure for `sl_smslog`
@@ -330,13 +312,13 @@ CREATE TABLE `sl_sort` (
   `u8` varchar(250) CHARACTER SET utf8 DEFAULT NULL COMMENT 'seo描述',
   `u9` varchar(250) DEFAULT '' COMMENT '栏目英文名',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=323 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=294 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 --  Records of `sl_sort`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sl_sort` VALUES ('1', '0', '网站栏目', ' ', ' ', '0', '/', null, null, null, ''), ('282', '1', '首页', ' ', ' ', '0', '/', null, null, null, ''), ('283', '1', 'VR体验', ' ', ' ', '1', '/vrtiyan', 'VR体验', 'VR体验', 'VR体验', ''), ('284', '1', '设计师', ' ', ' ', '2', '/shejishi', '', '', '', ''), ('285', '1', '产品中心', ' ', ' ', '3', '/chanpinzhongxin', '', '', '', ''), ('286', '1', '定制4.0', ' ', ' ', '4', '/dingzhi', '', '', '', ''), ('287', '1', '招商加盟', ' ', ' ', '5', '/zhaoshangjiameng', '', '', '', ''), ('288', '1', '品牌介绍', ' ', ' ', '6', '/pinpaijieshao', '', '', '', ''), ('289', '1', '客户服务', ' ', ' ', '7', '/kehufuwu/bangzu', '', '', '', ''), ('290', '1', '新闻资讯', ' ', ' ', '8', '/xinwenzixun', '', '', '', ''), ('291', '1', '联系我们', ' ', ' ', '9', '/lianxiwomen', '', '', '', ''), ('292', '285', '黛薇系列', ' ', ' ', '0', '/chanpinzhongxin', '', '', '', ''), ('293', '285', '都市系列', ' ', ' ', '1', '/chanpinzhongxin', '', '', '', ''), ('294', '285', '龙达小镇', ' ', ' ', '3', '/chanpinzhongxin', '', '', '', ''), ('295', '285', '菲尼小屋', ' ', ' ', '2', '/chanpinzhongxin', '', '', '', ''), ('296', '285', '北卡罗纳', ' ', ' ', '0', '/chanpinzhongxin', '', '', '', ''), ('297', '286', '卧室', ' ', ' ', '0', '/dingzhi', '', '', '', ''), ('298', '286', '书房', ' ', ' ', '1', '/dingzhi', '', '', '', ''), ('299', '286', '青少年房', ' ', ' ', '2', '/dingzhi', '', '', '', ''), ('300', '286', '客厅', ' ', ' ', '3', '/dingzhi', '', '', '', ''), ('301', '286', '餐厅', ' ', ' ', '4', '/dingzhi', '', '', '', ''), ('302', '287', '加盟优势', ' ', ' ', '4', '/zhaoshangjiameng', '', '', '', ''), ('303', '287', '加盟政策', ' ', ' ', '1', '/zhaoshangjiameng', '', '', '', ''), ('304', '287', '加盟流程', ' ', ' ', '2', '/zhaoshangjiameng', '', '', '', ''), ('305', '287', '加盟条件', ' ', ' ', '3', '/zhaoshangjiameng', '', '', '', ''), ('306', '287', '加盟动态', ' ', ' ', '0', '/zhaoshangjiameng', '', '', '', ''), ('307', '288', '企业文化', ' ', ' ', '0', '/pinpaijieshao', '', '', '', ''), ('308', '288', '企业介绍', ' ', ' ', '1', '/pinpaijieshao', '', '', '', ''), ('309', '288', '品牌历程', ' ', ' ', '2', '/pinpaijieshao/licheng', '', '', '', ''), ('310', '288', '荣耀资质', ' ', ' ', '3', '/pinpaijieshao/rongyu', '', '', '', ''), ('311', '288', '合作伙伴', ' ', ' ', '4', '/pinpaijieshao/huoban', '', '', '', ''), ('313', '289', '帮助中心', ' ', ' ', '1', '/kehufuwu/bangzu', '', '', '', ''), ('314', '289', '订单查询', ' ', ' ', '2', 'http://www.kuaidi100.com/?from=openv', '', '', '', ''), ('315', '289', '售后服务', ' ', ' ', '3', '/kehufuwu/shouhou', '', '', '', ''), ('316', '289', '投诉建议', ' ', ' ', '4', '/kehufuwu/tousu', '', '', '', ''), ('317', '291', '在线咨询', ' ', ' ', '0', '/lianxiwomen', '', '', '', ''), ('319', '291', '申请加盟', '', ' ', '2', '/kehufuwu/shouhou#liuyan', '', '', '', ''), ('320', '290', '定制攻略', ' ', ' ', '0', '/xinwenzixun', '', '', '', ''), ('321', '290', '行业新闻', ' ', ' ', '1', '/xinwenzixun', '', '', '', ''), ('322', '290', '企业动态', ' ', ' ', '2', '/xinwenzixun', '', '', '', '');
+INSERT INTO `sl_sort` VALUES ('1', '0', '网站栏目', ' ', ' ', '0', '/', null, null, null, ''), ('282', '1', '首页', ' ', ' ', '0', '/', null, null, null, ''), ('283', '1', 'VR体验', ' ', ' ', '1', '/vrtiyan', 'VR体验', 'VR体验', 'VR体验', ''), ('284', '1', '设计师', ' ', ' ', '2', '/shejishi', '', '', '', ''), ('285', '1', '产品中心', ' ', ' ', '3', '/chanpinzhongxin', '', '', '', ''), ('286', '1', '定制4.0', ' ', ' ', '4', '/dingzhi', '', '', '', ''), ('292', '285', '黛薇系列', ' ', ' ', '0', '/chanpinzhongxin', '', '', '', ''), ('293', '285', '都市系列', ' ', ' ', '1', '/chanpinzhongxin', '', '', '', '');
 COMMIT;
 
 -- ----------------------------
@@ -355,14 +337,15 @@ CREATE TABLE `sl_table` (
   `u8` varchar(250) CHARACTER SET utf8 DEFAULT 'autotable' COMMENT '自定义控制器',
   `u9` varchar(250) CHARACTER SET utf8 DEFAULT 'Sautotable' COMMENT '自定义试图文件夹',
   `u10` int(10) DEFAULT '0' COMMENT '所属栏目ID',
+  `u11` char(10) DEFAULT 'off' COMMENT '是否启用接口 on 开启，off 开启',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 --  Records of `sl_table`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sl_table` VALUES ('3', 'sl_ceshi', '测试', '表单模型', 'on', ' ', '/', 'on', 'autotable', 'Sautotable', '0'), ('4', 'sl_shangpin', '商品', '商品模型', 'on', ' ', '/', 'on', 'autotable', 'Sautotable', '0');
+INSERT INTO `sl_table` VALUES ('8', 'sl_ceshi', '测试', '表单模型', 'on', ' ', '/', 'on', 'autotable', 'Sautotable', '0', 'on');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
