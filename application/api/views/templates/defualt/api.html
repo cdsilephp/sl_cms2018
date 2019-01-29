@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+			<script src="./jquery-1.11.2.min.js" type="text/javascript"></script>
+			<script src="./jquery.md5.js" type="text/javascript"></script>
+			<script src="./api.js" type="text/javascript"></script>
+			
+		<title></title>
+		<style type="text/css">
+			table{
+				width: 100%;
+				border-collapse: collapse;
+			}
+			table td{
+				border: 1px solid #ddd;
+				padding: 8px 12px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div style="width: 800px;margin: 50px auto;">
+		   <table>
+		   	<tr>
+		   		<td width="130">方式</td>
+		   		<td>get</td>
+		   	</tr>
+		   	<tr>
+		   		<td>url</td>
+		   		<td>/appsearch.aspx?t=jiaoshiguanli&type=search&print=sql</td>
+		   	</tr>
+		   	<tr>
+		   		<td>未加密内容</td>
+		   		<td id="get_before"></td>
+		   	</tr>
+		   	<tr>
+		   		<td>加密内容（签名）</td>
+		   		<td id="get"></td>
+		   	</tr>
+		   	<tr>
+		   		<td>js函数</td>
+		   		<td>
+		   			getUrlSign_nomd5(url); //获取未加密签名<br />
+		   			getUrlSign(url); //获取加密签名
+		   		</td>
+		   	</tr>
+		   </table>
+		   <br /><br />
+		   
+		   
+		   <table>
+		   	<tr>
+		   		<td width="130">方式</td>
+		   		<td>post</td>
+		   	</tr>
+		   	<tr>
+		   		<td>url</td>
+		   		<td>/appsearch.aspx?t=jiaoshiguanli&type=search&print=sql</td>
+		   	</tr>
+		   	<tr>
+		   		<td>表单内容</td>
+		   		<td>
+		   			<form class="form">
+						<input name="name" value="lisa"/>
+						<input name="age" value="12"/>
+					</form>
+		   		</td>
+		   	</tr>
+		   	<tr>
+		   		<td>未加密内容</td>
+		   		<td id="post_before"></td>
+		   	</tr>
+		   	<tr>
+		   		<td>加密内容（签名）</td>
+		   		<td id="post"></td>
+		   	</tr>
+		   	<tr>
+		   		<td>js函数</td>
+		   		<td>
+					var posturl = url + "&" + $(".form").serialize();<br />
+		   			getUrlSign_nomd5(posturl); //获取未加密签名<br />
+		   			getUrlSign(posturl); //获取加密签名
+		   		</td>
+		   	</tr>
+		   </table>
+		   
+		
+		</div>
+		<script type="text/javascript">
+			
+			//getUrlSign_nomd5(url);获取未加密签名
+			//getUrlSign(url);获取加密签名
+			
+			
+			var url = '?t=jiaoshiguanli&type=search&print=sql';
+			var formData = $(".form").serialize();
+			var posturl = url + "&" + formData;
+			console.log(posturl);
+			$("#get_before").html(getUrlSign_nomd5(url));
+			$("#get").html(getUrlSign(url));
+			
+			$("#post_before").html(getUrlSign_nomd5(posturl));
+			$("#post").html(getUrlSign(posturl));
+		</script>
+	</body>
+</html>

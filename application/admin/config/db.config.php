@@ -3,7 +3,7 @@
 
 	'host'=>'127.0.0.1',
 	'user'=>'root',
-	'password'=>'root',
+	'password'=>'123456',
 	'dbname'=>'sl_cms',
 	'charset'=>'utf8',
 	'prefix'=>'sl_',

@@ -21,23 +21,47 @@ class indexController extends baseController {
 	
 	*/
 	public function searchAction(){
-	    //验证签名开始
-	    $token = $this->common->Requert("token");
-	    $sign= $this->common->Requert("sign");
-	    $check_tokendata = checktoken($token);
-	    if(!$check_tokendata['status']){
-	        returnSuccess($check_tokendata['status'], $check_tokendata['msg'] ,$code=2003);
-	    }
-	    
-	    //token验证通过后，验证签名是否正确
+ 	    //接口安全验证开始
+	    $this->apisafefilter();
 
-	    getsign();
-	    $check_signdata = checksign($sign);
-	    if(!$check_signdata['status']){
-	        returnSuccess($check_signdata['status'], $check_signdata['msg'] ,$code=2004);
+	    //处理返回的列名称，用于多表查询
+	    $liemingcheng=$this->LiemingchengFilter($_GET["liemingcheng"]);
+	    //返回条数
+	    $number=$this->NumberFilter($_GET["number"]);
+	    //当前页数
+	    $page=$this->NumberFilter($_GET["page"]);
+	    
+	    // 		   ordertype：排序字段，默认已有ID，如不需要排序请为空
+	    $ordertype=$commonClass->SafeFilterStr($_GET["ordertype"]);
+	    // 		   orderby：排序方式，升序和降序
+	    $orderby=$commonClass->SafeFilterStr($_GET["orderby"]);
+	    // 		   sqlvalue：默认查询方式,如果有多个用逗号分隔，“|”会替换成=号
+	    $sqlvalue=$this->SqlvalueFilter($_GET["sqlvalue"]);
+	    
+	    
+	    //拼接为sql语句
+	    $_sql=$this->getSql($t,$liemingcheng,$number,$page,$ordertype,$orderby,$sqlvalue);
+	    if($print=="yes")
+	    {
+	        echo $_sql;
+	        die();
+	    }
+	    $temp_model = new Model("moxing");
+	    $temp_arr=$temp_model->select($_sql);
+	    //单独处理时间的格式
+	    foreach ($temp_arr as $k=>$v)
+	    {
+	        if($temp_arr[$k]["dtime"]!=null)
+	        {
+	            $temp_arr[$k]["dtime"]=$commonClass->formatTime($v["dtime"]);
+	            $temp_arr[$k]["dtime1"]=$v["dtime"];
+	        }
+	        
+	        //echo $temp_arr[$k]["dtime"];
 	    }
 	    
-	    //验证签名结束
+	    $rdata['msg']=json_encode($temp_arr);
+	   
 	    
 	}
 	
