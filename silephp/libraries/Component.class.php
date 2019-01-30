@@ -2,6 +2,13 @@
 
 class Component
 {
+    public $common;
+    
+    
+    public function __construct()
+    {
+        $this->common = new Common();
+    }
     
     /*
      * 加载自定义控件方法
@@ -749,13 +756,65 @@ class Component
         {
             return  html_entity_decode($selectValue) ;
             
-        } else  {
+        } 
+        else  {
             
             return $selectValue;
         }
         
     }
     
+    
+    /*
+     * 显示自定义控件内容方法
+     * $kjName        $v['u2']
+     * $filedName     $v['u1']
+     * $selectValue   $wenzhang[$v['u1']]
+     * $tipString     $v['u3']
+     * $filedId
+     * */
+    public function showvalueKj($type,$kjName,$filedName,$selectValue,$tipString,$filedId){
+        if($type=="单选" ||$type=="多选"||$type=="下拉框")
+        {
+            $filedModel1=new filedModel();
+            $filedVal=$filedModel1->getFiledDefaultValue($filedId);
+            
+            //var_dump($filedVal);die();
+            $selectedStr = "";
+            foreach ($filedVal as $k=>$v){
+                if($selectValue==$v["key"])
+                {
+                    if($selectedStr==""){
+                        $selectedStr=$v["value"];
+                    }else{
+                        $selectedStr = $selectedStr.",".$v["value"];
+                    }
+                    
+                }
+                
+            }
+            return $selectedStr;
+            
+        }else if($type=="文本编辑器")
+        {
+            return  html_entity_decode($selectValue) ;
+            
+        }else if($type=="文本域")
+        {
+            return  html_entity_decode($selectValue) ;
+            
+        }else if($type=="组图")
+        {
+            
+            $filedVal=$this->common->zutuStr2Array($selectValue);
+            return $filedVal;
+        }
+        else  {
+            
+            return $selectValue;
+        }
+        
+    }
     
     
     /*
