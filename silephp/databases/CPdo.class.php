@@ -2,46 +2,46 @@
 
 class CPdo
 {
-
+    
     protected $_dsn = "";
-
+    
     protected $_name = "";
-
+    
     protected $_pass = "";
-
+    
     protected $_condition = array();
-
+    
     protected $pdo;
-
+    
     protected $fetchAll;
-
+    
     protected $query;
-
+    
     protected $result;
-
+    
     protected $num;
-
+    
     protected $mode;
-
+    
     protected $prepare;
-
+    
     protected $row;
-
+    
     protected $fetchAction;
-
+    
     protected $beginTransaction;
-
+    
     protected $rollback;
-
+    
     protected $commit;
-
+    
     protected $char;
-
+    
     private static $get_mode;
-
+    
     private static $get_fetch_action;
     private static $_instance;    //保存类实例的私有静态成员变量
-
+    
     /**
      * pdo construct
      */
@@ -69,7 +69,7 @@ class CPdo
         
         $this->setChars($charset);
     }
-
+    
     
     /**
      * 获取实例化对象
@@ -108,11 +108,11 @@ class CPdo
             $e->MysqlConnectException();
         }
         
-//         catch (Exception $e) {
-//             return $this->setExceptionError("11111111".$e->getMessage(), $e->getline, $e->getFile);
-//         }
+        //         catch (Exception $e) {
+        //             return $this->setExceptionError("11111111".$e->getMessage(), $e->getline, $e->getFile);
+        //         }
     }
-
+    
     /**
      * self sql get value action
      */
@@ -123,7 +123,7 @@ class CPdo
         $this->AllValue = $this->result->fetchAll();
         return $this->AllValue;
     }
-
+    
     /**
      * select condition can query
      */
@@ -135,9 +135,9 @@ class CPdo
         $this->query = $this->base_query($sql);
         $this->query->setFetchMode($this->fetchAction);
         return $this->query;
-
+        
     }
-
+    
     /**
      * get mode action
      */
@@ -156,7 +156,7 @@ class CPdo
         }
         return self::$get_mode;
     }
-
+    
     /**
      * fetch value action
      */
@@ -181,7 +181,7 @@ class CPdo
         }
         return self::$get_fetch_action;
     }
-
+    
     /**
      * get total num action
      */
@@ -191,7 +191,7 @@ class CPdo
         $this->num = $this->result->rowCount();
         return $this->num;
     }
-
+    
     /*
      * simple query and easy query action
      */
@@ -240,7 +240,7 @@ class CPdo
         $this->result = $this->getValueBySelfCreateSql($sql, $fetchAction, $params);
         return $this->result;
     }
-
+    
     /**
      * execute delete update insert and so on action
      */
@@ -261,7 +261,7 @@ class CPdo
         } catch (MyException $e) {
             $e->SQLException($sql);
         }
-       
+        
     }
     
     /**
@@ -284,12 +284,12 @@ class CPdo
     
     
     /**
-	 * 获取上一步insert操作产生的id
-	 */
-	public function getInsertId(){
-		return $this->pdo->lastInsertId();
-	}
-
+     * 获取上一步insert操作产生的id
+     */
+    public function getInsertId(){
+        return $this->pdo->lastInsertId();
+    }
+    
     /**
      * prepare action
      */
@@ -302,7 +302,7 @@ class CPdo
             return $this->row;
         }
     }
-
+    
     /**
      * USE transaction
      */
@@ -316,7 +316,7 @@ class CPdo
             $this->rollback();
         }
     }
-
+    
     /**
      * start transaction
      */
@@ -325,7 +325,7 @@ class CPdo
         $this->beginTransaction = $this->pdo->beginTransaction();
         return $this->beginTransaction;
     }
-
+    
     /**
      * commit transaction
      */
@@ -334,7 +334,7 @@ class CPdo
         $this->commit = $this->pdo->commit();
         return $this->commit;
     }
-
+    
     /**
      * rollback transaction
      */
@@ -343,7 +343,7 @@ class CPdo
         $this->rollback = $this->pdo->rollback();
         return $this->rollback;
     }
-
+    
     /**
      * base query
      */
@@ -368,7 +368,7 @@ class CPdo
         
         
     }
-
+    
     /**
      * set chars
      */
@@ -377,7 +377,7 @@ class CPdo
         $this->char = $this->pdo->query("SET NAMES '{$charest}'");
         return $this->char;
     }
-
+    
     /**
      * process sucessful action
      */
@@ -385,7 +385,7 @@ class CPdo
     {
         return "The " . $params . " action is successful";
     }
-
+    
     /**
      * process fail action
      */
@@ -393,7 +393,7 @@ class CPdo
     {
         return "The " . $params . " action is fail";
     }
-
+    
     /**
      * process exception action
      */
@@ -456,12 +456,28 @@ class CPdo
     {
         $sql = "select " . $column . " from `" . $table . "` ";
         $where = "";
-        if ($condition != null) {
-            foreach ($condition as $key => $value) {
-                $where .= "$key = '$value' and ";
+        if ($condition != null && is_array($condition)) {
+            foreach ($condition as $k => $value) {
+                //$value = addslashes($value);
+                if($k=="condition_str")
+                {
+                    $where.= $value."  AND ";
+                }else if(!strpos($k,'>') && !strpos($k,'<') && !strpos($k,'=') && substr($value, 0, 1) != '%' && substr($value, -1) != '%'){    //where(array('age'=>'22'))
+                    $where.= $k."= '".$value."' AND ";
+                }else if(substr($value, 0, 1) == '%' || substr($value, -1) == '%'){	//where(array('name'=>'%php%'))
+                    $where.= $k." LIKE '".$value."' AND ";
+                }else{
+                    $where.= $k."'".$value."' AND ";      //where(array('age>'=>'22'))
+                }
+                
+                //$where .= "$key = '$value' and ";
+                
             }
             $sql .= "where $where";
             $sql .= "1 = 1 ";
+        }else if ($condition != null && !is_array($condition)) {
+            
+            $sql .= "where $condition";
         }
         if ($group != "") {
             $sql .= "group by " . $group . " ";
@@ -476,7 +492,7 @@ class CPdo
             $sql .= "limit $startSet,$endSet";
         }
         return $sql;
-         
+        
     }
     
 }
