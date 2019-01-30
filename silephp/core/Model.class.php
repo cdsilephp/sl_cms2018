@@ -33,7 +33,14 @@ class Model
     protected $startSet;
 
     protected $endSet;
-    
+    protected $wherestr;
+
+    // 查询参数
+    protected $options = [];
+    // 当前数据表名称（不含前缀）
+    protected $name = '';
+    // 当前数据表前缀
+    protected $prefix = '';
     
     //查询返回结果
     protected $result = array();
@@ -45,6 +52,7 @@ class Model
         
         // var_dump($dbconfig);die();
         //$this->db = new CPdo(false, $dbconfig);
+
         $this->db = CPdo::getInstance();
         if($table!="")
         {
@@ -88,7 +96,6 @@ class Model
      */
     public function M($table)
     {
-        $table = trim($table); 
         $table = str_replace($GLOBALS['config_db']['prefix'], "", $table);
         $this->table = $GLOBALS['config_db']['prefix'] . $table;
         // 设置主键
@@ -116,7 +123,6 @@ class Model
      */
     public function where($condition )
     {
-        //var_dump($condition);die();
         if ($condition != null && !is_array($condition)) {
             if($this->condition_str=="")
             {
@@ -129,18 +135,53 @@ class Model
             if (count($this->condition) == 0) {
                 $this->condition = $data;
             } else {
-                $this->condition = $this->condition + $data;
+                $this->condition = $this->condition." ". $data;
             }
             
         }else{
+
             if (count($this->condition) == 0) {
                 $this->condition = $condition;
             } else {
-                $this->condition = $this->condition + $condition;
+                $this->condition = $this->condition ." ".$condition;
+
             }
+
         }
-       
+
+        # dongdong 添加
+        $where = $this->wherestr;
+        $type = gettype($condition);
+
+        switch (gettype($condition)) {
+            case 'string':
+                if (strpos($where,'where') === false) {
+                    $where = ' where '.$condition;
+                    $this->wherestr = $where;
+                } else {
+                    $this->wherestr .= ' and '. $condition;
+                }
+                break;
+            case 'array':
+                $wherearr = explode('and', $where);
+                foreach ($condition as $key=>$val) {
+                    $wherearr[] = $key.' = \''.$val.'\'';
+                }
+                if (strpos($where,'where') === false) {
+                    $where = ' where '.$wherearr[0];
+                    unset($wherearr[0]);
+                    $where_dev = implode(' and ', $wherearr);
+                    $this->wherestr = $where.$where_dev ;
+                } else {
+                    $where_dev = implode(' and ', $wherearr);
+                    $this->wherestr = $where_dev ;
+                }
+
+                break;
+        }
+
         
+        //print_r($this) ;die;
         return $this;
     }
     
@@ -191,7 +232,7 @@ class Model
             $this->order = $order;
         }else
         {
-            $this->order =$this->order .",". $order;
+            $this->order = $this->order .",". $order;
         }
        
         return $this;
@@ -234,25 +275,49 @@ class Model
      * 返回所有
      */
     public function all()
-    {      
+    {
         if(count($this->result)==0)
         {
             $result = $this->do_sql();
-        
         }else
         {
             $result=$this->result;
-        
         }
         $this->clearData();
         return $result;
     }
-    
+
+    /**
+     * 返回所有
+     */
+    public function get()
+    {
+        if(count($this->result)==0)
+        {
+            $result = $this->do_getsql();
+
+        }else
+        {
+            $result=$this->result;
+
+        }
+        $this->clearData();
+        return $result;
+    }
+    private function do_getsql()
+    {
+        $where = str_replace('where','', $this->wherestr);
+
+//        echo "\n\rAAA".$this->wherestr."AAA$where \n\r";
+        $result = $this->db->query($this->table, $this->column, $where, $this->group, $this->order, $this->having, $this->startSet, $this->endSet, "assoc",null);
+        return $result;
+    }
     /**
      * 执行查询
      */
     private function do_sql()
     {
+
         $result = $this->db->query($this->table, $this->column, $this->condition, $this->group, $this->order, $this->having, $this->startSet, $this->endSet, "assoc",null);
         return $result;
     }
@@ -265,6 +330,20 @@ class Model
     public function findOne($pk_val)
     {
         $this->condition = [$this->pk => $pk_val];
+        $result = $this->all();
+        if(empty($result))
+            return "";
+        return $result[0];
+    }
+
+
+    /**
+     * 返回字段值
+     * @param $pk_val
+     * @return mixed|string
+     */
+    public function value($pk_val){
+        $this->condition = $pk_val;
         $result = $this->all();
         if(empty($result))
             return "";
@@ -378,13 +457,15 @@ class Model
      *            关联数组
      * @return mixed 成功返回插入的id，失败则返回false
      */
-    public function insert($list)
+    public function insert($list,$type=true)
     {
         //验证和处理
         $this->helper('input');
-        $list= deepspecialchars($list);
-        $list= deepslashes($list);
-        
+        if ($type) {
+            $list= deepspecialchars($list);
+            $list= deepslashes($list);
+        }
+
         $field_list = ''; // 字段列表字符串
         $value_list = ''; // 值列表字符串
         foreach ($list as $k => $v) {
@@ -398,7 +479,7 @@ class Model
         $value_list = rtrim($value_list, ',');
         // 构造sql语句
         $sql = "INSERT INTO `{$this->table}` ({$field_list}) VALUES ($value_list)";
-    
+
         if ($this->db->exec($sql)) {
             // 插入成功,返回最后插入的记录id
             $this->clearData();
@@ -419,13 +500,18 @@ class Model
      *            需要更新的关联数组
      * @return mixed 成功返回受影响的记录行数，失败返回false
      */
-    public function update($list)
+
+    public function update($list,$type=true)
     {
         //验证和处理
         $this->helper('input');
-        $list= deepspecialchars($list);
-        $list= deepslashes($list);
-        
+
+        if ($type) {
+            $list= deepspecialchars($list);
+            $list= deepslashes($list);
+        }
+
+
         $uplist = ''; // 更新列表字符串
         $where = 0; // 更新条件,默认为0
         foreach ($list as $k => $v) {
@@ -731,6 +817,7 @@ class Model
     //清空数据
     public function clearData(){
          $this->condition = array();
+
          $this->condition_str ="";
         
          $this->group="";
@@ -742,6 +829,10 @@ class Model
          $this->startSet="";
         
          $this->endSet="";
+
+         $this->wherestr = '';
+
+         $this->column = '*';
         
     }
     
@@ -802,11 +893,11 @@ class Model
      * 分页获取信息
      *
      * @param $offset int
-     *            偏移量
+     * 偏移量
      * @param $limit int
-     *            每次取记录的条数
+     * 每次取记录的条数
      * @param $where string
-     *            where条件,默认为空
+     * where条件,默认为空
      */
     public function pageRows($offset, $limit, $where = '', $orderby = 'id desc')
     {
@@ -820,5 +911,125 @@ class Model
         
         return $this->db->getValueBySelfCreateSql($sql);
     }
-    
+
+    /**
+     *  批量插入数据
+     * @param $table 表名
+     * @param array $data
+     * @return string
+     */
+    public function addAll(array $data)
+    {
+        $table = $this->table;
+        $clons = $this->db->getColumns($data);
+        $values =$this->db->getValues($data);
+        $sql = "insert into {$table}({$clons})values{$values}";
+        return $this->query($sql);
+    }
+
+    /**
+     * Notice:分页数据
+     * Date: 2018/12/20
+     * Time: 17:15
+     * @author dongdong
+     */
+    public  function paginate($limit=null)
+    {
+        $data =  $this->condition;
+        $where = $this->wherestr;
+
+        $order =  $this->order;
+        $painate = Request::getInstace()->paginate();
+        $offset = ($painate->page - 1) * $painate->limit;
+        $limit = $limit?:$painate->limit;
+//        var_dump($order);die;
+        $temp_orderby = $order?'order by'.$order:'';
+
+        if (empty($where)) {
+            $sql = "select * from {$this->table} " . "   $temp_orderby   " . " limit $offset, $limit";
+            $numsql = "select count(1) as num from {$this->table} ";
+        } else {
+            $sql = "select * from {$this->table}   $where " . "    $temp_orderby  " . " limit $offset, $limit";
+            $numsql= "select count(1) as num from {$this->table}   $where ";
+        }
+
+        $data =  $this->db->getValueBySelfCreateSql($sql);
+        # 总数量
+        $datanNum = $this->db->getValueBySelfCreateSql($numsql);
+        $num = isset($datanNum[0]['num'])? $datanNum[0]['num'] : 0;
+
+        # current page
+        return [
+            'data'=> $data,
+            'count' => $num,
+            'current_page' => $painate->page?:1,
+            'limit' => $limit,
+            'allpage' => floor($num/$limit)?:1
+        ];
+    }
+
+    public function whereIn($filed,$data)
+    {   $where = $this->wherestr;
+
+        # dongdong 添加
+        $where = $this->wherestr;
+        if (strpos($where, 'where') === false) {
+            $where = ' where 1=1 '.$where;
+        }
+        $wherearr = explode('and', $where);
+
+        $str = implode(',', $data);
+        $wherearr[] = $filed." in (".$str.")";
+        $where = implode(' and ', $wherearr);
+        $this->wherestr = $where;
+//        var_dump($this->wherestr);
+        return $this;
+    }
+
+    public function whereNotIn($filed,$data) {
+        if (!$data||empty($data)) {
+            return $this;
+        }
+        $where = $this->wherestr;
+        # dongdong 添加
+        $where = $this->wherestr;
+        if (strpos($where, 'where') === false) {
+            $where = ' where 1=1 '.$where;
+        }
+        $wherearr = explode('and', $where);
+
+        $str = implode(',', $data);
+        $wherearr[] = $filed." Not in (".$str.")";
+        $where = implode(' and ', $wherearr);
+        $this->wherestr = $where;
+        echo $where;die;
+//        var_dump($this->wherestr);
+        return $this;
+    }
+
+    /**
+     * Notice: 求平均数
+     * Date: 2019/1/28
+     * Time: 17:08
+     * @author dongdong
+     */
+    public function avg($filed)
+    {
+        $data =  $this->condition;
+        $where = $this->wherestr;
+
+        $order =  $this->order;
+        $painate = Request::getInstace()->paginate();
+        $offset = ($painate->page - 1) * $painate->limit;
+        $temp_orderby = $order?'order by'.$order:'';
+        if (empty($where)) {
+            $sql = "select avg({$filed}) as avgdata from {$this->table}  " .$temp_orderby ;
+        } else {
+            $sql = "select avg({$filed}) as avgdata from {$this->table}   $where " .$temp_orderby  ;
+        }
+        $data =  $this->db->getValueBySelfCreateSql($sql);
+        return $data[0]['avgdata'];
+        # 总数量
+    }
+
 }
