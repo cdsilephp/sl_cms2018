@@ -156,6 +156,12 @@ class Component
         }else if($type=="数字")
         {
             
+            if($selectValue==""){
+                $filedModel1=new filedModel();
+                $selectValue=$filedModel1->getFiledDefaultValue($filedId);
+            }
+            
+            
             return  '<div class="layui-form-item">
                           <label class="layui-form-label">'.$kjName.'</label>
                           <div class="layui-input-inline">
