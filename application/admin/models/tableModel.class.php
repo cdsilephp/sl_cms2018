@@ -26,6 +26,8 @@ class tableModel extends Model
         }
     }
     
+     
+    
     /**
     
     * 判断是否已存在
@@ -355,6 +357,54 @@ class tableModel extends Model
         //echo $sql."asdf";die();
         
         return $sql;
+    }
+    
+    /**
+    
+    * 判断表是否拥有查询权限
+    
+    * @date: 2019年1月30日 下午5:49:11
+    
+    * @author: 龚华尧
+    
+    * @param: variable
+    
+    * @return:
+    
+    */
+    public  function isableapi($tablename){
+        $tablename= str_replace($GLOBALS['config_db']['prefix'], "", $tablename);
+        $tablename= $GLOBALS['config_db']['prefix'] . $tablename;
+        $tabledetail = $this->where("u1='{$tablename}' ")->one();
+        
+        if(empty($tabledetail)){
+            
+            return false;
+        }else{
+            if($tabledetail['u11']=="on"){
+                return true;
+                
+            }
+        }
+        
+        return false;
+    }
+    
+    
+    
+    public  function gettableidBytablename($tablename){
+        $tablename= str_replace($GLOBALS['config_db']['prefix'], "", $tablename);
+        $tablename= $GLOBALS['config_db']['prefix'] . $tablename;
+        
+        $tabledetail = $this->where("u1='{$tablename}'")->one();
+        if(empty($tabledetail)){
+            
+            return "";
+        }else{
+            return $tabledetail['id'];
+        }
+        
+        return "";
     }
     
     
