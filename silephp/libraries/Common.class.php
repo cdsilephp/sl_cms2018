@@ -759,7 +759,7 @@ class Common
             {
                 return $this->SafeFilterArray($_REQUEST[$key]);
             }else{
-                return $this->SafeFilterStr($_REQUEST[$key]);
+                return $_REQUEST[$key];
             }
             
         } else {
