@@ -22,22 +22,27 @@ class indexController extends baseController {
 	*/
 	public function searchAction(){
  	    //接口安全验证开始
-	    $this->apisafefilter();
+	   // $this->apisafefilter();
 
+	    $commonClass = $this->common;
+	    //处理查询表
+	    $t=$this->TablenameFilter($commonClass->Requert("t")  );
+	    
 	    //处理返回的列名称，用于多表查询
-	    $liemingcheng=$this->LiemingchengFilter($_GET["liemingcheng"]);
+	    $liemingcheng=$this->LiemingchengFilter($commonClass->Requert("liemingcheng"));
 	    //返回条数
-	    $number=$this->NumberFilter($_GET["number"]);
+	    $number=$this->NumberFilter($commonClass->Requert("number") );
 	    //当前页数
-	    $page=$this->NumberFilter($_GET["page"]);
+	    $page=$this->NumberFilter($commonClass->Requert("page") );
 	    
 	    // 		   ordertype：排序字段，默认已有ID，如不需要排序请为空
-	    $ordertype=$commonClass->SafeFilterStr($_GET["ordertype"]);
+	    $ordertype=$commonClass->SafeFilterStr( $commonClass->Requert("ordertype") );
 	    // 		   orderby：排序方式，升序和降序
-	    $orderby=$commonClass->SafeFilterStr($_GET["orderby"]);
+	    $orderby=$commonClass->SafeFilterStr( $commonClass->Requert("orderby") );
 	    // 		   sqlvalue：默认查询方式,如果有多个用逗号分隔，“|”会替换成=号
-	    $sqlvalue=$this->SqlvalueFilter($_GET["sqlvalue"]);
-	    
+	    $sqlvalue=$this->SqlvalueFilter( $commonClass->Requert("sqlvalue") );
+	    // Print 打印测试，如需把sql打印出来，把改成yes，需要显示结果可不传或为空。
+	    $print=$commonClass->Requert("print")  ;
 	    
 	    //拼接为sql语句
 	    $_sql=$this->getSql($t,$liemingcheng,$number,$page,$ordertype,$orderby,$sqlvalue);
@@ -46,22 +51,29 @@ class indexController extends baseController {
 	        echo $_sql;
 	        die();
 	    }
-	    $temp_model = new Model("moxing");
-	    $temp_arr=$temp_model->select($_sql);
-	    //单独处理时间的格式
-	    foreach ($temp_arr as $k=>$v)
-	    {
-	        if($temp_arr[$k]["dtime"]!=null)
-	        {
-	            $temp_arr[$k]["dtime"]=$commonClass->formatTime($v["dtime"]);
-	            $temp_arr[$k]["dtime1"]=$v["dtime"];
-	        }
-	        
-	        //echo $temp_arr[$k]["dtime"];
-	    }
 	    
-	    $rdata['msg']=json_encode($temp_arr);
-	   
+	    $temp_model = new Model($t);
+	    $temp_arr=$temp_model->findBySql($_sql);
+	    //挂载控件类
+	    $this->library("Component");
+	    $ComponentClass = new Component();
+	    $tableModel = new tableModel();
+	    $filedModel=new filedModel();
+	    $table_id = $tableModel->gettableidBytablename($t);
+	    $filedAraay=$filedModel->getallFiledByTableid($table_id);
+	    
+	    foreach ($filedAraay as $v)
+	    {
+	        //处理不同字段的显示数据
+	        foreach ($temp_arr as $k1=>$v1) {
+	            $v1[$v['u1']] =$ComponentClass->showvalueKj($v['u7'],$v['u2'],$v['u1'] ,$v1[$v['u1']],$v['u3'] ,$v['id']) ;
+	            $temp_arr[$k1]=$v1;
+	        }
+	    }
+	    $_tableList["data"]=$temp_arr;
+	    $_tableList["count"]=$temp_model->total($sqlvalue);
+	    
+	    returnSuccess($_tableList, "成功",$code=0);
 	    
 	}
 	

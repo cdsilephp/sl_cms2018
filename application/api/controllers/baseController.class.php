@@ -7,6 +7,7 @@ class baseController extends Controller {
     public  $appkey;
     public  $signstate;
     public  $tokentime ;//token有效时间 20分钟
+    public  $tableModel;
     
 	//构造方法
 	public function __construct(){ 
@@ -14,6 +15,7 @@ class baseController extends Controller {
 	    $this->signstate=$GLOBALS['config_api']['signstate'];
 	    $this->tokentime=$GLOBALS['config_api']['tokentime'];
 	    $this->common = new Common();
+	    $this->tableModel = new tableModel();
 	}
 	
 	public function getcodestr($id) {
@@ -61,12 +63,20 @@ class baseController extends Controller {
 	protected function TablenameFilter($t) {
 	    //调用common类
 	    $commonClass=$this->common;
+	    
+	    if($t==""){
+	        returnSuccess(false, "t参数不能为空",$code=2006);
+	    }
+	    
 	    $table_arr = explode(',',$t);
 	    if(count($table_arr)==0)
 	    {
 	        //待处理的表名
 	        $t=$commonClass->SafeFilterStr($t);
 	        //增加权限判断
+	        if(!$this->tableModel->isableapi($t)){
+	            returnSuccess(false, "数据表无权限查询1",$code=2005);
+	        }
 	        
 	    }else
 	    {
@@ -74,6 +84,9 @@ class baseController extends Controller {
 	        for($i=0;$i<count($table_arr);$i++)
 	        {
 	            //增加权限判断
+	            if(!$this->tableModel->isableapi($table_arr[$i])){
+	                returnSuccess(false, "数据表无权限查询2",$code=2005);
+	            }
 	            
 	            if($t=="")
 	            {
