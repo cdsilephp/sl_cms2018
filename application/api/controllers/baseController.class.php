@@ -69,7 +69,8 @@ class baseController extends Controller {
 	    }
 	    
 	    $table_arr = explode(',',$t);
-	    if(count($table_arr)==0)
+	    //var_dump(count($table_arr));die();
+	    if(count($table_arr)==0||count($table_arr)==1)
 	    {
 	        //待处理的表名
 	        $t=$commonClass->SafeFilterStr($t);
@@ -164,7 +165,7 @@ class baseController extends Controller {
 	protected function NumberFilter($number) {
 	    //调用common类
 	    $commonClass=$this->common;
-	    if ($number=="")
+	    if ($number=="" )
 	    {
 	        $number="0";
 	    }

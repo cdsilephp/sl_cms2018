@@ -78,6 +78,54 @@ class indexController extends baseController {
 	}
 	
 	
+	/**
+	
+	* 添加数据统一接口
+	
+	* @date: 2019年2月14日 下午5:50:41
+	
+	* @author: 龚华尧
+	
+	* @param: variable
+	
+	* @return:
+	
+	*/
+	public function addAction(){
+	    $commonClass = $this->common;
+	    //处理查询表
+	    $t=$this->TablenameFilter($commonClass->Requert("t")  );
+	    
+	    $tableName=str_replace("sl_","",$t);
+	    //待处理的表
+	    $tableModel = new Model($tableName);
+	    $moxingModel = new tableModel();
+	    $model_id=$moxingModel->gettableidBytablename($tableName);
+	    //1.收集表单数据
+	    $data=$tableModel->getFieldArray();
+	    //2.验证和处理
+	    $this->helper('input');
+	    $data = deepspecialchars($data);
+	    
+	    //时间默认为空则为当前时间
+	    if(!isset($data['dtime']))
+	    {
+	        $data['dtime']=date("Y-m-d H:i:s");
+	    }
+	    
+	    if($tableModel->insert($data)){
+	        
+	        returnSuccess("更新成功", "成功",$code=0);
+	        
+	    }else{
+	        
+	        returnFail("更新失败");
+	    }
+	    
+	}
+	
+	
+	 
 	
 	/**
 	
